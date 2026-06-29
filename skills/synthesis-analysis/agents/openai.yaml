@@ -1,0 +1,14 @@
+interface:
+  display_name: "Reservoir Synthesis Analysis"
+  short_description: "Analyze reservoir KUs into source-grounded synthesis cards."
+  default_prompt: >-
+    Use this skill in two steps. First, consolidate the document-level KUs into dimension-level knowledge points using the
+    approved KU dimensions: Operation Purpose; Operation Rules; Infrastructure; Real-Time / Emergency Operations;
+    Coordination / Governance; Operational Data; Research / Modeling / Analysis; Evidence Gap / Uncertainty. This first
+    output should restate and integrate the important information already extracted from sources, citing KU IDs. Second,
+    create cross-KU synthesis cards for recurring findings, complementary evidence, true source discrepancies, operational
+    tradeoffs, source-corpus evidence gaps, and outstanding operational issues. Do not force every analysis type to appear.
+    Only write a card when the KU/source evidence supports it. Treat different values from different scenarios, dates,
+    release-status categories, rule layers, or decision stages as complementary evidence or metadata needs, not as source
+    discrepancies. Treat evidence gaps as missing or thin evidence in the collected source corpus, not workflow limitations
+    such as failed table parsing or incomplete extraction.

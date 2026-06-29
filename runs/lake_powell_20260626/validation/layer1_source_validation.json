@@ -1,0 +1,42 @@
+{
+  "source_records": 49,
+  "document_type_counts": {
+    "agency_webpage": 6,
+    "environmental_report": 5,
+    "technical_memo": 5,
+    "operating_plan": 3,
+    "data_system_documentation": 1,
+    "event_case_report": 11,
+    "research_paper": 18
+  },
+  "status_counts": {
+    "ok": 43,
+    "failed: HTTP Error 403: Forbidden": 4,
+    "failed: <urlopen error [Errno 11001] getaddrinfo failed>": 1,
+    "failed: HTTP Error 307: Temporary Redirect": 1
+  },
+  "error_count": 0,
+  "warning_count": 19,
+  "errors": [],
+  "warnings": [
+    "LP-20260626-B-003 extracted text is short: 59",
+    "LP-20260626-B-004 raw file not saved",
+    "LP-20260626-B-004 text not extracted",
+    "LP-20260626-B-004 status is not ok: failed: HTTP Error 403: Forbidden",
+    "LP-20260626-B-005 raw file not saved",
+    "LP-20260626-B-005 text not extracted",
+    "LP-20260626-B-005 status is not ok: failed: <urlopen error [Errno 11001] getaddrinfo failed>",
+    "LP-20260626-B-013 raw file not saved",
+    "LP-20260626-B-013 text not extracted",
+    "LP-20260626-B-013 status is not ok: failed: HTTP Error 403: Forbidden",
+    "LP-20260626-B-014 raw file not saved",
+    "LP-20260626-B-014 text not extracted",
+    "LP-20260626-B-014 status is not ok: failed: HTTP Error 403: Forbidden",
+    "LP-20260626-B-016 raw file not saved",
+    "LP-20260626-B-016 text not extracted",
+    "LP-20260626-B-016 status is not ok: failed: HTTP Error 403: Forbidden",
+    "LP-20260626-C-003 raw file not saved",
+    "LP-20260626-C-003 text not extracted",
+    "LP-20260626-C-003 status is not ok: failed: HTTP Error 307: Temporary Redirect"
+  ]
+}

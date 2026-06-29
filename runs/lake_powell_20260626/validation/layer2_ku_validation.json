@@ -1,0 +1,23 @@
+{
+  "ku_records": 236,
+  "source_count": 42,
+  "dimension_counts": {
+    "Operation Rules": 35,
+    "Operational Data": 21,
+    "Operation Purpose": 19,
+    "Real-Time / Emergency Operations": 19,
+    "Coordination / Governance": 63,
+    "Infrastructure": 46,
+    "Evidence Gap / Uncertainty": 26,
+    "Research / Modeling / Analysis": 7
+  },
+  "confidence_counts": {
+    "high": 143,
+    "medium": 93
+  },
+  "error_count": 0,
+  "warning_count": 0,
+  "errors": [],
+  "warnings": [],
+  "validation_scope": "run-specific structural and basic quote hygiene validation only; no human/domain validation yet"
+}

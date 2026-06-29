@@ -1,0 +1,33 @@
+{
+  "run_id": "reservoir_slug_YYYYMMDD",
+  "reservoir_id": "",
+  "reservoir_name": "",
+  "basin_or_system": "",
+  "run_date": "YYYY-MM-DD",
+  "workflow_version": "v0.1",
+  "case_role": "development_refinement | transfer_validation",
+  "skills": {
+    "source_acquisition": "source-acquisition-suite",
+    "ku_extraction": "ku-extraction",
+    "synthesis": "synthesis-analysis",
+    "retrieval_indexing": "retrieval-indexing",
+    "report_generation": "report-generation"
+  },
+  "inputs": {
+    "source_scope": "",
+    "seed_sources": [],
+    "search_queries": []
+  },
+  "outputs": {
+    "source_inventory": "",
+    "operational_kus": "",
+    "synthesis_records": "",
+    "retrieval_records": "",
+    "benchmark_questions": "",
+    "validation_summary": "",
+    "report": ""
+  },
+  "human_gates": [],
+  "notes": ""
+}
+

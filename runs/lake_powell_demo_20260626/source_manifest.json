@@ -1,0 +1,90 @@
+[
+  {
+    "source_id": "LP-DEMO-A-001",
+    "source_tier": "TR-A",
+    "title": "Glen Canyon Dam Water Operations",
+    "url": "https://www.usbr.gov/uc/water/crsp/cs/gcd.html",
+    "document_type": "agency_webpage",
+    "official_owner": "Bureau of Reclamation",
+    "expected_evidence_families": ["operation_rules", "data_models_forecasts"],
+    "selection_reason": "Primary USBR operations page for Glen Canyon Dam; states current WY2026 operational tier, release volumes, 24-Month Study projections, and DROA status.",
+    "priority": "high"
+  },
+  {
+    "source_id": "LP-DEMO-A-002",
+    "source_tier": "TR-A",
+    "title": "June 2026 Most Probable 24-Month Study",
+    "url": "https://www.usbr.gov/lc/region/g4000/24mo.pdf",
+    "document_type": "operating_plan",
+    "official_owner": "Bureau of Reclamation",
+    "expected_evidence_families": ["data_models_forecasts", "operation_rules"],
+    "selection_reason": "Official 24-Month Study with current Lake Powell elevation projections, release schedules, and inflow scenarios.",
+    "priority": "high"
+  },
+  {
+    "source_id": "LP-DEMO-A-003",
+    "source_tier": "TR-A",
+    "title": "2026 Drought Response Operations Plan Summary and Framework",
+    "url": "https://usbr.gov/ColoradoRiverBasin/documents/dcp/DROA/2026/uc-2026droughtresponseoperationsplan-summaryandframework-508-20260423.pdf",
+    "document_type": "operating_plan",
+    "official_owner": "Bureau of Reclamation",
+    "expected_evidence_families": ["real_time_emergency", "operation_rules"],
+    "selection_reason": "Official 2026 DROA framework governing Lake Powell monthly operational adjustments under drought conditions.",
+    "priority": "high"
+  },
+  {
+    "source_id": "LP-DEMO-A-004",
+    "source_tier": "TR-A",
+    "title": "Colorado River Storage Project Fact Sheet",
+    "url": "https://www.usbr.gov/ColoradoRiverBasin/MediaKit/20220100-ColoradoRiverStorageProjectFactSheet-508-UCRO.pdf",
+    "document_type": "technical_memo",
+    "official_owner": "Bureau of Reclamation",
+    "expected_evidence_families": ["operation_rules", "hydropower", "governance_policy"],
+    "selection_reason": "CRSP fact sheet covering storage capacity, hydropower generation, compact compliance obligations, and DCP context.",
+    "priority": "medium"
+  },
+  {
+    "source_id": "LP-DEMO-B-001",
+    "source_tier": "TR-B",
+    "title": "Modeling the Impacts of Glen Canyon Dam Operations on Colorado River Resources",
+    "url": "https://www.usbr.gov/uc/progact/amp/pdfs/LTEMP/20240408-ModelingImpactsGlenCanyonDamOperationsColoradoRiverResources-508-UCRO.pdf",
+    "document_type": "technical_memo",
+    "official_owner": "Bureau of Reclamation / technical authors",
+    "expected_evidence_families": ["operation_rules", "data_models_forecasts", "temperature_ecology"],
+    "selection_reason": "Technical modeling report linking release operations to downstream ecological and sediment outcomes.",
+    "priority": "high"
+  },
+  {
+    "source_id": "LP-DEMO-B-002",
+    "source_tier": "TR-B",
+    "title": "Inferred inflow forecast horizons guiding reservoir release decisions across the United States",
+    "url": "https://hess.copernicus.org/articles/24/1275/2020/hess-24-1275-2020.pdf",
+    "document_type": "research_paper",
+    "official_owner": "Hydrology and Earth System Sciences",
+    "expected_evidence_families": ["operation_rules", "data_models_forecasts"],
+    "selection_reason": "Open-access research paper on how inflow forecast horizons influence release decisions; applicable to Lake Powell operations.",
+    "priority": "medium"
+  },
+  {
+    "source_id": "LP-DEMO-C-001",
+    "source_tier": "TR-C",
+    "title": "AP News: Plumbing problem at Glen Canyon Dam brings new threat to Colorado River system",
+    "url": "https://apnews.com/article/colorado-river-climate-change-glen-canyon-dam-25901fb7e9f6896a27c1493a4bbf22f3",
+    "document_type": "event_case_report",
+    "official_owner": "AP News",
+    "expected_evidence_families": ["media_context", "infrastructure_constraints"],
+    "selection_reason": "Credible media source on river outlet works failure risk and infrastructure vulnerability under low reservoir conditions.",
+    "priority": "high"
+  },
+  {
+    "source_id": "LP-DEMO-C-002",
+    "source_tier": "TR-C",
+    "title": "Circle of Blue: Glen Canyon Dam faces its existential moment",
+    "url": "https://www.circleofblue.org/2026/supply/glen-canyon-dam-faces-its-existential-moment/",
+    "document_type": "event_case_report",
+    "official_owner": "Circle of Blue",
+    "expected_evidence_families": ["media_context", "infrastructure_constraints"],
+    "selection_reason": "Context source framing Glen Canyon Dam infrastructure risk and water-supply chokepoint narrative under low reservoir conditions.",
+    "priority": "high"
+  }
+]

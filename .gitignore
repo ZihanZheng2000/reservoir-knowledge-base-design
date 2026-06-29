@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+runs/*/sources/raw/*
+runs/*/sources/text/*
+runs/*/sources/parsed_docling/*
+*.tmp
+*.log

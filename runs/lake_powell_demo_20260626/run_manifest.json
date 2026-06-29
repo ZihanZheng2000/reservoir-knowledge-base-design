@@ -1,0 +1,33 @@
+{
+  "run_id": "lake_powell_demo_20260626",
+  "reservoir_id": "597",
+  "reservoir_name": "Lake Powell",
+  "basin_or_system": "Colorado River / Glen Canyon Dam",
+  "run_date": "2026-06-26",
+  "workflow_version": "v0.2",
+  "case_role": "demo_independent_run",
+  "skills": {
+    "source_acquisition": "source-acquisition-suite",
+    "ku_extraction": "ku-extraction",
+    "synthesis": "synthesis-analysis",
+    "report_generation": "report-generation"
+  },
+  "inputs": {
+    "source_scope": "Lake Powell / Glen Canyon Dam reservoir operation evidence. Focused 8-source demo set covering operation rules, infrastructure constraints, drought response, hydropower, and media context.",
+    "notes": "Independent demo run. No artifacts inherited from lake_powell_20260625 or lake_powell_20260626 runs."
+  },
+  "outputs": {
+    "source_inventory": "sources/source_inventory.jsonl",
+    "operational_kus": "kus/operational_kus.jsonl",
+    "consolidated_knowledge_points": "synthesis/consolidated_knowledge_points.jsonl",
+    "synthesis_records": "synthesis/synthesis_records.jsonl",
+    "report": "reports/lake_powell_demo_report.md",
+    "validation_layer1": "validation/layer1_source_validation.json",
+    "validation_layer3": "validation/layer3_synthesis_validation.json"
+  },
+  "human_gates": [
+    "Approve source manifest before Step 1 acquisition.",
+    "Approve KU output before Step 3 synthesis.",
+    "Approve synthesis cards before Step 5 report."
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "source_id": "RES-T1-001",
+    "tier": "TR-A",
+    "title": "",
+    "url": "",
+    "document_type": "",
+    "expected_evidence_families": [],
+    "relevance_score": null,
+    "relevance_decision": "include | maybe | exclude | manual_review",
+    "relevance_reason": "",
+    "priority": "high | medium | low",
+    "notes": ""
+  }
+]
+

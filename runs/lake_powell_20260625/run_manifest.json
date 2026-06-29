@@ -1,0 +1,46 @@
+{
+  "run_id": "lake_powell_20260625",
+  "reservoir_id": "597",
+  "reservoir_name": "Lake Powell",
+  "basin_or_system": "Colorado River / Glen Canyon Dam",
+  "run_date": "2026-06-25",
+  "workflow_version": "v0.1",
+  "case_role": "development_refinement",
+  "skills": {
+    "source_acquisition": "source-acquisition-suite",
+    "ku_extraction": "ku-extraction",
+    "synthesis": "synthesis-analysis",
+    "retrieval_indexing": "retrieval-indexing",
+    "report_generation": "report-generation"
+  },
+  "inputs": {
+    "source_scope": "Lake Powell / Glen Canyon Dam reservoir operation evidence across official, research/technical, and public/context sources.",
+    "seed_sources": [
+      "Modeling the Impacts of Glen Canyon Dam Operations on Colorado River Resources",
+      "Decision Analysis to Support Development of the Glen Canyon Dam Long-Term Experimental and Management Plan",
+      "A simplified water temperature model for the Colorado River below Glen Canyon Dam",
+      "Effects of Three High-Flow Experiments on the Colorado River Ecosystem Downstream from Glen Canyon Dam"
+    ],
+    "search_queries": [
+      "Lake Powell Glen Canyon Dam operations release hydropower",
+      "Glen Canyon Dam LTEMP adaptive management high flow experiment",
+      "Lake Powell post 2026 operations CRSS uncertainty",
+      "Glen Canyon Dam low reservoir minimum power pool outlet works",
+      "Colorado River Lake Powell Lake Mead coordinated operations"
+    ]
+  },
+  "outputs": {
+    "source_inventory": "sources/source_inventory.jsonl",
+    "operational_kus": "",
+    "synthesis_records": "",
+    "retrieval_records": "",
+    "benchmark_questions": "",
+    "validation_summary": "validation/layer1_source_validation.json",
+    "report": "run_summary.md"
+  },
+  "human_gates": [
+    "Approve source inclusion thresholds and approved source manifest before treating Stage 1 as final."
+  ],
+  "notes": "Stage 1 run started from the clean agentic workflow project."
+}
+

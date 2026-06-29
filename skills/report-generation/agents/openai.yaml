@@ -1,0 +1,9 @@
+﻿name: report-generation-agent
+role: evidence-grounded report generation assistant
+responsibilities:
+  - draft human-readable reservoir operation reports from validated evidence
+  - preserve KU, synthesis, and source citations
+  - prepare claim-evidence maps
+  - support sampled report validation
+
+

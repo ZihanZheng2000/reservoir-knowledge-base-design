@@ -1,0 +1,46 @@
+[
+  {
+    "affected_operation_purposes": [
+      "governance_and_coordination"
+    ],
+    "condition_or_trigger": "governance_policy",
+    "confidence": "medium",
+    "document_type": "agency_webpage",
+    "engineering_dimension": "Coordination / Governance",
+    "evidence_quote": "Sensitivity Analysis – Effects of Alternate Upper Basin Demand Scenarios on Operations at Lake Powell and Lake Mead (5.5 MB, PDF) J.",
+    "extraction_method": "ku-extraction-skill_v2_sentence_grounded_20260625",
+    "finding": "The source identifies a governance, legal, agreement, or coordination issue: Sensitivity Analysis – Effects of Alternate Upper Basin Demand Scenarios on Operations at Lake Powell and Lake Mead (5.5 MB, PDF) J.",
+    "knowledge_layer": "document_finding",
+    "ku_id": "KU-LP-20260625-007",
+    "notes": "First-pass sentence-grounded KU. Requires sampled human review before accepted dataset release.",
+    "reservoir_id": "597",
+    "reservoir_name": "Lake Powell",
+    "source_id": "LP-20260625-A-004",
+    "source_location": "LP-20260625-A-004-CHUNK-001; chars 0-4945; plain_text_extracted_full_coverage",
+    "source_title": "Post-2026 Draft EIS landing page",
+    "source_url": "https://www.usbr.gov/ColoradoRiverBasin/post2026/draft-eis/index.html",
+    "why_it_matters": "This KU preserves source-grounded governance policy evidence for later Lake Powell review, retrieval, and synthesis."
+  },
+  {
+    "affected_operation_purposes": [
+      "reservoir_operations"
+    ],
+    "condition_or_trigger": "operation_rules",
+    "confidence": "high",
+    "document_type": "agency_webpage",
+    "engineering_dimension": "Operation Rules",
+    "evidence_quote": "Sensitivity Analysis – Effects of Alternate Upper Basin Demand Scenarios on Operations at Lake Powell and Lake Mead (5.5 MB, PDF) J.",
+    "extraction_method": "ku-extraction-skill_v2_sentence_grounded_20260625",
+    "finding": "The source identifies an operating rule or operating-guideline issue: Sensitivity Analysis – Effects of Alternate Upper Basin Demand Scenarios on Operations at Lake Powell and Lake Mead (5.5 MB, PDF) J.",
+    "knowledge_layer": "document_finding",
+    "ku_id": "KU-LP-20260625-008",
+    "notes": "First-pass sentence-grounded KU. Requires sampled human review before accepted dataset release.",
+    "reservoir_id": "597",
+    "reservoir_name": "Lake Powell",
+    "source_id": "LP-20260625-A-004",
+    "source_location": "LP-20260625-A-004-CHUNK-001; chars 0-4945; plain_text_extracted_full_coverage",
+    "source_title": "Post-2026 Draft EIS landing page",
+    "source_url": "https://www.usbr.gov/ColoradoRiverBasin/post2026/draft-eis/index.html",
+    "why_it_matters": "This KU preserves source-grounded operation rules evidence for later Lake Powell review, retrieval, and synthesis."
+  }
+]

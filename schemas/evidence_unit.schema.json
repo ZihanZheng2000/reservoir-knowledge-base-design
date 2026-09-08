@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence_unit.schema.json",
+  "title": "Reservoir Evidence Unit",
+  "type": "object",
+  "required": ["eu_id", "knowledge_layer", "reservoir_id", "reservoir_name", "source_id", "source_title", "source_url", "document_type", "engineering_dimension", "finding", "why_it_matters", "evidence_quote", "source_location", "confidence", "extraction_method", "notes"],
+  "properties": {
+    "eu_id": {"type": "string", "minLength": 1},
+    "knowledge_layer": {"const": "document_finding"},
+    "reservoir_id": {"type": "string", "minLength": 1},
+    "reservoir_name": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_title": {"type": "string", "minLength": 1},
+    "source_url": {"type": "string", "minLength": 1},
+    "document_type": {"type": "string", "minLength": 1},
+    "engineering_dimension": {"enum": ["Operation Purposes", "Multiple Objectives", "Storage Capacity and Storage Targets", "Operation Rules", "Emergency Operations", "Real-Time Operations", "Regulation / Governance", "Uncertainty and Risk Management", "Observation and Data", "Inflow Forecast", "Modeling", "Stakeholders", "Operation Failure"]},
+    "finding": {"type": "string", "minLength": 1},
+    "why_it_matters": {"type": "string", "minLength": 1},
+    "evidence_quote": {"type": "string", "minLength": 1, "maxLength": 320},
+    "source_location": {"type": "string", "minLength": 1},
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "extraction_method": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

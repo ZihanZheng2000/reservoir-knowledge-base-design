@@ -1,0 +1,23 @@
+{
+  "review_status": "not_requested",
+  "stage": "report_generation",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "items": [
+    {
+      "row_type": "report_review",
+      "report_id": "lake_powell_case_study_report",
+      "report_title": "Lake Powell Case Study Report",
+      "report_file_link": "lake_powell_case_study_report.md",
+      "claim_evidence_map_link": "claim_evidence_map.jsonl",
+      "report_scope": "Review the whole report for its stated intended use.",
+      "codex_decision": "generated from validated structured knowledge",
+      "faithfulness_score": null,
+      "readability_score": null,
+      "value_score": null,
+      "notes": null,
+      "required_action": null
+    }
+  ]
+}

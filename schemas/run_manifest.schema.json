@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run_manifest.schema.json",
+  "title": "Reservoir Knowledge-Base Run Manifest",
+  "type": "object",
+  "required": ["run_id", "reservoir_id", "reservoir_id_system", "reservoir_name", "run_date", "workflow_version", "skills", "inputs", "outputs", "notes"],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "reservoir_id": {"type": "string", "minLength": 1},
+    "reservoir_id_system": {"type": "string", "minLength": 1},
+    "reservoir_name": {"type": "string"},
+    "basin_or_system": {"type": "string"},
+    "run_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "workflow_version": {"type": "string", "minLength": 1},
+    "case_role": {"type": "string"},
+    "skills": {"type": "object", "required": ["source_acquisition", "evidence_extraction", "knowledge_consolidation", "synthesis", "indexing", "report_generation"], "properties": {"source_acquisition": {"const": "source-acquisition"}, "evidence_extraction": {"const": "evidence-extraction"}, "knowledge_consolidation": {"const": "knowledge-consolidation"}, "synthesis": {"const": "synthesis"}, "indexing": {"const": "indexing"}, "report_generation": {"const": "report-generation"}}, "additionalProperties": false},
+    "inputs": {"type": "object"},
+    "outputs": {"type": "object", "required": ["source_manifest", "candidate_inventory", "source_inventory", "evidence_units", "knowledge_cards", "synthesis_cards", "encoded_knowledge_records", "report"], "properties": {"source_manifest": {"const": "01_source_acquisition/source_manifest.json"}, "candidate_inventory": {"const": "01_source_acquisition/sources/candidate_inventory.jsonl"}, "source_inventory": {"const": "01_source_acquisition/sources/source_inventory.jsonl"}, "evidence_units": {"const": "02_evidence_extraction/evidence_units.jsonl"}, "knowledge_cards": {"const": "03_knowledge_consolidation/knowledge_cards.jsonl"}, "synthesis_cards": {"const": "04_synthesis/synthesis_cards.jsonl"}, "encoded_knowledge_records": {"const": "05_indexing/encoded_knowledge_records.jsonl"}, "report": {"const": "06_report_generation/"}}, "additionalProperties": true},
+    "human_review": {"type": "object", "properties": {"required_for_this_run": {"type": "boolean"}, "stage_review_filename": {"const": "human_review.json"}}, "additionalProperties": false},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

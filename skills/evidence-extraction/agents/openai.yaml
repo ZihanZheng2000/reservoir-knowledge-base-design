@@ -1,0 +1,32 @@
+interface:
+  display_name: "Reservoir Evidence Extraction"
+  short_description: "Extract operational EUs from sources."
+  default_prompt: >-
+    Extract source-grounded operational EUs from the selected reservoir documents and validate the JSONL output.
+    Use the approved dimensions: Operation Purposes; Multiple Objectives; Storage Capacity and Storage Targets;
+    Operation Rules; Emergency Operations; Real-Time Operations; Regulation / Governance; Uncertainty and Risk
+    Management; Observation and Data; Inflow Forecast; Modeling; Stakeholders; Operation Failure. For EUs about
+    Operation Purposes, describe the supported purpose directly using the terminology in the source. Do not add an
+    `affected_operation_purposes` field.
+    Assign the most specific supported dimension. Forecast values and inflow scenarios belong in Inflow Forecast;
+    observed records and data portals belong in Observation and Data; model names, simulation systems, scenario methods,
+    and modeling assumptions belong in Modeling; laws, agreements, agency authority, NEPA/consultation processes, and
+    documentation requirements belong in Regulation / Governance; formal thresholds, release schedules, operating tiers,
+    guide curves, and if/then criteria belong in Operation Rules; storage capacity, elevation targets, minimum pool, dead
+    pool, and storage-protection limits belong in Storage Capacity and Storage Targets. Do not put a EU in Storage
+    Capacity and Storage Targets merely because it mentions storage or elevation.
+    Treat official operating manuals, operation guides, reservoir operation plans, water control manuals, annual operating
+    plans, and agency technical appendices as high-density priority sources. For those documents, do not produce only a
+    high-level summary. Mine distinct operating rules, thresholds, release criteria, triggers, infrastructure limits, data
+    inputs, responsible agencies, and documentation requirements. Use no artificial EU cap; the number of EUs should follow
+    the number of source-grounded, operationally useful findings. Remove exact or semantic duplicates that state the
+    same operational fact, retaining the candidate with the clearest evidence and locator. Keep different operational
+    facts as separate EUs even when they share the same engineering dimension, section, or broader topic. For every EU, write `finding` as a
+    specific, self-contained operational statement. It may retain exact source wording when that wording is already
+    clear and accurate. Preserve official names, rule names, model names, program names, technical terms, and defined
+    terminology exactly rather than replacing them with approximate synonyms. Phrases such as "The source
+    identifies..." or "The source states..." are allowed when they introduce a precise claim, but they must not be
+    used as empty templates without a specific operational claim. Write `why_it_matters` specifically for that finding and its reservoir
+    operation implication; do not use a generic template sentence. Do not add a separate `condition_or_trigger` field.
+    If a threshold, trigger, scenario, date, rule status, data context, or decision condition is important, include it
+    directly in the finding, why-it-matters text, evidence quote, or notes.

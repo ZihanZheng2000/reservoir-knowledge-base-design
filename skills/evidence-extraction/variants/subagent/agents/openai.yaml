@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reservoir EU Extraction: Subagent"
+  short_description: "Extract EUs through tier-specific subagents."
+  default_prompt: "Extract source-grounded operational EUs by assigning Tier A, Tier B, and Tier C sources to separate subagents, then merge and validate the EU JSONL output."

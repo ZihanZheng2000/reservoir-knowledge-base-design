@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claim_evidence_map.schema.json",
+  "title": "Report Claim-Evidence Map Record",
+  "type": "object",
+  "required": ["claim_id", "report_section", "claim_text", "cited_eu_ids", "cited_knowledge_card_ids", "cited_synthesis_card_ids", "cited_source_ids", "support_level", "reviewer_notes"],
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "report_section": {"type": "string", "minLength": 1},
+    "claim_text": {"type": "string", "minLength": 1},
+    "cited_eu_ids": {"type": "array", "items": {"type": "string"}},
+    "cited_knowledge_card_ids": {"type": "array", "items": {"type": "string"}},
+    "cited_synthesis_card_ids": {"type": "array", "items": {"type": "string"}},
+    "cited_source_ids": {"type": "array", "items": {"type": "string"}},
+    "support_level": {"enum": ["direct_eu_support", "knowledge_card_support", "synthesis_card_support", "source_checked", "needs_more_evidence"]},
+    "reviewer_notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

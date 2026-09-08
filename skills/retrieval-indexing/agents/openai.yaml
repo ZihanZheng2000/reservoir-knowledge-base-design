@@ -1,9 +1,0 @@
-﻿name: retrieval-indexing-agent
-role: retrieval indexing and validation assistant
-responsibilities:
-  - prepare retrieval-ready records from validated KUs and synthesis outputs
-  - preserve evidence chains in retrieval metadata
-  - draft benchmark retrieval questions
-  - summarize retrieval validation results
-
-

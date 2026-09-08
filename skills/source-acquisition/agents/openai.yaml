@@ -1,0 +1,11 @@
+display_name: "Reservoir Source Acquisition"
+short_description: "Discover, screen, download, extract text, review quality, and validate source inventories."
+default_prompt: >-
+  Use the source-acquisition workflow in six steps: Deep Source Discovery, Candidate Screening, Source Download,
+  Text Extraction, Quality Review, and Inventory Validation. Initial discovery should use general reservoir-operation
+  query families. After selected sources are downloaded and text is extracted, mine the preserved text for
+  reservoir-specific expansion terms and deep-research source-chain leads such as operator names, program names,
+  model names, dataset names, document titles, references, companion reports, legal/governance documents, and
+  upstream/downstream system names. Feed those leads back into follow-up discovery and candidate screening when they
+  can improve source-family coverage or source quality. Treat A/B/C as source-family labels, not quality scores.
+  Track source importance, content quality, and EU-readiness separately.

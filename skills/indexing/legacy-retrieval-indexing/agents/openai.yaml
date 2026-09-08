@@ -1,0 +1,4 @@
+name: indexing-legacy-path-agent
+role: compatibility redirect for the indexing skill
+responsibilities:
+  - direct users to skills/indexing for offline index encoding

@@ -1,0 +1,93 @@
+{
+  "source_records": 66,
+  "candidate_records": 201,
+  "document_type_counts": {
+    "legal_policy_document": 12,
+    "environmental_report": 6,
+    "technical_memo": 8,
+    "event_case_report": 3,
+    "agency_webpage": 5,
+    "data_system_documentation": 3,
+    "operating_plan": 1,
+    "engineering_manual": 2,
+    "research_paper": 26
+  },
+  "status_counts": {
+    "ok": 50,
+    "failed: <urlopen error [Errno 11001] getaddrinfo failed>": 1,
+    "failed: HTTP Error 403: Forbidden": 12,
+    "failed: preserved page was a redirect/bot-challenge notice, not source full text": 3
+  },
+  "source_importance_counts": {
+    "core": 26,
+    "supporting": 38,
+    "background": 2
+  },
+  "eu_readiness_counts": {
+    "ready": 50,
+    "not_ready": 16
+  },
+  "error_count": 0,
+  "warning_count": 43,
+  "errors": [],
+  "warnings": [
+    "RES-001 raw file not saved",
+    "RES-001 text not extracted",
+    "RES-001 status is not ok: failed: <urlopen error [Errno 11001] getaddrinfo failed>",
+    "RES-002 raw file not saved",
+    "RES-002 text not extracted",
+    "RES-002 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-003 raw file not saved",
+    "RES-003 text not extracted",
+    "RES-003 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-004 raw file not saved",
+    "RES-004 text not extracted",
+    "RES-004 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-005 extracted text is short: 11",
+    "RES-005 status is not ok: failed: preserved page was a redirect/bot-challenge notice, not source full text",
+    "RES-006 raw file not saved",
+    "RES-006 text not extracted",
+    "RES-006 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-007 raw file not saved",
+    "RES-007 text not extracted",
+    "RES-007 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-008 raw file not saved",
+    "RES-008 text not extracted",
+    "RES-008 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-009 raw file not saved",
+    "RES-009 text not extracted",
+    "RES-009 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-010 status is not ok: failed: preserved page was a redirect/bot-challenge notice, not source full text",
+    "RES-011 raw file not saved",
+    "RES-011 text not extracted",
+    "RES-011 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-012 raw file not saved",
+    "RES-012 text not extracted",
+    "RES-012 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-016 raw file not saved",
+    "RES-016 text not extracted",
+    "RES-016 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-017 raw file not saved",
+    "RES-017 text not extracted",
+    "RES-017 status is not ok: failed: HTTP Error 403: Forbidden",
+    "RES-021 status is not ok: failed: preserved page was a redirect/bot-challenge notice, not source full text",
+    "RES-022 raw file not saved",
+    "RES-022 text not extracted",
+    "RES-022 status is not ok: failed: HTTP Error 403: Forbidden"
+  ],
+  "stage": "source_acquisition",
+  "status": "warning",
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "acquisition_success",
+      "status": "warning",
+      "issue_count": 42
+    }
+  },
+  "stage_delivery_checked": true
+}

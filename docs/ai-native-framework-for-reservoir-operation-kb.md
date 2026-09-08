@@ -1,285 +1,1122 @@
-﻿# Proposal: An AI-Native Framework for Automatic Reservoir Operation Knowledge Base Construction
-
-## 1. Background and Motivation
-
-**Reservoir operation knowledge** is scattered across **heterogeneous sources**, including operator manuals, government reports, environmental assessments, journal articles, technical documents, datasets, and news articles. These sources differ substantially in structure, level of detail, perspective, reliability, and intended audience. They often emphasize different aspects of reservoir operations, contain overlapping or complementary information, and may present inconsistent or conflicting descriptions.
-
-**Traditional retrieval systems** primarily index documents or text chunks and return relevant passages based on keyword or semantic matching. They still leave users responsible for reading, interpreting, comparing, and synthesizing information from multiple sources. When evidence is distributed across documents with different focuses or conflicting viewpoints, researchers must manually reconcile those differences to form a coherent understanding. This process is labor-intensive, difficult to scale, and prone to omissions or inconsistent interpretations.
-
-This project aims to develop an **AI-native workflow** that automatically transforms heterogeneous textual sources into a **structured, validated, and traceable reservoir operation knowledge base**. The framework is designed to minimize manual effort after development while maintaining **transparency**, **evidence traceability**, and support for downstream **retrieval, reasoning, and report generation**.
-
-## 2. Overall Framework
-
-The proposed framework is organized around **five research objectives**: collecting reservoir-related public sources, extracting structured atomic **Knowledge Units (KUs)**, synthesizing document-level KUs into **refined cross-document knowledge representations**, building a **searchable knowledge base** for semantic retrieval and reasoning, and generating **human-readable reports** for inspection and downstream research.
-
-These objectives are implemented through **five major stages**. **Validation** is not treated as a separate stage; instead, it is embedded throughout the workflow through **schema checks**, **source traceability checks**, **retrieval benchmarks**, and **manual review** on representative reservoirs.
-
-| Step | Objective | Input | Output | Validation Focus |
-|---|---|---|---|---|
-| 1. Data Collection | Collect reservoir-related information from diverse public sources | Search results, curated URLs, source leads | Preserved source inventory and extracted text | Candidate Inclusion F2 Score, Source Family Accuracy |
-| 2. Initial KU Extraction | Extract structured atomic KUs from unstructured documents | Individual documents and extracted text | Source-grounded initial KUs | KU Extraction F2 Score, Engineering Dimension Accuracy, Traceability Rate, Faithfulness Rate |
-| 3. Knowledge Synthesis and Refined KU Generation | Synthesize document-level KUs into refined cross-document knowledge representations | Initial KUs and source locators | Refined KUs / synthesis cards | Synthesis F2 Score, Traceability Rate, Faithfulness Rate, Human Quality Score |
-| 4. Embedding and Vector Database Construction | Build a searchable knowledge base for semantic retrieval and reasoning | Refined KUs and metadata | Searchable semantic index | Retrieval F2 Score, Traceability Rate |
-| 5. Human-Readable Report Generation | Support automatic report generation for human inspection and downstream research | Refined KUs, synthesis cards, source metadata | Structured reservoir operation report | Traceability Rate, Faithfulness Rate, Human Quality Score |
-
-At the implementation level, the framework is not only a conceptual pipeline. It is executed as a **repeatable AI-native workflow** in which **Codex** coordinates **project-specific skills**, **deterministic scripts**, **structured schemas**, and **validation gates**. Codex handles source discovery decisions, extraction prompting, synthesis reasoning, and report drafting, while **Python scripts** handle repeatable tasks such as source preservation, document parsing, packet construction, JSONL/schema validation, and artifact organization.
-
-The central design principle is to separate **machine assistance** from **evidence authority**. AI models help transform, summarize, and synthesize information, but every generated output must preserve a **traceable path back to source documents** through source IDs, KU IDs, source locations, and evidence quotes. This makes the system inspectable rather than a black-box text generator.
-
-## 3. Framework Stages
-
-The following stages describe how the framework is implemented in practice. In this workflow, **Codex serves as the orchestration agent** rather than as a single text-generation model. It reads the **project protocols**, selects the appropriate **stage-specific skill**, runs supporting scripts, manages artifact folders, applies structured prompts, and checks validation outputs before moving to the next stage. This design allows the workflow to combine **flexible AI reasoning** with **repeatable engineering controls** such as schemas, local file preservation, JSONL records, and validation scripts.
-
-### Step 1: Data Collection
-
-The framework collects reservoir-related information from three clearly separated source families, defined by who produced or published the source:
-
-- **Official sources:** materials published by reservoir operators, government agencies, regulatory bodies, or official data providers. Examples include operation manuals, agency reports, technical reports, management plans, environmental assessments, legal or policy documents, official data systems, and operator webpages.
-- **Research sources:** materials produced by academic researchers, research institutes, universities, or scientific publishers. Examples include journal papers, conference papers, research articles, academic book chapters, and researcher-authored model or dataset papers.
-- **Public and media sources:** materials produced for public communication rather than formal operation or research. Examples include news articles, public-facing explainers, stakeholder statements, interviews, media reports about droughts or floods, infrastructure incidents, policy negotiations, and operational controversies. 
-
-The output is a **preserved document repository** for each reservoir. Each source is stored with metadata, raw-file preservation status, extracted-text path, source tier, document type, and selection rationale.
-
-**Implementation method:**
-
-- Define the reservoir name, operator, basin context, source families, and inclusion criteria, and assign a stable reservoir identifier to ensure that each reservoir is uniquely represented in the knowledge base.
-- Use the **source-acquisition skill** and its source-acquisition protocol to build candidate source lists from official webpages, document repositories, scholarly metadata, and public media sources.
-- **Deduplicate** candidate sources by URL, title, document identity, and content role.
-- Save each accepted source locally as a **raw file**, parse it into text or structured markdown, and record it in a **source inventory**.
-- Validate the inventory to ensure that required metadata fields exist and that raw and extracted files can be located.
-
-### Step 2: Initial Knowledge Unit Extraction
-
-Each document is processed independently to extract **atomic Knowledge Units**. An **initial KU** corresponds to a single factual statement obtained directly from one source without cross-document reasoning.
-
-Formal KU categories follow the project's approved **engineering-dimension schema**:
-
-- **Operation Purpose:** operating objectives, authorized purposes, and priority tradeoffs.
-- **Operation Rules:** release rules, thresholds, guide curves, seasonal rules, and decision criteria.
-- **Infrastructure Constraints:** dam, outlet, intake, hydropower, storage, conveyance, and physical operating limits.
-- **Data / Models:** forecasts, monitoring systems, datasets, simulation models, and modeling assumptions used for operation.
-- **Real-Time / Emergency Operations:** drought response, flood response, emergency actions, short-term operating decisions, and incident-driven operations.
-- **Coordination / Governance:** agencies, agreements, laws, planning processes, stakeholder coordination, and institutional responsibilities.
-- **Evidence Gap / Uncertainty:** missing information, unresolved decisions, uncertain assumptions, conflicting evidence, and future research or planning needs.
-
-Each KU preserves links to its original source, including source ID, source title, URL, source location, and a short evidence quote. This makes the KU layer an **evidence-grounded index** rather than an unsupported summary.
-
-**Implementation method:**
-
-- Use **Docling-based structured parsing** when available to preserve document structure such as headings, pages, and tables before KU extraction.
-- Build **section-aware extraction packets** from the parsed document text rather than sending whole documents or truncated first-page text directly to the model.
-- Apply the **KU extraction skill** and its KU extraction protocol to each packet to draft candidate KUs.
-- Consolidate repeated statements within the same source when they express the same finding, while still allowing one file to produce multiple KUs under the same engineering dimension when those KUs capture distinct operational findings.
-- Write validated **JSONL records** and run automated checks for required fields, source IDs, unique KU IDs, approved categories, evidence quotes, and traceability fields.
-
-### Step 3: Knowledge Synthesis and Refined KU Generation
-
-Initial KUs extracted from different documents may contain duplicated, overlapping, complementary, or conflicting information. The **synthesis stage** performs **cross-document analysis** to:
-
-- merge redundant knowledge;
-- identify supporting evidence;
-- detect source discrepancies and operational tradeoffs;
-- record uncertainty and evidence gaps;
-- organize information into coherent themes.
-
-This stage also produces the **refined knowledge layer**. Unlike initial KUs, **refined KUs** represent consolidated knowledge supported by one or more source-level KUs. For example, several document-specific statements about drought operations may be combined into one refined KU that captures the common finding while retaining links to all supporting initial KUs and original documents.
-
-The framework keeps a clear distinction between the **evidence layer** and the **synthesis layer**:
-
-- **Initial KUs** are document-level findings.
-- **Refined KUs / synthesis cards** are cross-document interpretations grounded in initial KUs.
-- **Reports and retrieval outputs** cite refined KUs while preserving the path back to initial KUs and source documents.
-
-**Implementation method:**
-
-- Organize validated initial KUs as the evidence base for synthesis, using dimensions such as **engineering dimension**, **operating purpose**, **condition or trigger**, **source family**, and other synthesis grouping criteria (**to be determined**).
-- Add synthesis-level outputs on top of the initial KU layer, such as refined KUs, synthesis cards, or other cross-document result types (**to be determined**).
-- For strong cross-document claims, return from KU summaries to the **original source sections** before finalizing the synthesis.
-- Record supporting KU IDs, confidence, source verification status, and unresolved uncertainty in each refined KU or synthesis card.
-
-### Step 4: Embedding and Vector Database Construction
-
-Refined KUs are converted into **semantic embeddings** and indexed in a **vector database**. Each indexed record contains:
-
-- refined KU content;
-- reservoir identifier;
-- engineering category;
-- source tier and document-type metadata;
-- citations to supporting initial KUs;
-- citations to original source documents;
-- uncertainty or conflict markers when applicable.
-
-The initial KUs are preserved as an evidence layer for traceability, while refined KUs serve as the **primary retrieval objects** for semantic search and downstream reasoning.
-
-**Implementation method:**
-
-- Convert each refined KU into an **embedding-ready record** with normalized metadata.
-- Use the text field for semantic retrieval.
-- Use metadata fields for filtering by reservoir, source family, engineering dimension, confidence, evidence depth, and document type.
-- Return both the **synthesized statement** and its **evidence chain** so that downstream reasoning can inspect the supporting KUs and original sources.
-
-### Step 5: Human-Readable Report Generation
-
-The final stage converts refined KUs into **structured, human-readable reservoir operation reports**. These reports support manual inspection, direct citation, and downstream research use.
-
-A typical report may include:
-
-- reservoir overview;
-- operation objectives;
-- general operating policies;
-- seasonal strategies;
-- flood, drought, and emergency operations;
-- infrastructure and hydropower constraints;
-- available datasets and models;
-- previous research;
-- source discrepancies, uncertainties, and remaining knowledge gaps.
-
-Unlike raw KUs, which are optimized for machine indexing and retrieval, the reports organize synthesized knowledge into **coherent sections** that can be easily reviewed and referenced by users.
-
-**Implementation method:**
-
-- Use the **refined KU layer** as the report outline and evidence base.
-- Draft section-level prose from relevant refined KUs.
-- Attach citations to KU IDs or source IDs.
-- Explicitly mark evidence gaps, conflicts, or uncertain claims.
-- Treat report generation as a **controlled transformation** from validated structured knowledge into a readable research artifact, rather than as an unconstrained writing task.
-
-## 4. AI-Native Workflow Structure
-
-The framework will be developed as a **Codex-orchestrated automation architecture**, not as a sequence of isolated LLM prompts. **Codex acts as the workflow controller**, while skill groups, scripts, schemas, validators, run manifests, and human review templates provide the operational structure that makes the workflow repeatable, inspectable, and transferable to additional reservoirs.
-
-### Automation Components
-
-The most important execution units are the **skill groups**, because each framework stage is implemented through a dedicated skill group. The other components are also essential: they define project-wide rules, enforce structured outputs, record provenance, and support human validation.
-
-| Component | Role in the Automation Strategy | Why It Matters |
-|---|---|---|
-| **Project-level agent instructions** | An `AGENTS.md` file defines the overall project goal, the five-stage workflow, artifact conventions, validation-gate rules, and boundaries between source evidence, initial KUs, synthesis outputs, retrieval records, and reports. | Gives Codex a stable project-level operating manual so the workflow is not reinvented in each run. |
-| **Skill groups** | Each stage has a dedicated skill group with a protocol, expected inputs, expected outputs, scripts, and validation requirements. | Serves as the core execution layer of the framework; one skill group corresponds to one framework stage. |
-| **Scripts** | Python scripts handle repeatable tasks such as source preservation, Docling parsing, extraction packet construction, schema validation, indexing, and report assembly. | Keeps deterministic processing separate from model reasoning and makes repeated runs reproducible. |
-| **Schemas** | Machine-readable schemas define the required structure of source inventories, operational KUs, synthesis outputs, retrieval records, benchmark questions, and report claims. | Ensures that outputs can be validated, linked across stages, and reused downstream. |
-| **Validators** | Validation scripts check whether outputs are structurally complete, internally consistent, traceable, and ready to move to the next stage. | Creates explicit gates between stages instead of relying on informal inspection. |
-| **Run manifests** | Each full workflow run records the reservoir ID, run ID, date, skill group versions, input files, output files, validation results, and human-review status. | Preserves provenance and makes each run auditable. |
-| **Human review templates** | Annotation templates support source screening, reference KU creation, synthesis review, benchmark question design, and report review. | Makes manual validation consistent across reservoirs and reviewers. |
-
-### Skill Group Design
-
-The proposed automation strategy uses **one skill group for each framework stage**. The current project organizes all five framework stages as skill groups.
-
-| Step | Skill Group | Current Status | Role in Workflow | Main Outputs |
-|---|---|---|---|---|
-| 1. Data Collection | `source-acquisition` | Implemented as `source-acquisition-suite` | Collect, dedupe, preserve, and parse operation-related sources | source inventory, raw files, extracted text, parsing manifest |
-| 2. Initial KU Extraction | `ku-extraction` | Implemented as `ku-extraction` | Convert source text into source-grounded initial KUs | extraction packets, initial KU JSONL, KU preview |
-| 3. Knowledge Synthesis and Refined KU Generation | `synthesis-analysis` | Implemented as `synthesis-analysis` | Synthesize validated KUs into refined cross-document knowledge outputs | refined KUs or synthesis cards, validation output, synthesis report |
-| 4. Embedding and Vector Database Construction | `retrieval-indexing` | Implemented as `retrieval-indexing` | Convert refined KUs into embedding-ready records, build the vector index, and evaluate benchmark retrieval | embedding-ready records, vector index, retrieval benchmark results |
-| 5. Human-Readable Report Generation | `report-generation` | Implemented as `report-generation` | Transform refined KUs and synthesis outputs into structured readable reports | reservoir operation report, citation map, report validation notes |
-
-The intended automated run pattern is:
-
-1. **Initialize reservoir run:** create a reservoir-specific artifact directory and define source scope, reservoir identifiers, and inclusion criteria.
-2. **Acquire and preserve sources:** use the source-acquisition skill group to build a deduplicated source inventory, save raw files, extract text, and validate local file paths and metadata.
-3. **Parse long-form documents:** use Docling or fallback parsers to preserve document structure, including headings, pages, and tables when available.
-4. **Generate extraction packets:** create section-aware packets so long documents are processed with full coverage rather than first-page or first-character truncation.
-5. **Extract initial KUs:** use the KU-extraction skill group, write JSONL records, and validate against the operational KU schema.
-6. **Synthesize and refine knowledge:** use the synthesis-analysis skill group to organize initial KUs, generate source-grounded synthesis outputs or refined KUs, and validate citations and analysis types.
-7. **Build retrieval assets:** use the retrieval-indexing skill group to embed refined KUs, attach metadata and citation chains, and evaluate retrieval with benchmark questions.
-8. **Generate report outputs:** use the report-generation skill group to convert refined KUs and synthesis outputs into a structured reservoir operation report with citations, uncertainty notes, and evidence gaps.
-9. **Run validation gates:** apply schema checks, source traceability checks, retrieval benchmarks, and manual review on representative reservoirs.
-
-This strategy separates **development-time human supervision** from **deployment-time automation**. During development, representative reservoirs are manually inspected to refine prompts, extraction rules, synthesis strategies, and validation criteria. Once the workflow demonstrates stable performance across those cases, the same skill-based pipeline can be applied to additional reservoirs with minimal manual intervention.
-
-## 5. Workflow Refinement and Sampled Validation
-
-This section describes how the workflow is improved and evaluated without requiring exhaustive manual annotation of the full reservoir corpus. The central idea is to use one well-documented reservoir as a development case, review small samples at each stage, revise the workflow based on observed errors, and then test the stabilized workflow on a different reservoir.
-
-### 5.1 Development Case
-
-Lake Powell is used as the primary development case because it has abundant official documents, research literature, public data products, and media/context sources. Its operation is also shaped by drought conditions, infrastructure constraints, hydropower concerns, ecological objectives, and post-2026 governance debates. This makes it a useful case for exposing weaknesses in source acquisition, KU extraction, synthesis, retrieval, and report generation.
-
-In the development case, the workflow is allowed to change. Prompts, skills, schemas, source relevance rules, KU categories, synthesis types, and validation gates can be revised when sampled review reveals systematic problems. Lake Powell therefore serves to refine the workflow; it is not treated as the final unbiased test case.
-
-### 5.2 Human-Reviewed Samples
-
-The framework does not require humans to manually annotate every source, KU, synthesis output, retrieval result, or report claim. Instead, human-reviewed samples are drawn from each major stage. These samples provide a practical reference set for diagnosing errors and computing stage-level metrics.
-
-Typical review samples include:
-
-- source candidates for inclusion/exclusion and tier assignment;
-- source inventory records for metadata completeness and source preservation;
-- document sections or extraction packets for KU extraction review;
-- generated KUs for category accuracy, traceability, and faithfulness;
-- synthesis cards or refined KUs for cross-document reasoning quality;
-- benchmark retrieval questions and retrieved records;
-- report claims that require evidence support.
-
-These samples are used to answer whether the workflow is producing useful, traceable, and evidence-supported outputs. They also make validation feasible without turning the project into a full manual corpus annotation effort.
-
-### 5.3 Refinement Cycle
-
-Workflow refinement follows a human-gated cycle. Human reviewers provide judgment, but the AI agent performs the concrete revision work.
-
-1. **Run the workflow:** the AI agent executes the current workflow on the development case.
-2. **Prepare review samples:** the AI agent selects representative samples from source acquisition, KU extraction, synthesis, retrieval, and reporting outputs.
-3. **Review the samples:** human reviewers inspect the samples and identify incorrect, weak, missing, or unsupported outputs.
-4. **Compute sampled metrics:** the AI agent calculates stage-level metrics on the reviewed samples.
-5. **Summarize failure modes:** the AI agent and human reviewers identify recurring problems, such as weak source relevance, unstable tier labels, missed KUs, overly broad KUs, unsupported synthesis claims, or weak report evidence.
-6. **Propose revisions:** the AI agent proposes changes to prompts, skill protocols, schemas, relevance thresholds, extraction packet design, synthesis categories, or validation rules.
-7. **Approve and implement revisions:** human reviewers approve or revise the proposed changes, and the AI agent implements the approved revisions.
-8. **Rerun and compare:** small revisions may first trigger reruns of only the affected stage for diagnosis; major revisions should trigger a full workflow rerun to check whether upstream and downstream outputs remain consistent.
-
-Iteration stops when major failure modes are resolved and sampled metrics no longer show large avoidable errors. This makes prompt and skill refinement auditable: each change is tied to observed failure modes and reviewed outputs rather than informal prompt rewriting.
-
-### 5.4 Transfer Validation
-
-After the workflow stabilizes on the development case, it is applied to at least one additional reservoir as a transfer validation case. The purpose is to test whether the workflow can generalize to a different reservoir context, not to continue routine tuning.
-
-The transfer validation case uses the same stage-level sampled evaluation as the development case. However, prompts, schemas, thresholds, and skill protocols should not be substantially revised during transfer validation unless the new reservoir exposes a major systematic failure. If such a failure occurs, the workflow should return to the development refinement stage before being evaluated again.
-
-This design avoids framing the project as a conventional machine-learning train/validation/test split. The framework does not train model parameters. It develops and evaluates a human-gated AI-native workflow. The development case refines the workflow, and the transfer validation case tests whether the refined workflow remains useful outside the original reservoir.
-
-### 5.5 Stage-Level Metrics
-
-Validation is performed at the stage level because each stage produces a different type of output. The same metric families are used in both the development case and the transfer validation case, but the results serve different purposes: in the development case, metrics guide workflow revision; in the transfer case, metrics assess generalizability and document remaining limitations.
-
-| Stage | Reviewed sample | Main metrics |
-|---|---|---|
-| Source acquisition | Candidate sources and included source records | Candidate inclusion F2, source tier accuracy, relevance-threshold precision |
-| KU extraction | Document sections, extraction packets, and generated KUs | KU extraction F2, engineering-dimension accuracy, traceability rate, faithfulness rate |
-| Synthesis | Synthesis cards or refined KUs and their cited evidence | Synthesis quality score, traceability rate, faithfulness rate, source-check rate |
-| Retrieval/indexing | Benchmark questions and top-k retrieved records | Retrieval F2, top-k precision/recall, traceability rate |
-| Report generation | Evidence-requiring report claims | Claim traceability rate, claim faithfulness rate, human quality score |
-
-For F2-based metrics, precision is defined as `P = TP / (TP + FP)` and recall is defined as `R = TP / (TP + FN)`. **TP** refers to correct system outputs, **FP** refers to incorrect or irrelevant outputs, and **FN** refers to expected outputs missed by the system. The exact output type depends on the stage, such as included sources, extracted KUs, synthesis outputs, retrieved records, or evidence-supported report claims. The F2 score is used because the workflow places greater weight on avoiding missed useful evidence while still controlling irrelevant or unsupported outputs.
-
-Traceability and faithfulness are used across stages. **Traceability** asks whether an output preserves links to source documents, KUs, source locations, or evidence quotes. **Faithfulness** asks whether the output is actually supported by the cited evidence. Together, these checks ensure that the workflow produces not only plausible text but reviewable reservoir-operation knowledge.
-## 6. Expected Contributions
-
-The proposed research is expected to contribute:
-
-- a **source-grounded reservoir operation knowledge base dataset**, including source-level Knowledge Units and cross-document synthesis records;
-- an **AI-native, human-gated workflow** for constructing, refining, and validating the dataset from heterogeneous reservoir-operation sources;
-- a **Lake Powell case study** demonstrating how the dataset and workflow support reviewable operational knowledge synthesis and identify remaining evidence gaps.
-
-## 7. Why Agent-Based Organization Is Needed
-
-There are three possible ways to implement this type of reservoir knowledge-base workflow.
-
-The first option is a **pure Python pipeline**. This approach is appropriate for deterministic tasks such as downloading files, parsing documents, extracting tables, validating JSONL schemas, computing metrics, and organizing artifacts. However, a pure Python pipeline is not sufficient for this project because the core tasks involve semantic judgment: deciding which sources are operationally relevant, identifying meaningful KUs from heterogeneous documents, synthesizing cross-document relationships, and revising the workflow after human review.
-
-The second option is a **Python-led pipeline with LLM calls**. In this design, Python controls the overall workflow and calls an LLM for specific tasks such as source screening, KU extraction, or synthesis. This is more capable than a pure Python pipeline and may be suitable once the task is fully stabilized. However, it assumes that the sequence of steps, prompts, schemas, thresholds, review logic, and rerun strategy are already well defined. During research development, these elements are still evolving. The workflow needs to decide what to inspect next, how to respond to failure modes, which stage should be rerun, and how to revise prompts or skills after human feedback.
-
-The third option is an **agent-based workflow that orchestrates Python scripts and LLM reasoning**. This is the design adopted in this project. Python still performs deterministic and reproducible processing, while the agent organizes the research process: selecting and applying skill protocols, coordinating LLM-based extraction and synthesis, preparing human review samples, interpreting validation results, proposing workflow revisions, implementing approved changes, and maintaining versioned artifacts.
-
-The reason for using an agent-based organization is therefore not that Python is unimportant. Rather, Python handles the stable execution layer, while the agent handles the evolving research-control layer. The agent is useful when the workflow requires:
-
-- open-ended source discovery and relevance screening;
-- domain-aware KU extraction from heterogeneous documents;
-- cross-document synthesis that distinguishes recurring findings, discrepancies, tradeoffs, evidence gaps, and unresolved issues;
-- human-gated refinement of prompts, skills, schemas, thresholds, and validation rules;
-- selective reruns or full reruns after revisions;
-- preservation of evidence links across sources, KUs, synthesis records, retrieval outputs, and reports.
-
-In later deployment, parts of the workflow may be converted into a more conventional Python-led pipeline once the prompts, schemas, validation gates, and rerun logic become stable. During method development, however, an agent-based workflow is more appropriate because it can combine executable processing, LLM-based interpretation, and human-guided research iteration in a single inspectable process.
+﻿# An AI-Native, Evidence-Traceable Framework for Reservoir Operation Knowledge-Base Construction
+
+## Abstract
+
+Reservoir-operation knowledge is distributed across operating manuals, agency
+records, technical reports, research publications, data documentation, and
+public-context materials. These sources differ in authority, format, date,
+purpose, and operational detail. A document-search system can return relevant
+passages, but it does not by itself preserve the difference between source
+evidence, conservative evidence organization, and cross-document interpretation.
+
+This paper presents an AI-native framework for constructing a traceable
+reservoir-operation knowledge base from heterogeneous sources. Here,
+AI-native means that an agent coordinates semantic decisions across the full
+construction workflow, while deterministic tools enforce source preservation,
+schema compliance, artifact contracts, and traceability. The framework has six
+construction stages: Source acquisition, Evidence extraction, Knowledge
+consolidation, Synthesis, Indexing, and Report generation. Its central
+representation has three layers: document-level Evidence Units (EUs), Knowledge
+Cards (KCs) that organize related EUs around operational questions, and
+Synthesis Cards (SCs) that make bounded cross-document analyses. Retrieval is
+treated as a downstream use of the constructed knowledge base, not as a
+construction stage.
+
+## 1. Problem and Design Goal
+
+Reservoir operation is governed by interacting physical, hydrologic,
+institutional, and social conditions. Relevant information may appear in formal
+release rules, storage targets, drought plans, environmental analyses, forecast
+products, infrastructure descriptions, agreements, model studies, and event
+reporting. No single source is guaranteed to state the complete operating
+context. Different statements may also reflect different dates, scenarios, rule
+layers, or decision statuses rather than a direct conflict.
+
+The design goal is therefore not merely to summarize a source collection. It is
+to build a reusable knowledge base in which a reader can distinguish three
+things: what one source says, how multiple source-grounded findings have been
+organized, and what broader relationship has been inferred under stated
+evidence limits. The framework must preserve raw sources before knowledge
+extraction, provide stable identifiers and locators, validate structured
+outputs before downstream use, and keep warnings or unresolved issues visible.
+
+The framework is intended for source-grounded reservoir-operation research and
+knowledge-base development. It does not replace hydrologic modeling, legal
+interpretation, domain-expert judgment, or the primary source documents
+themselves.
+
+## 2. Core Representation
+
+The framework transforms preserved source documents into three record layers.
+Evidence Units capture document-level operational findings from individual
+sources. Knowledge Cards conservatively organize EUs that address the same
+operational question. Synthesis Cards analyze relationships across documents
+while retaining explicit evidence links and uncertainty. Together, these layers
+separate what a source states, how related evidence is organized, and what
+broader relationship is inferred.
+
+| Layer | Record | Role | Must preserve |
+|---|---|---|---|
+| Evidence | Evidence Unit (EU) | One operational finding grounded in one source | Source ID, locator, quote, engineering dimension, confidence |
+| Knowledge | Knowledge Card (KC) | Conservative grouping of EUs that answer the same operational question | Supporting EU IDs, material conditions, disagreements, consolidation type, confidence |
+| Analysis | Synthesis Card (SC) | Evidence-constrained cross-document analysis | Supporting EU IDs, relevant KC IDs, pattern, evidence depth, confidence, source-checking context |
+
+A completed Lake Powell run shows the intended separation using direct excerpts
+from `runs/lake_powell_20260729_kb/`.
+
+| Layer | Example |
+|---|---|
+| Source | `RES-020`: "In 2005 discharges were affected because reservoir elevations were lower than at any other time since initial filling, as shown in Figure 4-21, and low DO water in the metalimnion was located just above the penstock elevation (Figure 1-2)." |
+| EU | `EU-LP-RES-020-07`: In most years the metalimnetic oxygen minimum does not affect dam discharges because it sits well above the penstock elevation (3,470 ft), but in 2005 reservoir elevations were the lowest since initial filling and the low-DO metalimnetic water was located just above the penstock elevation, allowing oxygen-depleted water to pass through the dam. |
+| KC | `KC-LP-UNC-10`: In fall 2005, a plume of oxygen-depleted water in Lake Powell was captured in the penstock withdrawal zone and exported through Glen Canyon Dam, dropping tailwater dissolved oxygen below 4.0 mg/L in September 2005 and violating EPA cold-water fishery DO criteria (1-day mean minimum 4.0 mg/L, 7-day mean minimum 5.0 mg/L, 30-day mean 6.5 mg/L) (RES-020-02). This occurred because in most years the metalimnetic oxygen minimum sits well above the penstock elevation (3,470 ft) and does not affect dam discharges, but in 2005 reservoir elevations were the lowest since initial filling, placing the low-DO metalimnetic layer just above the penstock elevation and allowing oxygen-depleted water to pass through the dam (RES-020-07). |
+| SC | `SC-LP-011`: In September 2005, Glen Canyon Dam tailwater dissolved oxygen fell below EPA cold-water-fishery criteria because historically low reservoir elevations placed the reservoir's low-oxygen metalimnetic layer directly at the penstock withdrawal elevation, allowing oxygen-depleted water to be exported through the dam -- a documented water-quality failure mode tied specifically to low reservoir elevation. |
+
+This completed-run example shows the intended separation. The Source row keeps
+source wording. The EU row records a single-source finding with an identifier
+and locator. The KC row organizes related EUs around an operational question
+while keeping supporting evidence visible. The SC row states a bounded
+cross-document analysis with explicit EU/KC support. This separation keeps
+evidence, organization, and analysis reviewable as distinct objects.
+
+Every record must resolve back to preserved source evidence. Let
+\(\mathcal{S}\) be the preserved source corpus, \(E\) the set of EUs, \(K\) the
+set of KCs, and \(A\) the set of SCs. The global traceability constraint is:
+
+$$
+\forall x \in (E \cup K \cup A),\quad \operatorname{Traceable}(x)
+$$
+
+In practice, traceability means that a reviewer can follow a record's IDs and
+locators back to the preserved source text and evidence quote. The same
+traceability definition is used throughout construction, validation, indexing,
+and reporting.
+
+Synthesis Cards use six primary patterns when the evidence supports them:
+`decision_process`, `constraint_structure`, `operational_tradeoff`,
+`operating_regime_change`, `historical_operation_failure`, and
+`operational_consequence`. Each SC has exactly one primary pattern. Secondary
+lenses may be recorded when they are supported, but the workflow does not fill
+all possible analytical categories merely to make the output look complete.
+
+A source discrepancy or evidence gap is not itself a synthesis pattern. If
+sources disagree about the same object under the same date, definition, status,
+scenario, and decision context, the issue belongs in a
+`contested_or_unresolved` KC or a validation warning. Differences that arise
+from different forecast dates, proposed versus final rules, or baseline versus
+emergency operations should be preserved as context. They should not be turned
+into a higher-level conclusion before the evidence supports that move.
+
+## 3. Six-Stage Construction Workflow
+
+The routine workflow has six construction stages. Run orchestration starts a
+compliant run, enforces stage order, and supports handoff, but it is not a
+seventh knowledge-production stage.
+
+At run level, the workflow is a sequence of typed transformations:
+
+$$
+\mathcal{S}
+\xrightarrow{f_E} E
+\xrightarrow{f_K} K
+\xrightarrow{f_A} A
+\xrightarrow{f_I} I
+\xrightarrow{f_R} R
+$$
+
+Here \(I\) denotes index-ready records and \(R\) denotes the generated report
+and claim-evidence map. Each transition is allowed only after the upstream
+stage passes its required automated checks:
+
+$$
+f_{t+1}(Y_t)\;\text{is admissible only if}\;V_t(Y_t)=1
+$$
+
+For source acquisition, automated validation checks schema conformance and
+acquisition status. For later stages, it checks schema conformance and
+traceability integrity. These checks are narrow by design. They confirm that
+records are well-formed and that cited IDs resolve; they do not certify that a
+semantic judgment is correct.
+
+| Stage | Primary input | Primary output | Purpose |
+|---|---|---|---|
+| 1. Source acquisition | Reservoir scope and source leads | Preserved source corpus | Build a reviewable evidence base before extraction |
+| 2. Evidence extraction | Preserved source text | Evidence Units | Create document-level, source-grounded operational findings |
+| 3. Knowledge consolidation | Validated EUs | Knowledge Cards | Organize related EUs by operational question |
+| 4. Synthesis | Validated EUs and KCs | Synthesis Cards | Analyze supported cross-document relationships |
+| 5. Indexing | Validated EUs, KCs, and SCs | Encoded index records | Prepare records for search or embedding backends |
+| 6. Report generation | Validated structured records | Report and claim-evidence map | Render the knowledge base into readable prose |
+
+The authoritative artifact contracts are maintained in `AGENTS.md`,
+`docs/run-artifact-contract.md`, and `docs/validation-framework.md`. The
+subsections below explain the methodological role of each stage rather than
+repeating every file-level contract.
+
+### 3.1 Source Acquisition
+
+Source acquisition builds the evidence corpus before any knowledge claim is
+created. It includes source discovery, candidate screening, download or local
+preservation, text extraction, quality review, and inventory validation. The
+stage is deliberately called *source* acquisition rather than data acquisition:
+it preserves documents, webpages, and data documentation as evidence sources.
+A separate structured-data intake contract would be needed for time series,
+APIs, or other operational datasets.
+
+Sources are reviewed by role rather than treated as interchangeable. The
+workflow distinguishes official or operating-authority sources, research or
+technical sources, and public or contextual sources. These families are not
+quality scores. Source importance, content quality, accessibility, and
+readiness for EU extraction are recorded separately. Parser fallbacks, HTML
+responses from PDF URLs, paywalls, and short text extractions are retained as
+review signals.
+
+The output is a preserved corpus, not a claim set. Its core artifacts include a
+source manifest, candidate inventory, acquired-source inventory, raw files,
+extracted text, and parsing notes.
+
+### 3.2 Evidence Extraction
+
+Evidence extraction processes each source independently. Long documents are
+split into page-, section-, or chunk-aware packets so that one source can yield
+multiple distinct findings. The result is an EU: a concise operational finding
+with a quote and locator that allow a reviewer to return to the source.
+
+An EU is accepted only when it is document-level, operationally useful,
+self-contained, and traceable. It preserves an EU ID, source ID, title or URL,
+locator, evidence quote, confidence, extraction method, engineering dimension,
+and notes. Cross-document statements are excluded at this stage.
+
+The engineering dimension helps organize evidence without replacing the source
+wording. Example dimensions include Operation Rules, Storage Capacity and
+Storage Targets, Inflow Forecast, Observation and Data, Modeling, Regulation /
+Governance, and Emergency Operations. Exact or semantic duplicates within the
+same source may be removed, but distinct rules, thresholds, dates, facilities,
+and conditions remain separate EUs.
+
+### 3.3 Knowledge Consolidation
+
+Knowledge consolidation creates KCs by grouping EUs that answer the same
+operational question. Engineering dimension can provide a first view, but the
+actual grouping key is the question being answered. EUs that share a broad
+topic but describe different rules, scenarios, facilities, dates, statuses, or
+decision contexts remain in separate cards.
+
+Each KC uses one consolidation type: `repeated_fact`, `complementary_facts`, or
+`contested_or_unresolved`. A KC cites every supporting EU and keeps material
+qualifications visible. It may show that an issue is unresolved, but it does
+not resolve an apparent conflict by inference.
+
+This stage is useful because many reservoir-operation questions require more
+than one source-grounded statement but still do not justify analysis. For
+example, separate EUs about forecast inputs, seasonal targets, and downstream
+requirements can be organized under one question about release determination.
+That KC prepares the evidence for synthesis while keeping the evidentiary
+boundary intact.
+
+### 3.4 Synthesis
+
+Synthesis begins only after EUs and KCs have passed validation. KCs help locate
+related operational questions. EUs and their locators provide the evidence
+chain. A Synthesis Card is created only when the result is more than a
+restatement of one EU or KC and is supported by the cited evidence.
+
+For important, technical, numerical, legal, historical, or contested claims,
+the workflow uses a deeper source-checking pattern:
+
+```text
+EU/KC -> candidate relationship -> reread original source context -> Synthesis Card
+```
+
+The card records its primary pattern, any supported secondary lenses,
+supporting EU IDs, relevant KC IDs, confidence, next action, and evidence
+depth. Source-checked cards also record which source context was reread and
+whether that context confirmed, narrowed, complicated, or rejected the
+candidate relationship.
+
+Evidential support is judged against the cited EU and KC sets, not against the
+fluency of the generated statement. Automated validation can confirm that the
+cited IDs resolve. It cannot confirm that the cited evidence semantically
+entails the analysis. That judgment is made during synthesis and can be
+sampled through human review.
+
+### 3.5 Indexing
+
+Indexing is an offline construction stage. It transforms validated EU, KC, and
+SC records into index-ready records while retaining stable IDs, record type,
+metadata, locators, confidence, and evidence-chain fields. The stage may
+prepare structured text, embeddings, keyword fields, or a hybrid index for a
+selected backend.
+
+Indexing does not create new knowledge claims. Each index record wraps exactly
+one underlying EU, KC, or SC. It can make a record searchable, but it cannot
+make an untraceable record traceable or change the boundary between evidence,
+organization, and analysis.
+
+Retrieval is a downstream use of the index. Query execution, ranking, and
+retrieval evaluation can test whether the constructed knowledge base returns
+adequate evidence for operational questions. Such testing evaluates usefulness;
+it does not alter the constructed records.
+
+### 3.6 Report Generation
+
+Report generation is a controlled transformation of validated records into a
+human-readable artifact. A report can explain operation purposes, rules,
+storage conditions, emergency actions, governance, data and models, tradeoffs,
+and evidence limitations. It must not introduce a material claim that cannot
+be traced through its claim-evidence map.
+
+Report prose distinguishes source-grounded findings from synthesis-level
+interpretation. Material claims cite EUs, KCs, SCs, or source records as
+appropriate. Evidence gaps, uncertainty, parser issues, and unresolved
+questions remain visible instead of being converted into confident narrative
+statements.
+
+## 4. AI-Native Workflow Execution
+
+The framework is AI-native in its execution, not only in its use of generated
+text. The agent coordinates the full construction workflow: it selects the
+stage protocol, interprets source context, screens semantic relevance, drafts
+EUs, consolidates KCs, creates SCs, coordinates repairs, and writes controlled
+report prose.
+
+Deterministic tools handle the parts of the workflow that should not depend on
+model judgment. They preserve files, extract text, create packets, validate
+JSON and JSONL, render inspection views, check ID traceability, and enforce
+stage artifact contracts.
+
+This execution design makes the agent a semantic operator rather than a single
+all-purpose generator. The detailed implementation architecture is included in
+Appendix A. The trust boundary created by this division is discussed with
+validation and human review in the next section.
+
+## 5. Validation, Human Review, and Trust Boundary
+
+Validation is distributed across the workflow rather than treated as a seventh
+construction stage. Every stage completes automated validation before its
+output is used downstream. A stage manifest and stage summary record inputs,
+outputs, warnings, unresolved issues, cleanup status, downstream readiness, and
+the validation result.
+
+Automated validation is deliberately narrow. It checks schema conformance and
+ID traceability. For source acquisition, it also checks acquisition status. It
+does not confirm that a cited EU entails the statement built on it, that a KC's
+grouping was the best judgment call, or that an SC's relationship is the most
+reasonable reading of the evidence.
+
+This is the framework's trust boundary. The agent is trusted to perform
+semantic labor, but it is not trusted as an evidence authority. Deterministic
+validation is trusted to check record shape and resolvable references, but it
+is not trusted to certify semantic correctness. Evidence authority remains with
+the preserved sources and the traceable record chain.
+
+Human review supplies that semantic check. It is a documented sampled
+evaluation activity, available for every stage but not a routine blocking gate
+unless a particular run or study requires it. EU review addresses faithfulness,
+relevance, and value. KC review addresses faithfulness, consolidation
+appropriateness, and value. SC review addresses faithfulness, reasoning
+soundness, and value. Report review addresses faithfulness, readability, and
+value. Indexing may be evaluated through retrieval questions after
+construction.
+
+This separation matters because construction and evaluation answer different
+questions. Construction asks whether records and evidence chains have been
+created according to the contract. Evaluation asks whether those records are
+useful for an intended task, such as finding evidence for an operational
+question or supporting a readable case-study report. Evaluation can motivate a
+later revision, but it should not silently rewrite the validated record layer.
+
+Because the trust boundary is explicit, the agent layer is replaceable. A
+different model, prompt, or execution backend may coordinate the same stage, but
+the output still has to be schema-conformant, traceable, and reviewable. The
+method therefore depends less on a particular model identity than on the
+combination of preserved evidence, structured records, deterministic checks,
+and sampled semantic review.
+
+## 6. Implementation Example
+
+The framework has been applied to a Lake Powell knowledge-base run stored under
+`runs/lake_powell_20260729_kb/`. The canonical run artifacts record 201
+candidate source records and 66 acquired source records. They also record 442
+Evidence Units, 81 Knowledge Cards, 15 Synthesis Cards, 538 index-ready
+records, and a report claim-evidence map with 30 mapped claims.
+
+The run-level contract validation passed. Stage validation also illustrates why
+warnings are kept visible rather than treated as cosmetic noise. Source
+acquisition completed with warnings about acquisition or source-quality issues,
+and evidence extraction recorded one warning. The later knowledge
+consolidation, synthesis, indexing, and report-generation stages passed schema
+and traceability checks. In other words, the framework did not present the run
+as perfect. It preserved source limitations while still allowing validated
+downstream records to be inspected and used.
+
+This example is not a hydrologic validation of Lake Powell operations. It is an
+implementation check of the construction method: the workflow can preserve
+sources, build the three record layers, encode them for retrieval, and produce
+a report while keeping record counts, validation status, and evidence paths
+visible.
+
+## 7. Workflow Refinement and Transfer
+
+The framework is intended to improve through documented workflow iteration.
+A well-documented reservoir can serve as a development case because it exposes
+failure modes that are hard to anticipate from the abstract design alone:
+missing source families, weak candidate screening, shallow extraction from
+dense operating documents, overbroad EUs, inappropriate KC grouping,
+unsupported synthesis, weak source rereading, broken evidence navigation, or
+report claims that are technically traceable but semantically too strong.
+
+These failures should be treated as signals about the workflow, not only as
+mistakes in individual records. A missed class of operating rules may indicate
+that source-discovery queries or source-family definitions need revision. A
+pattern of overbroad EUs may require a sharper extraction prompt, more
+section-aware packetization, or new anti-pattern examples. Repeated KC grouping
+errors may show that the operational-question criterion is under-specified.
+Unsupported SCs may require stricter source-rereading triggers or a clearer
+definition of the six synthesis patterns. Report faithfulness issues may point
+to stronger claim-evidence-map requirements.
+
+Prompt iteration is therefore part of the method. The prompts are not tuned to
+make one run look better; they are revised to make stage boundaries easier for
+the agent to follow and easier for validators and reviewers to inspect. A
+useful prompt revision should state the failure mode it addresses, the stage it
+affects, the expected behavioral change, and the validation or review signal
+that will show whether it helped. Schema changes should be made only when the
+record contract needs to capture evidence that the current schema cannot
+represent, not merely to accommodate malformed outputs.
+
+Transfer to another reservoir tests whether the refined workflow remains
+usable in a different operational and documentary setting. This is workflow
+transfer validation, not model-parameter training or a conventional machine
+learning train/test split. The expected invariants are the EU/KC/SC layer
+boundaries, preservation of source evidence, stage validation before downstream
+use, and explicit separation between automated checks and semantic review. The
+expected variables are reservoir-specific source availability, governing
+institutions, operational regimes, terminology, data products, and the
+synthesis patterns that are actually supported by the evidence.
+
+The central transfer question is not whether two reservoirs produce the same
+number of records or the same pattern distribution. It is whether the same
+construction logic can still produce inspectable, traceable, and useful records
+under a new reservoir context, and whether any needed prompt or protocol
+revisions are motivated by documented failure modes rather than ad hoc
+rewriting after the fact.
+
+## 8. Contributions and Limitations
+
+The framework contributes four main elements. First, it defines a three-layer
+EU/KC/SC representation that separates evidence, organization, and analysis.
+Second, it provides a six-stage construction workflow that can be executed and
+audited. Third, it divides responsibility between an agent and deterministic
+scripts, using each where it is strongest. Fourth, it separates automated
+validation from semantic human review.
+
+The limitations are equally important. Source coverage is bounded by the
+collected corpus. Extraction quality depends on preservation and parsing
+quality. Synthesis remains a constrained analytical activity and requires
+source rereading for consequential claims. The framework therefore records
+gaps, warnings, parser fallbacks, and unresolved issues rather than treating
+apparently complete output as complete operational knowledge.
+
+## 9. Conclusion
+
+An AI-native reservoir-operation knowledge base should be more than a set of
+embeddings or generated summaries. It should preserve evidence before
+interpretation, make each transformation explicit, and keep the path from
+report or index record back to source text available for review.
+
+The six-stage framework operationalizes those requirements through Source
+acquisition, Evidence extraction, Knowledge consolidation, Synthesis, Indexing,
+and Report generation. Its EU, KC, and SC layers provide a disciplined basis
+for later retrieval, analysis, and reporting without collapsing those uses into
+the evidence itself.
+
+## Appendix A: Agent Architecture, Reproducibility Contract, and Operating Prompts
+
+The main text describes the method. The repository carries the executable
+contract. The routine run requirements are maintained in:
+
+| Contract | Role |
+|---|---|
+| `AGENTS.md` | Project-level workflow rules and required run artifacts |
+| `docs/run-artifact-contract.md` | Stage manifests, summaries, validation files, and cleanup rules |
+| `docs/validation-framework.md` | Automated validation and sampled human-review design |
+| `skills/<stage>/SKILL.md` | Stage-specific operating instructions |
+| `schemas/` and `validation/` | Machine-readable schemas and validation scripts |
+
+Each numbered stage folder should contain its canonical records, a
+`stage_manifest.json`, a `stage_summary.md`, `automated_validation.json`, and
+`human_review.json`. Stages 2 through 4 also include review navigation files so
+that EUs, KCs, and SCs can be checked against preserved source text.
+
+### A.0 Agent Architecture Components
+
+The reservoir knowledge-base agent is not a single prompt. It is a coordinated
+workflow made from project rules, stage-specific skills, deterministic scripts,
+schemas, validators, and durable artifacts.
+
+| Component | Function |
+|---|---|
+| Project instructions | Define the six-stage workflow, layer boundaries, run rules, and required artifacts |
+| Run orchestration skill | Starts or resumes a run, enforces stage order, prepares handoff checks, and validates the final run contract |
+| Stage skills | Provide the operating protocol for source acquisition, evidence extraction, knowledge consolidation, synthesis, indexing, and report generation |
+| Agent reasoning | Performs semantic screening, EU drafting, KC grouping, SC analysis, repair decisions, and controlled report writing |
+| Deterministic scripts | Preserve files, parse text, create extraction packets, render Markdown views, build index records, and validate artifacts |
+| Schemas | Define the required JSON/JSONL structure for sources, EUs, KCs, SCs, index records, reviews, and claim-evidence maps |
+| Validation tools | Check schema conformance, acquisition status, traceability integrity, run-contract completeness, and report claim coverage |
+| Stage artifacts | Store canonical records, manifests, summaries, validation results, and human-review workpapers |
+| Preserved source corpus | Provides the evidence authority for all downstream records and reports |
+| Human review workpapers | Support sampled semantic review without making routine construction depend on manual approval |
+
+At execution time, the agent reads the project instructions, invokes the
+appropriate stage skill, uses scripts where deterministic processing is
+available, writes canonical records, runs validators, repairs failures, and
+only then moves to the next stage. Each new reservoir run is written to a new
+`runs/<reservoir_slug>_<run_date>/` folder, so historical runs are preserved.
+
+The prompts below are condensed operating prompts. They are not a replacement
+for the repository skills and validators. They preserve the practical
+instructional core of the six routine stages so the workflow can be described
+or reproduced outside the local agent environment.
+
+### A.1 Source Acquisition Prompt
+
+```text
+Task: Build the preserved source corpus for <reservoir_name>.
+
+Reservoir scope:
+- reservoir_id: <reservoir_id>
+- reservoir_id_system: <reservoir_id_system>
+- reservoir_name: <reservoir_name>
+- basin/operator/context: <scope_notes>
+
+Priority collection themes:
+- authorized purposes, operating objectives, and multi-objective tradeoffs;
+- storage capacity, elevation targets, minimum pools, guide curves, and
+  storage-protection rules;
+- release rules, seasonal rules, thresholds, triggers, operating tiers, and
+  decision criteria;
+- infrastructure constraints, outlet/intake capacity, hydropower facilities,
+  conveyance constraints, and maintenance or physical operating limits;
+- inflow forecasts, forecast horizons, uncertainty ranges, hydrologic
+  scenarios, and drought/flood outlooks;
+- observation systems, monitoring data, reservoir variables, official data
+  portals, and data documentation;
+- reservoir models, simulation studies, scenario methods, assumptions, and
+  decision-support tools;
+- laws, agreements, regulations, consultation processes, agency authority, and
+  governance responsibilities;
+- drought, flood, emergency, real-time, or special-event operations;
+- environmental, ecological, water-quality, sediment, temperature, or habitat
+  constraints that affect operations;
+- stakeholders, water users, tribes, hydropower interests, downstream
+  communities, and public-context materials;
+- historical operating events, failures, shortages, rule changes, controversies,
+  and documented consequences.
+
+Instructions:
+1. Discover a broad candidate pool from official operating authorities,
+   government repositories, agency reports, research indexes, citation chains,
+   data documentation, and credible public-context sources.
+2. Screen candidates before download using title, URL/DOI, source type,
+   metadata, abstract, and light inspection. Record source-family hints
+   separately from quality judgments.
+3. Preserve selected sources locally as raw PDF, HTML, text, or landing-page
+   files. Assign stable source IDs. Record redirects, paywalls, failed access,
+   short extraction, parser issues, and recovery attempts.
+4. Extract readable text. Use robust plain-text extraction first and structured
+   parsing when available. Keep raw files before extraction.
+5. Review final source family, document type, importance, content quality,
+   accessibility, and EU-readiness.
+6. Validate source manifest, candidate inventory, acquired-source inventory,
+   file paths, statuses, and acquisition warnings.
+
+Outputs:
+- 01_source_acquisition/source_manifest.json
+- 01_source_acquisition/sources/candidate_inventory.jsonl
+- 01_source_acquisition/sources/source_inventory.jsonl
+- 01_source_acquisition/sources/raw/
+- 01_source_acquisition/sources/text/
+- 01_source_acquisition/automated_validation.json
+- 01_source_acquisition/human_review.json
+- 01_source_acquisition/stage_manifest.json
+- 01_source_acquisition/stage_summary.md
+
+Boundary:
+This stage creates a preserved evidence corpus. It does not create Evidence
+Units, Knowledge Cards, Synthesis Cards, index records, or report claims.
+```
+
+### A.2 Evidence Extraction Prompt
+
+```text
+Task: Extract document-level Evidence Units from the validated source corpus.
+
+Inputs:
+- runs/<run_id>/01_source_acquisition/sources/source_inventory.jsonl
+- runs/<run_id>/01_source_acquisition/sources/text/
+
+EU evidence topics / engineering dimensions (current schema uses 13):
+- Operation Purposes
+- Multiple Objectives
+- Storage Capacity and Storage Targets
+- Operation Rules
+- Emergency Operations
+- Real-Time Operations
+- Regulation / Governance
+- Uncertainty and Risk Management
+- Observation and Data
+- Inflow Forecast
+- Modeling
+- Stakeholders
+- Operation Failure
+
+Instructions:
+1. Confirm that the source inventory and extracted text files exist and are
+   ready for EU extraction.
+2. Process each source independently. Split long documents into page-,
+   section-, or chunk-aware packets. Do not rely on a truncated document prefix.
+3. Draft candidate EUs only for operationally useful, document-level findings.
+4. Each EU must be concise, self-contained, traceable, and supported by a short
+   evidence quote and locator.
+5. Assign one primary engineering dimension using source wording and the
+   approved dimension taxonomy.
+6. Remove exact or semantic duplicates within a source when they state the same
+   operational fact. Keep separate rules, thresholds, facilities, dates,
+   scenarios, and conditions as distinct EUs.
+7. Exclude cross-document conclusions, generic background, navigation text, and
+   unsupported summaries.
+8. Validate the EU JSONL. Repair records on validation failure; do not loosen
+   the schema.
+
+Outputs:
+- 02_evidence_extraction/evidence_units.jsonl
+- 02_evidence_extraction/evidence_units.md
+- 02_evidence_extraction/automated_validation.json
+- 02_evidence_extraction/human_review.json
+- 02_evidence_extraction/source_navigation.md
+- 02_evidence_extraction/stage_manifest.json
+- 02_evidence_extraction/stage_summary.md
+
+Boundary:
+An EU is one source-grounded operational finding. It is not a cross-document
+conclusion and not a synthesis claim.
+```
+
+### A.3 Knowledge Consolidation Prompt
+
+```text
+Task: Consolidate validated Evidence Units into Knowledge Cards.
+
+Inputs:
+- runs/<run_id>/02_evidence_extraction/evidence_units.jsonl
+- runs/<run_id>/02_evidence_extraction/automated_validation.json
+
+KC organization topics / engineering dimensions (same 13-topic taxonomy as EUs):
+- Operation Purposes
+- Multiple Objectives
+- Storage Capacity and Storage Targets
+- Operation Rules
+- Emergency Operations
+- Real-Time Operations
+- Regulation / Governance
+- Uncertainty and Risk Management
+- Observation and Data
+- Inflow Forecast
+- Modeling
+- Stakeholders
+- Operation Failure
+
+KC consolidation types:
+- repeated_fact: multiple EUs state the same operational finding;
+- complementary_facts: EUs answer the same operational question from different
+  source details, conditions, or perspectives;
+- contested_or_unresolved: EUs preserve a real unresolved disagreement or
+  uncertainty that should not be resolved by inference.
+
+Instructions:
+1. Confirm that EU validation has passed or that warnings have been recorded and
+   accepted for downstream use.
+2. Group EUs first by engineering dimension as a working view, then by the
+   operational question they answer.
+3. Create a KC only when EUs express a repeated fact, complementary facts, or a
+   meaningfully contested or unresolved point.
+4. Do not merge EUs merely because they share a broad topic. Preserve separate
+   rules, thresholds, facilities, dates, scenarios, statuses, and decision
+   contexts when they change the operational meaning.
+5. Cite every supporting EU ID. Preserve source-defined names, values, units,
+   dates, rule contexts, and qualifications.
+6. Record the consolidation type, confidence, coverage note, and unresolved
+   disagreement when applicable.
+7. Validate Knowledge Cards before Synthesis and render the Markdown reading
+   view.
+
+Outputs:
+- 03_knowledge_consolidation/knowledge_cards.jsonl
+- 03_knowledge_consolidation/knowledge_cards.md
+- 03_knowledge_consolidation/automated_validation.json
+- 03_knowledge_consolidation/human_review.json
+- 03_knowledge_consolidation/source_navigation.md
+- 03_knowledge_consolidation/stage_manifest.json
+- 03_knowledge_consolidation/stage_summary.md
+
+Boundary:
+A KC organizes evidence around an operational question. It is not new source
+evidence, not a recommendation, and not a cross-document analytical conclusion.
+```
+
+### A.4 Synthesis Prompt
+
+```text
+Task: Create source-grounded Synthesis Cards from validated EUs and KCs.
+
+Inputs:
+- runs/<run_id>/02_evidence_extraction/evidence_units.jsonl
+- runs/<run_id>/03_knowledge_consolidation/knowledge_cards.jsonl
+
+SC synthesis topics / primary patterns:
+- decision_process: how information, rules, authority, judgment, and system
+  conditions translate into an operating decision or implementation;
+- constraint_structure: how physical, operational, legal, ecological,
+  infrastructural, or institutional constraints define the feasible operating
+  space;
+- operational_tradeoff: how competing objectives, risks, or stakeholder
+  outcomes are connected through the same operation or constrained resource;
+- operating_regime_change: how rules, objectives, constraints, capabilities, or
+  decision environments change across time or operating regimes;
+- historical_operation_failure: a documented episode in which an operational
+  function, requirement, or target was not achieved;
+- operational_consequence: an observed, modeled, or projected consequence of an
+  identified operation, rule, decision, or operating regime.
+
+Instructions:
+1. Confirm that EU and KC validation has passed.
+2. Use KCs to identify related operational questions and supporting EUs. Do not
+   treat a KC as a substitute for the original source context.
+3. Draft a candidate operational relationship only when it is more than a
+   restatement of one EU or KC.
+4. Reread original source passages when the claim is important, technical,
+   quantitative, causal, legal, historical, contested, or sensitive to date,
+   scenario, status, version, or decision context.
+5. Create one SC with exactly one primary pattern:
+   decision_process, constraint_structure, operational_tradeoff,
+   operating_regime_change, historical_operation_failure, or
+   operational_consequence.
+6. Include an explicit scope, supported analysis chain, evidence role map,
+   EU/KC evidence links, uncertainty or exceptions, operational implication,
+   confidence, next action, and evidence depth.
+7. For source-checked cards, record source locator summary and a source
+   verification note explaining what rereading confirmed, narrowed,
+   complicated, or rejected.
+8. Do not use SCs for generic source gaps or unresolved discrepancies. Those
+   belong in KC notes, validation warnings, or research notes.
+9. Validate Synthesis Cards before Indexing or Report generation.
+
+Outputs:
+- 04_synthesis/synthesis_cards.jsonl
+- 04_synthesis/synthesis_cards.md
+- 04_synthesis/automated_validation.json
+- 04_synthesis/human_review.json
+- 04_synthesis/source_navigation.md
+- 04_synthesis/stage_manifest.json
+- 04_synthesis/stage_summary.md
+
+Boundary:
+An SC is an evidence-constrained analytical record. It must cite supporting
+EUs and, where useful, KCs. It does not create new source evidence.
+```
+
+### A.5 Indexing Prompt
+
+```text
+Task: Encode validated EUs, KCs, and SCs into index-ready records.
+
+Inputs:
+- runs/<run_id>/02_evidence_extraction/evidence_units.jsonl
+- runs/<run_id>/03_knowledge_consolidation/knowledge_cards.jsonl
+- runs/<run_id>/04_synthesis/synthesis_cards.jsonl
+
+Instructions:
+1. Confirm validated EU, KC, and SC JSONL files exist.
+2. Create exactly one index record for each selected knowledge-base record.
+3. Build concise index text from the record content and material context.
+4. Preserve record type, stable record ID, reservoir metadata, engineering
+   dimension or primary synthesis pattern, source IDs, EU IDs, KC IDs, locators,
+   confidence, and evidence-depth fields.
+5. Encode with a selected backend when configured. If no backend is configured,
+   write structured text records that are index-ready.
+6. Write index manifest with record counts, backend/model metadata, and build
+   status.
+7. Validate schema conformance and traceability integrity.
+
+Outputs:
+- 05_indexing/encoded_knowledge_records.jsonl
+- 05_indexing/index_manifest.json
+- 05_indexing/automated_validation.json
+- 05_indexing/human_review.json
+- 05_indexing/stage_manifest.json
+- 05_indexing/stage_summary.md
+
+Boundary:
+Indexing is offline encoding. It does not retrieve records, answer user
+questions, create benchmark questions, or add new knowledge claims.
+```
+
+### A.6 Report Generation Prompt
+
+```text
+Task: Generate an evidence-grounded reservoir-operation report from validated
+records.
+
+Inputs:
+- runs/<run_id>/01_source_acquisition/sources/source_inventory.jsonl
+- runs/<run_id>/02_evidence_extraction/evidence_units.jsonl
+- runs/<run_id>/03_knowledge_consolidation/knowledge_cards.jsonl
+- runs/<run_id>/04_synthesis/synthesis_cards.jsonl
+
+Instructions:
+1. Confirm validated EUs, KCs, SCs, and source inventory exist.
+2. Select report type: technical report, short briefing, case-study summary, or
+   validation report.
+3. Build the report outline from validated EUs, KCs, and SCs.
+4. Draft readable sections that distinguish source-grounded findings from
+   synthesis-level interpretation.
+5. Cite EU IDs, KC IDs, SC IDs, or source IDs for every material claim.
+6. Explicitly mark uncertainty, evidence gaps, parser issues, source
+   limitations, and unresolved issues.
+7. Create a claim-evidence map for substantive claims.
+8. Validate the report and claim-evidence map for schema conformance and
+   traceability before final handoff.
+
+Outputs:
+- 06_report_generation/<report_name>.md
+- 06_report_generation/claim_evidence_map.jsonl
+- 06_report_generation/automated_validation.json
+- 06_report_generation/human_review.json
+- 06_report_generation/stage_manifest.json
+- 06_report_generation/stage_summary.md
+
+Boundary:
+The report is a controlled rendering of validated records. It is not an
+independent evidence source and must not introduce unsupported claims.
+```
+
+## Appendix B: Formal Notation and Schema Backup
+
+This appendix keeps the more formal schema-style expressions that are useful
+for implementation, review, or supplementary material. The paper body avoids
+most of this notation to keep the method readable.
+
+### B.1 Run-Level Sets and Transformation
+
+For one reservoir run, let:
+
+$$
+\mathcal{S}=\{s_i\}_{i=1}^{n}
+$$
+
+be the preserved source corpus. The workflow transforms sources into record
+layers and final artifacts:
+
+$$
+\mathcal{S}
+\xrightarrow{f_E} E
+\xrightarrow{f_K} K
+\xrightarrow{f_A} A
+\xrightarrow{f_I} I
+\xrightarrow{f_R} R
+$$
+
+where \(E\) is the Evidence Unit set, \(K\) the Knowledge Card set, \(A\) the
+Synthesis Card set, \(I\) the index-ready record set, and \(R\) the report plus
+claim-evidence map.
+
+Each stage transition is gated by automated validation:
+
+$$
+f_{t+1}(Y_t)\;\text{is admissible only if}\;V_t(Y_t)=1
+$$
+
+with:
+
+$$
+V_t(Y_t)=\mathbf{1}\left[\bigwedge_{g \in G_t}g(Y_t)=\text{pass}\right]
+$$
+
+and:
+
+$$
+G_t=
+\begin{cases}
+\{\operatorname{SchemaConformance},\operatorname{AcquisitionSuccess}\} & t=1\\[2pt]
+\{\operatorname{SchemaConformance},\operatorname{TraceabilityIntegrity}\} & t=2,\dots,6
+\end{cases}
+$$
+
+### B.2 Traceability
+
+Let \(\operatorname{Trace}(x)\) be the set of source-locator-quote triples that
+support record \(x\):
+
+$$
+\operatorname{Trace}(x)=
+\{(s_i,l_i,q_i): s_i \in \mathcal{S},\ x
+\text{ is supported by locator } l_i
+\text{ and quotation } q_i \text{ in } s_i\}
+$$
+
+A record is traceable when:
+
+$$
+\operatorname{Traceable}(x) :\Leftrightarrow
+\operatorname{Trace}(x)\neq\emptyset
+$$
+
+The global layer constraint is:
+
+$$
+\forall x \in (E \cup K \cup A),\quad \operatorname{Traceable}(x)
+$$
+
+### B.3 Source Acquisition Schema
+
+A source record can be represented as:
+
+$$
+s_i=(id_i,title_i,url_i,F_i,D_i,Q_i,A_i,P_i,T_i,W_i)
+$$
+
+where \(F_i\) is source family, \(D_i\) document type, \(Q_i\) content quality,
+\(A_i\) accessibility status, \(P_i\) local preservation paths, \(T_i\)
+extracted-text paths, and \(W_i\) warnings or recovery notes.
+
+The selected source set is drawn from a screened candidate set
+\(\mathcal{C}\):
+
+$$
+\mathcal{S}=\{s_i \in \mathcal{C}: \operatorname{Selected}(s_i)=1
+\land \operatorname{PreservedOrRecorded}(s_i)=1\}
+$$
+
+For source-screening review, precision and recall may be summarized as:
+
+$$
+\operatorname{Precision}_{src}
+=\frac{|\mathcal{C}_{selected}\cap \mathcal{C}_{relevant}|}
+{|\mathcal{C}_{selected}|},
+\qquad
+\operatorname{Recall}_{src}
+=\frac{|\mathcal{C}_{selected}\cap \mathcal{C}_{relevant}|}
+{|\mathcal{C}_{relevant}|}
+$$
+
+These metrics evaluate source-selection decisions. They do not replace source
+adequacy review.
+
+### B.4 Evidence Unit Schema
+
+Evidence extraction maps each preserved source into zero or more accepted EUs:
+
+$$
+E=\bigcup_{s_i \in \mathcal{S}} f_E(s_i)
+$$
+
+An EU can be represented as:
+
+$$
+e_j=(id_j,s_i,l_j,q_j,d_j,m_j,c_j,n_j)
+$$
+
+where \(id_j\) is the EU ID, \(s_i\) the source ID, \(l_j\) the locator,
+\(q_j\) the evidence quote, \(d_j\) the engineering dimension, \(m_j\) the
+finding text and why-it-matters note, \(c_j\) confidence, and \(n_j\) notes.
+
+The acceptance predicate is:
+
+$$
+\operatorname{Accept}(e_j)=
+\mathbf{1}[
+\operatorname{DocLevel}(e_j)
+\land \operatorname{Operational}(e_j)
+\land \operatorname{SelfContained}(e_j)
+\land \operatorname{Traceable}(e_j)]
+$$
+
+Only accepted EUs enter the consolidation input set.
+
+### B.5 Knowledge Card Schema
+
+Knowledge consolidation groups EUs by operational question:
+
+$$
+E_m=\{e_j \in E: Q(e_j)=Q_m\}
+$$
+
+A Knowledge Card can be represented as:
+
+$$
+k_m=(id_m,Q_m,E_m,d_m,T_m,F_m,N_m,c_m)
+$$
+
+where \(id_m\) is the KC ID, \(Q_m\) the operational question, \(E_m\) the
+supporting EU set, \(d_m\) the engineering dimension, \(T_m\) the consolidation
+type, \(F_m\) the consolidated finding, \(N_m\) the source-coverage note, and
+\(c_m\) confidence.
+
+The consolidation type must be one of:
+
+$$
+T_m \in
+\{\text{repeated\_fact},\text{complementary\_facts},
+\text{contested\_or\_unresolved}\}
+$$
+
+For different operational questions, card support sets remain separated unless
+the questions are intentionally merged by review:
+
+$$
+Q_m \ne Q_{m'} \Rightarrow
+E_m \cap E_{m'}=\emptyset
+$$
+
+### B.6 Synthesis Card Schema
+
+A Synthesis Card can be represented as:
+
+$$
+a_r=(id_r,R_r,E_r,K_r,\tau_r,\sigma_r,C_r,U_r,O_r,\delta_r,c_r,\nu_r)
+$$
+
+where \(id_r\) is the SC ID, \(R_r\) the synthesis claim, \(E_r\subseteq E\)
+the supporting EU set, \(K_r\subseteq K\) the relevant KC set, \(\tau_r\) the
+primary pattern, \(\sigma_r\) the secondary lenses, \(C_r\) the analysis chain,
+\(U_r\) uncertainty or exception, \(O_r\) operational implication,
+\(\delta_r\) evidence depth, \(c_r\) confidence, and \(\nu_r\) source
+verification context.
+
+The primary pattern \(\tau_r\) belongs to this controlled set:
+`decision_process`, `constraint_structure`, `operational_tradeoff`,
+`operating_regime_change`, `historical_operation_failure`, or
+`operational_consequence`.
+
+Each card carries exactly one primary pattern:
+
+$$
+|\{\tau_r\}|=1
+$$
+
+Secondary lenses must not duplicate the primary pattern:
+
+$$
+\tau_r \notin \sigma_r
+$$
+
+For the analysis chain:
+
+$$
+C_r=\{p_{r,1},\dots,p_{r,w}\},\qquad w\ge 2
+$$
+
+Each step must cite at least one supporting EU:
+
+$$
+\forall p_{r,u}\in C_r,\quad
+\exists e_j\in E_r:\operatorname{Grounded}(p_{r,u},e_j)=1
+$$
+
+where:
+
+$$
+\operatorname{Grounded}(p,e_j)=
+\mathbf{1}[e_j \in E_{p}]
+$$
+
+and \(E_p\) is the EU set explicitly cited by step \(p\).
+
+For source-checked cards:
+
+$$
+\delta_r=\text{source\_checked}
+\Rightarrow
+\nu_r=(\text{source\_locator\_summary},\text{source\_verification\_note})
+$$
+
+### B.7 Index Record Schema
+
+Each index record wraps exactly one EU, KC, or SC:
+
+$$
+I=\{\iota_u=(id_u,z_u,\text{text}_u,M_u): z_u \in (E \cup K \cup A)\}
+$$
+
+where \(id_u\) is the index record ID, \(z_u\) the underlying record,
+\(\text{text}_u\) the index-ready text, and \(M_u\) metadata including record
+type, reservoir ID, source IDs, EU IDs, KC IDs, confidence, pattern or
+dimension, and encoding metadata.
+
+Index records inherit traceability:
+
+$$
+\operatorname{Trace}(\iota_u):=\operatorname{Trace}(z_u)
+$$
+
+Retrieval evaluation, when added, can use query-level precision and recall:
+
+$$
+\operatorname{Precision}_{@k}(q)
+=\frac{1}{k}\sum_{i=1}^{k}\operatorname{rel}(r_i,q),
+\qquad
+\operatorname{Recall}_{@k}(q)
+=\frac{\sum_{i=1}^{k}\operatorname{rel}(r_i,q)}
+{|\mathcal{R}_q|}
+$$
+
+where \(r_i\) is the record at rank \(i\), \(\operatorname{rel}(r_i,q)\)
+indicates whether the record is relevant to query \(q\), and
+\(\mathcal{R}_q\) is the review-defined relevant record set.
+
+### B.8 Report and Claim-Evidence Map Schema
+
+The report output is:
+
+$$
+R=(D,P)
+$$
+
+where \(D\) is the report document and \(P\) is the claim-evidence map:
+
+$$
+P=\{p_v=(id_v,\pi_v,Z_v,\lambda_v)\}
+$$
+
+Here \(id_v\) is the claim ID, \(\pi_v\) the claim text,
+\(Z_v\subseteq(\mathcal{S}\cup E\cup K\cup A)\) the cited evidence set, and
+\(\lambda_v\) the support level.
+
+A report claim is admissible only when it cites at least one preserved source
+or traceable record:
+
+$$
+\forall p_v\in P,\quad
+Z_v\ne\emptyset
+\land
+\forall z\in Z_v,\ [z\in\mathcal{S}\lor \operatorname{Traceable}(z)]
+$$
+
+The report is therefore a controlled rendering of validated records, not an
+independent source of reservoir-operation knowledge.
+
+### B.9 Human Review Scores
+
+For a sampled human-review criterion \(h\), the normalized stage score can be
+written as:
+
+$$
+\operatorname{HR}_{t,h}
+=\frac{1}{2N_{t,h}}\sum_{i=1}^{N_{t,h}} score_{i,h},
+\qquad score_{i,h}\in\{0,1,2\}
+$$
+
+The normalized score is useful for summary figures, while the original 0/1/2
+decisions remain the review record.
 
 
 

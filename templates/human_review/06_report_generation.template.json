@@ -1,0 +1,10 @@
+{
+  "review_status": "not_requested",
+  "stage": "report_generation",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "items": [
+    {"row_type": "report_review", "report_id": "<report_id>", "report_title": "<report title>", "report_file_link": "<report markdown filename>", "claim_evidence_map_link": "claim_evidence_map.jsonl", "report_scope": "<intended use and scope>", "codex_decision": "generated from validated structured knowledge", "faithfulness_score": null, "readability_score": null, "value_score": null, "notes": null, "required_action": null}
+  ]
+}

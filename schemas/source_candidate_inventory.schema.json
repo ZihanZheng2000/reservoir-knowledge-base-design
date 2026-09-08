@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source_candidate_inventory.schema.json",
+  "title": "Reservoir Source Candidate Inventory Record",
+  "type": "object",
+  "required": ["candidate_id", "reservoir_id", "title", "url", "codex_use", "codex_tier", "codex_selection_reason"],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "reservoir_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "minLength": 1},
+    "document_type": {"type": "string"},
+    "codex_use": {"enum": ["Y", "N"]},
+    "codex_tier": {"enum": ["A", "B", "C"]},
+    "codex_selection_reason": {"type": "string", "minLength": 1},
+    "acquisition_source_id": {"type": "string"},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}

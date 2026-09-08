@@ -1,0 +1,32 @@
+{
+  "evidence_unit_records": 442,
+  "knowledge_card_records": 81,
+  "synthesis_card_records": 15,
+  "primary_pattern_counts": {
+    "decision_process": 2,
+    "constraint_structure": 2,
+    "operational_tradeoff": 3,
+    "operating_regime_change": 3,
+    "historical_operation_failure": 3,
+    "operational_consequence": 2
+  },
+  "error_count": 0,
+  "errors": [],
+  "warning_count": 0,
+  "warnings": [],
+  "stage": "synthesis",
+  "status": "pass",
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    }
+  },
+  "stage_delivery_checked": true
+}

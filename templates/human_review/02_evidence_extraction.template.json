@@ -1,0 +1,10 @@
+{
+  "review_status": "not_requested",
+  "stage": "evidence_extraction",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "items": [
+    {"row_type": "review_item", "eu_id": "<eu_id>", "source_id": "<source_id>", "engineering_dimension": "<one approved topic value>", "finding": "<finding>", "source_location": "<locator>", "source_pdf_link": "../01_source_acquisition/sources/raw/<file>.pdf", "source_text_link": "../01_source_acquisition/sources/text/<file>.txt", "codex_decision": "retain as EU", "human_disposition": null, "faithfulness_score": null, "relevance_score": null, "value_score": null, "notes": null, "required_action": null}
+  ]
+}

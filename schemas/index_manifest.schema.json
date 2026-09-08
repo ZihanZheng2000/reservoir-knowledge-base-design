@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "index_manifest.schema.json",
+  "title": "Reservoir Index Manifest",
+  "type": "object",
+  "required": ["created_at", "encoding_model", "record_count", "record_type_counts", "records_path", "encoding_status"],
+  "properties": {
+    "created_at": {"type": "string", "minLength": 1},
+    "encoding_model": {"type": "string", "minLength": 1},
+    "record_count": {"type": "integer", "minimum": 0},
+    "record_type_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "records_path": {"type": "string", "minLength": 1},
+    "encoding_status": {"const": "index_ready_text_records"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,92 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "stage": "source_acquisition",
+  "workflow_version": "v0.2",
+  "status": "completed_with_warnings",
+  "inputs": [],
+  "outputs": [
+    {
+      "name": "source manifest",
+      "path": "01_source_acquisition/source_manifest.json",
+      "format": "json",
+      "schema": "schemas/source_manifest.schema.json",
+      "record_count": 66,
+      "required": true
+    },
+    {
+      "name": "candidate inventory",
+      "path": "01_source_acquisition/sources/candidate_inventory.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/source_candidate_inventory.schema.json",
+      "record_count": 201,
+      "required": true
+    },
+    {
+      "name": "source inventory (jsonl)",
+      "path": "01_source_acquisition/sources/source_inventory.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/source_inventory.schema.json",
+      "record_count": 66,
+      "required": true
+    },
+    {
+      "name": "source inventory (csv)",
+      "path": "01_source_acquisition/sources/source_inventory.csv",
+      "format": "csv",
+      "schema": null,
+      "record_count": 66,
+      "required": false
+    },
+    {
+      "name": "raw preserved sources",
+      "path": "01_source_acquisition/sources/raw",
+      "format": "directory",
+      "schema": null,
+      "record_count": 55,
+      "required": true
+    },
+    {
+      "name": "extracted source text",
+      "path": "01_source_acquisition/sources/text",
+      "format": "directory",
+      "schema": null,
+      "record_count": 53,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "acquisition_success",
+      "status": "warning",
+      "issue_count": 42
+    },
+    "artifact_path": "01_source_acquisition/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "01_source_acquisition/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": [
+      "01_source_acquisition/deep_discovery",
+      "01_source_acquisition/sources/source_inventory.csv"
+    ]
+  },
+  "warnings": [
+    "Deep source discovery attempted 66 approved sources (40 official/legal/CRS/context documents + 26 curated research papers drawn from a 161-record OpenAlex candidate pool of 201 total reviewed candidates). 50 sources acquired successfully with usable full text (eu_readiness=ready); 16 are not EU-ready.",
+    "13 supporting-tier research papers (RES-002,003,004,006,007,008,009,011,012,016,017,022 and RES-001) failed with HTTP 403 Forbidden (Wiley, ASCE, AMS, PNAS publisher bot-blocking) or DNS resolution failure (RES-001, cadswes.colorado.edu no longer resolves); Wayback Machine and alternate-mirror recovery was attempted for a sample and did not succeed for these journal-paywalled records within this run. None are source_importance=core.",
+    "3 sources (RES-005, RES-010, RES-021) returned HTTP 200 but the preserved page was a publisher redirect or JavaScript bot-challenge notice rather than source full text; reclassified from 'ok' to failed/not_ready after quality review rather than left as a false-positive success. RES-021 and RES-010 are also duplicate-by-hash of each other (same underlying blocked page).",
+    "4 core sources (OFF-003 LTEMP ROD, OFF-004 LTEMP FEIS Ch.1, CRS-002, RES-025) and 3 supporting sources (OFF-005, OFF-006, plus OFF-001/OFF-025/OFF-031 which returned a usbr.gov 'Down For Maintenance' placeholder page on first attempt) initially failed or returned placeholder content on usbr.gov, ltempeis.anl.gov, congress.gov, and osti.gov; all were successfully recovered via Wayback Machine snapshots, congress.gov crs_external_products direct PDF paths, or an OSTI bibliographic landing page, and are now eu_readiness=ready (except RES-025, recovered only as a metadata/abstract landing page, content_quality=short_review).",
+    "sources/source_inventory.csv was regenerated from the final source_inventory.jsonl after quality-review edits so its content matches the canonical JSONL prior to stage finalization; it is a non-required, reproducible working artifact removed by finalize_stage_artifacts.py."
+  ],
+  "unresolved_issues": [
+    "13 supporting-tier research papers remain unacquired behind publisher paywalls/bot-protection (see warnings); they remain listed with status=failed in source_inventory.jsonl for traceability and are excluded from EU extraction rather than silently dropped."
+  ],
+  "downstream_readiness": "ready"
+}

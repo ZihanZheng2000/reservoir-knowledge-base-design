@@ -1,0 +1,85 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "stage": "report_generation",
+  "workflow_version": "v0.2",
+  "status": "completed",
+  "inputs": [
+    {
+      "name": "Source inventory",
+      "path": "01_source_acquisition/sources/source_inventory.jsonl",
+      "format": "jsonl",
+      "schema": null,
+      "record_count": 66,
+      "required": true
+    },
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Knowledge Cards (canonical)",
+      "path": "03_knowledge_consolidation/knowledge_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/knowledge_card.schema.json",
+      "record_count": 81,
+      "required": true
+    },
+    {
+      "name": "Synthesis Cards (canonical)",
+      "path": "04_synthesis/synthesis_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/synthesis_card.schema.json",
+      "record_count": 15,
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Case-study report",
+      "path": "06_report_generation/lake_powell_case_study_report.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": null,
+      "required": true
+    },
+    {
+      "name": "Claim-evidence map",
+      "path": "06_report_generation/claim_evidence_map.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/claim_evidence_map.schema.json",
+      "record_count": 30,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "06_report_generation/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "06_report_generation/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": []
+  },
+  "warnings": [
+    "The report is a case-study report (per the report-generation skill's report-type options), organized around the governing operating framework, 2026 drought response, infrastructure/reliability risk, HFE/sediment/ecological tools, governance and the post-2026 transition, and an explicit section on contested or unresolved figures rather than presenting the corpus as fully reconciled.",
+    "30 claims are recorded in claim_evidence_map.jsonl, all citing at least one EU, Knowledge Card, or Synthesis Card ID plus source IDs; support levels used are knowledge_card_support, synthesis_card_support, and source_checked (the last reserved for claims whose underlying Synthesis Card itself reread and quoted original source text)."
+  ],
+  "unresolved_issues": [],
+  "downstream_readiness": "ready"
+}

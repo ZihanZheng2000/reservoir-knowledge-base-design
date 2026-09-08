@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "knowledge_card.schema.json",
+  "title": "Reservoir Knowledge Card",
+  "type": "object",
+  "required": ["knowledge_card_id", "knowledge_layer", "reservoir_id", "reservoir_name", "engineering_dimension", "operational_question", "title", "consolidated_finding", "based_on_eu_ids", "consolidation_type", "source_coverage_note", "confidence", "notes"],
+  "properties": {
+    "knowledge_card_id": {"type": "string", "minLength": 1},
+    "knowledge_layer": {"const": "knowledge_consolidation"},
+    "reservoir_id": {"type": "string", "minLength": 1},
+    "reservoir_name": {"type": "string", "minLength": 1},
+    "engineering_dimension": {"type": "string", "minLength": 1},
+    "operational_question": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "consolidated_finding": {"type": "string", "minLength": 1},
+    "based_on_eu_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "consolidation_type": {"enum": ["repeated_fact", "complementary_facts", "contested_or_unresolved"]},
+    "source_coverage_note": {"type": "string"},
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

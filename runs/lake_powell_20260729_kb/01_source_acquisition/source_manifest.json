@@ -1,0 +1,664 @@
+{
+  "sources": [
+    {
+      "source_id": "OFF-001",
+      "title": "Record of Decision: Colorado River Interim Guidelines for Lower Basin Shortages and Coordinated Operations for Lake Powell and Lake Mead (2007)",
+      "url": "https://usbr.gov/lc/region/g4000/4200Rpts/DecreeRpt/2013/1%202007%20ROD%20Interim%20Guidelines-Shortages-Coordinated%20Operations.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Governing interim operating criteria linking Lake Powell/Lake Mead releases to reservoir elevations through 2026."
+    },
+    {
+      "source_id": "OFF-002",
+      "title": "Supplement to the 2007 Colorado River Interim Guidelines: Near-term Colorado River Operations SEIS Record of Decision (2024)",
+      "url": "https://www.usbr.gov/ColoradoRiverBasin/documents/NearTermColoradoRiverOperations/20240507-Near-termColoradoRiverOperations-SEIS-RecordofDecision-signed_508.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Current governing near-term (2024-2026) operating decision amending the 2007 Interim Guidelines."
+    },
+    {
+      "source_id": "OFF-003",
+      "title": "Record of Decision for the Glen Canyon Dam Long-Term Experimental and Management Plan (LTEMP) Final EIS (2016)",
+      "url": "https://ltempeis.anl.gov/documents/docs/LTEMP_ROD.pdf",
+      "official_owner": "Bureau of Reclamation / National Park Service",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Governing 20-year experimental/operational framework for Glen Canyon Dam releases."
+    },
+    {
+      "source_id": "OFF-004",
+      "title": "Glen Canyon Dam LTEMP Final EIS, Volume 1, Chapter 1 - Introduction (2016)",
+      "url": "https://ltempeis.anl.gov/documents/final-eis/vol1/Chapter_1-Introduction.pdf",
+      "official_owner": "Bureau of Reclamation / National Park Service",
+      "document_type": "environmental_report",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "LTEMP EIS purpose, need, and operational alternatives framework."
+    },
+    {
+      "source_id": "OFF-005",
+      "title": "Glen Canyon Dam LTEMP Final EIS, Volume 1, Chapter 3 - Affected Environment (2016)",
+      "url": "https://ltempeis.anl.gov/documents/final-eis/vol1/Chapter_3-Affected_Environment.pdf",
+      "official_owner": "Bureau of Reclamation / National Park Service",
+      "document_type": "environmental_report",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Technical baseline conditions (hydrology, sediment, ecology) underlying LTEMP operations."
+    },
+    {
+      "source_id": "OFF-006",
+      "title": "Glen Canyon Dam LTEMP Final EIS, Volume 3, Appendix Q - Comments and Responses (2016)",
+      "url": "https://ltempeis.anl.gov/documents/final-eis/vol3/appendix_q-comments_and_responses.pdf",
+      "official_owner": "Bureau of Reclamation / National Park Service",
+      "document_type": "environmental_report",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Technical appendix documenting stakeholder issues resolved into final LTEMP operating framework."
+    },
+    {
+      "source_id": "OFF-007",
+      "title": "Glen Canyon Dam LTEMP Final Supplemental EIS (2024 amendment)",
+      "url": "https://gcdamp.com/images_gcdamp_com/d/db/20240500-GCDLTEMP-FinalSEIS-508-AMWD_(2).pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "environmental_report",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "2024 supplemental EIS updating LTEMP operations for low reservoir conditions."
+    },
+    {
+      "source_id": "OFF-008",
+      "title": "Record of Decision: Operation of Glen Canyon Dam (1996)",
+      "url": "https://www.usbr.gov/uc/envdocs/rod/Oct1996_OperationGCD_ROD.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Original 1996 ROD establishing Modified Low Fluctuating Flow operating criteria still foundational to dam operations."
+    },
+    {
+      "source_id": "OFF-009",
+      "title": "Report to Congress: Operations of Glen Canyon Dam (2002)",
+      "url": "http://www.riversimulator.org/Resources/USBR/ReportCongress2002.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "technical_memo",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Reclamation's statutory report on operational experience implementing the 1996 ROD; preserved mirror of an official Reclamation report."
+    },
+    {
+      "source_id": "OFF-010",
+      "title": "GAO Report RCED-97-12: Bureau of Reclamation - Assessment of the EIS on Operations of Glen Canyon Dam",
+      "url": "https://www.govinfo.gov/content/pkg/GAOREPORTS-RCED-97-12/pdf/GAOREPORTS-RCED-97-12.pdf",
+      "official_owner": "U.S. Government Accountability Office",
+      "document_type": "event_case_report",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Independent federal assessment of the 1995 EIS/1996 ROD process for Glen Canyon Dam operations."
+    },
+    {
+      "source_id": "OFF-011",
+      "title": "Biological Assessment on the Experimental Releases from Glen Canyon Dam (2007)",
+      "url": "https://www.usbr.gov/uc/envdocs/ba/gc-ExpFlow/2007BA.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "environmental_report",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Environmental-compliance documentation for experimental flow releases tied to endangered-species requirements."
+    },
+    {
+      "source_id": "OFF-012",
+      "title": "Final Biological Opinion for the Operation of Glen Canyon Dam (2008)",
+      "url": "https://www.usbr.gov/uc/envdocs/bo/FinalGCDBO2-26-08.pdf",
+      "official_owner": "U.S. Fish and Wildlife Service",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Binding Endangered Species Act biological opinion constraining Glen Canyon Dam operations for humpback chub."
+    },
+    {
+      "source_id": "OFF-013",
+      "title": "Colorado River Compact, 1922",
+      "url": "https://www.usbr.gov/lc/region/g1000/pdfiles/crcompct.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Foundational interstate compact ('Law of the River') establishing Upper/Lower Basin allocations governing all downstream operations."
+    },
+    {
+      "source_id": "OFF-014",
+      "title": "Upper Colorado River Basin Compact, 1948",
+      "url": "https://www.usbr.gov/lc/region/g1000/pdfiles/ucbsnact.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Upper Basin allocation compact governing inflow commitments to Lake Powell."
+    },
+    {
+      "source_id": "OFF-015",
+      "title": "Criteria for Coordinated Long-Range Operation of Colorado River Reservoirs (1970, as modified)",
+      "url": "https://www.usbr.gov/lc/region/pao/pdfiles/opcriter.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Original coordinated long-range operating criteria linking Lake Powell and Lake Mead operations, predecessor to the 2007 Interim Guidelines."
+    },
+    {
+      "source_id": "OFF-016",
+      "title": "Colorado River Basin Water Supply and Demand Study - Executive Summary and Program Page (2012)",
+      "url": "https://www.usbr.gov/lc/region/programs/crbstudy.html",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "agency_webpage",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Landmark Reclamation basin-wide study of future supply/demand imbalance informing subsequent operating and drought-response guidelines."
+    },
+    {
+      "source_id": "OFF-017",
+      "title": "SECURE Water Act Section 9503(c) Report to Congress - Colorado River Basin Chapter (2021)",
+      "url": "https://www.usbr.gov/climate/secure/docs/2021secure/basinreports/ColoradoBasin.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "technical_memo",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Statutory climate-change projection report assessing Colorado River Basin water-supply and operational risk."
+    },
+    {
+      "source_id": "OFF-018",
+      "title": "SECURE Water Act Section 9503(c) Report to Congress - Chapter 3, Colorado River Basin (2016)",
+      "url": "https://www.usbr.gov/climate/secure/docs/2016secure/2016SECUREReport-chapter3.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "technical_memo",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Prior-cycle statutory climate report providing trend comparison for basin hydrology assumptions."
+    },
+    {
+      "source_id": "OFF-019",
+      "title": "Post-2026 Colorado River Reservoir Operations Draft EIS, Volume 1, Chapter 1 (Jan 2026)",
+      "url": "https://www.usbr.gov/ColoradoRiverBasin/post2026/draft-eis/docs/vol-1/P26-DEIS-1-Ch1.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "environmental_report",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Current rulemaking-in-progress draft EIS defining candidate post-2026 operating alternatives for Lake Powell/Lake Mead."
+    },
+    {
+      "source_id": "OFF-020",
+      "title": "Post-2026 Colorado River Reservoir Operations - Alternatives Report (Jan 2025)",
+      "url": "https://www.usbr.gov/ColoradoRiverBasin/documents/post2026/alternatives/Post-2026_Alternatives_Report_20250117_508.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "technical_memo",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Technical description of the operating alternatives under consideration for post-2026 governance."
+    },
+    {
+      "source_id": "OFF-021",
+      "title": "Post-2026 Colorado River Reservoir Operations Draft EIS - Appendix A: CRSS Model Documentation",
+      "url": "https://www.usbr.gov/ColoradoRiverBasin/post2026/draft-eis/docs/vol-2/P26-DEIS-Appendix-A.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "data_system_documentation",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Official documentation of the Colorado River Simulation System (CRSS) model used for all reservoir operations planning analyses."
+    },
+    {
+      "source_id": "OFF-022",
+      "title": "Draft 2026 Annual Operating Plan for Colorado River Reservoirs",
+      "url": "https://www.usbr.gov/lc/region/g4000/AOP2026/AOP26_draft.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "operating_plan",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Current-year annual operating plan reporting projected Lake Powell/Lake Mead releases and operating tier determinations."
+    },
+    {
+      "source_id": "OFF-023",
+      "title": "July 2026 Most Probable 24-Month Study",
+      "url": "https://www.usbr.gov/lc/region/g4000/24mo.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "data_system_documentation",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Current official monthly CRSS-based operations projection for Lake Powell/Lake Mead elevations and releases."
+    },
+    {
+      "source_id": "OFF-024",
+      "title": "Lower Colorado Weekly Hydrologic Update (July 27, 2026)",
+      "url": "https://www.usbr.gov/lc/region/g4000/weekly.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "data_system_documentation",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Near-real-time operational hydrologic reporting on current Lake Powell/Lake Mead conditions."
+    },
+    {
+      "source_id": "OFF-025",
+      "title": "Technical Decision Memorandum: Establishment of Interim Operating Guidance for Glen Canyon Dam at Low Reservoir Levels (March 2024)",
+      "url": "https://usbr.gov/uc/DocLibrary/Memos/20240326-EstablishmentInterimOperatingGuidanceGlenCanyonDamLowReservoirLevels-TechnicalDecisionMemo-508-TSC.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "technical_memo",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Official technical guidance on infrastructure-constrained operations below minimum power pool elevation 3,490 ft."
+    },
+    {
+      "source_id": "OFF-026",
+      "title": "Colorado River Basin Ten Tribes Partnership Tribal Water Study (2018)",
+      "url": "https://www.fws.gov/sites/default/files/documents/2025-05/colorado-river-basin-ten-tribes-partnership-tribal-water-study.pdf",
+      "official_owner": "Bureau of Reclamation / Ten Tribes Partnership",
+      "document_type": "technical_memo",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Official study of tribal water rights/uses materially affecting basin operational planning assumptions."
+    },
+    {
+      "source_id": "OFF-027",
+      "title": "Design Features of Glen Canyon Dam (Schultz, ASCE engineering paper)",
+      "url": "http://www.riversimulator.org/Resources/USBR/GCDDesign.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "engineering_manual",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Original engineering description of dam design features (spillways, outlet works, penstocks) governing release capacity constraints."
+    },
+    {
+      "source_id": "OFF-028",
+      "title": "Glen Canyon Dam Multi-Level Intake Structure Hydraulic Model Study (R-99-02, 1999)",
+      "url": "http://www.riversimulator.org/2025Guidelines/USBR/DROAub/GlenCanyonDamMultiLevelIntakeStructureHydraulicModelStudy1999Vermeyan.pdf",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "engineering_manual",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Official Reclamation hydraulic engineering study of the temperature-control intake structure infrastructure."
+    },
+    {
+      "source_id": "OFF-029",
+      "title": "CRSP Glen Canyon Unit Quick Facts",
+      "url": "https://www.usbr.gov/uc/rm/crsp/gc/gcFacts.html",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "agency_webpage",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Official summary of dam/reservoir engineering statistics (capacity, release capacities, elevations)."
+    },
+    {
+      "source_id": "OFF-030",
+      "title": "Glen Canyon Dam Project Page (USBR Project ID 144)",
+      "url": "https://www.usbr.gov/projects/index.php?id=144",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "agency_webpage",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Authoritative Reclamation project identifier record confirming the reservoir_id used in this run."
+    },
+    {
+      "source_id": "OFF-031",
+      "title": "Drought Response Operations Agreement (DROA)",
+      "url": "https://usbr.gov/ColoradoRiverBasin/dcp/droa.html",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Upper Basin drought-response agreement enabling supplemental releases to protect Lake Powell minimum power pool."
+    },
+    {
+      "source_id": "OFF-032",
+      "title": "Drought Contingency Plans - Transmittal Letter to Congress (2019)",
+      "url": "https://www.usbr.gov/ColoradoRiverBasin/documents/dcp/DroughtContigencyPlansBasinStates-TransmittalLetter-508-DOI.pdf",
+      "official_owner": "Department of the Interior",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "Official transmittal of the 2019 Upper and Lower Basin Drought Contingency Plans to Congress."
+    },
+    {
+      "source_id": "OFF-033",
+      "title": "Federal Register Notice: Colorado River Interim Guidelines for Lower Basin Shortages and Coordinated Operations (2008)",
+      "url": "https://www.federalregister.gov/documents/2008/04/11/E8-7760/colorado-river-interim-guidelines-for-lower-basin-shortages-and-coordinated-operations-for-lake",
+      "official_owner": "Federal Register / Department of the Interior",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Official rulemaking notice publishing the 2007 Interim Guidelines operating criteria."
+    },
+    {
+      "source_id": "OFF-034",
+      "title": "Federal Register Notice of Intent: Post-2026 Operational Guidelines EIS Scoping (2023)",
+      "url": "https://www.federalregister.gov/documents/2023/06/16/2023-12923/notice-of-intent-to-prepare-an-environmental-impact-statement-and-notice-to-solicit-comments-and",
+      "official_owner": "Federal Register / Bureau of Reclamation",
+      "document_type": "legal_policy_document",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Official notice initiating the post-2026 operating-guidelines NEPA process."
+    },
+    {
+      "source_id": "OFF-035",
+      "title": "Bureau of Reclamation Newsroom: Actions to Protect Colorado River System (2026)",
+      "url": "https://www.usbr.gov/newsroom/news-release/5326",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "agency_webpage",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Current 2026 official press release on emergency operational actions to protect Lake Powell minimum power pool."
+    },
+    {
+      "source_id": "OFF-036",
+      "title": "Bureau of Reclamation Newsroom: Latest Projections Stress Need for Robust Operational Guidelines (2025)",
+      "url": "https://www.usbr.gov/newsroom/news-release/5211",
+      "official_owner": "Bureau of Reclamation",
+      "document_type": "agency_webpage",
+      "source_tier": "A",
+      "source_importance": "supporting",
+      "selection_reason": "Official Reclamation communication on hydrologic projections driving post-2026 operating guideline urgency."
+    },
+    {
+      "source_id": "CRS-001",
+      "title": "Management of the Colorado River: Water Allocations, Drought, and the Federal Role (CRS R45546)",
+      "url": "https://www.congress.gov/crs-product/R45546",
+      "official_owner": "Congressional Research Service",
+      "document_type": "technical_memo",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "Independent congressional technical synthesis of Colorado River governance and operations relevant to Lake Powell."
+    },
+    {
+      "source_id": "CRS-002",
+      "title": "Long-Term Drought and Glen Canyon Dam: Potential Effects on Water Deliveries and Hydropower (CRS R47497)",
+      "url": "https://www.congress.gov/crs-product/R47497",
+      "official_owner": "Congressional Research Service",
+      "document_type": "technical_memo",
+      "source_tier": "B",
+      "source_importance": "core",
+      "selection_reason": "Congressional technical analysis directly addressing drought-driven operational and hydropower constraints at Glen Canyon Dam."
+    },
+    {
+      "source_id": "MED-001",
+      "title": "Glen Canyon Dam Water Crisis: Urgent Decisions Ahead (Circle of Blue, 2026)",
+      "url": "https://www.circleofblue.org/2026/supply/u-s-government-orders-emergency-actions-to-protect-glen-canyon-dam/",
+      "official_owner": "Circle of Blue",
+      "document_type": "event_case_report",
+      "source_tier": "C",
+      "source_importance": "background",
+      "selection_reason": "Credible engineering-journalism context on the 2026 emergency operational response at Glen Canyon Dam."
+    },
+    {
+      "source_id": "MED-002",
+      "title": "The Coming Failure of Glen Canyon Dam (High Country News)",
+      "url": "https://www.hcn.org/articles/the-coming-failure-of-glen-canyon-dam/",
+      "official_owner": "High Country News",
+      "document_type": "event_case_report",
+      "source_tier": "C",
+      "source_importance": "background",
+      "selection_reason": "Credible context source on infrastructure risk debate around low Lake Powell elevations; not used to establish technical claims alone."
+    },
+    {
+      "source_id": "RES-001",
+      "title": "AN ANALYSIS OF COORDINATED OPERATION OF LAKES POWELL & MEAD UNDER LOWER RESERVOIR CONDITIONS",
+      "url": "https://cadswes.colorado.edu/sites/default/files/PDF/Theses-PhD/Jerla-MS-Thesis2005.pdf",
+      "official_owner": "",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules; importance_hint=supporting; direct_pdf_candidate"
+    },
+    {
+      "source_id": "RES-002",
+      "title": "Application of wavelet analysis for monitoring the hydrologic effects of dam operation: Glen Canyon Dam and the Colorado River at Lees Ferry, Arizona",
+      "url": "https://doi.org/10.1002/rra.827",
+      "official_owner": "River Research and Applications",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,adaptive_management; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-003",
+      "title": "Assessing the Short-Run Economic Cost of Environmental Constraints on Hydropower Operations at Glen Canyon Dam",
+      "url": "https://doi.org/10.2307/3147185",
+      "official_owner": "Land Economics",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,hydropower; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-004",
+      "title": "Colorado River sediment transport: 1. Natural sediment supply limitation and the influence of Glen Canyon Dam",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/1999WR900285",
+      "official_owner": "Water Resources Research",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,temperature_ecology,storage_capacity_sediment; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-005",
+      "title": "Valuation in the Anthropocene: Exploring options for alternative operations of the Glen Canyon Dam",
+      "url": "https://doi.org/10.1016/j.wre.2016.02.003",
+      "official_owner": "Water Resources and Economics",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-006",
+      "title": "Multicriteria Decision Analysis Applied to Glen Canyon Dam",
+      "url": "https://doi.org/10.1061/(asce)0733-9496(2000)126:5(270)",
+      "official_owner": "Journal of Water Resources Planning and Management",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,hydropower; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-007",
+      "title": "The twenty‐first century Colorado River hot drought and implications for the future",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/2016WR019638",
+      "official_owner": "Water Resources Research",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=real_time_emergency; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-008",
+      "title": "Economic Impacts of the 2019 Drought Contingency Plan in the Lower Colorado River Basin: Water, Energy, and Recreation",
+      "url": "https://doi.org/10.1061/joeedu.eeeng-7505",
+      "official_owner": "Journal of Environmental Engineering",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=real_time_emergency; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-009",
+      "title": "Sustainable water deliveries from the Colorado River in a changing climate",
+      "url": "https://www.pnas.org/doi/pdf/10.1073/pnas.0812762106",
+      "official_owner": "Proceedings of the National Academy of Sciences",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,real_time_emergency,uncertainty_scenarios; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-010",
+      "title": "Application of the Colorado River Simulation System Model to Evaluate Water Shortage Conditions in the Central Arizona Project",
+      "url": "https://doi.org/10.1007/s11269-013-0292-5",
+      "official_owner": "Water Resources Management",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,data_models_forecasts,real_time_emergency; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-011",
+      "title": "Influence of a dam on fine‐sediment storage in a canyon river",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2004JF000193",
+      "official_owner": "Journal of Geophysical Research Atmospheres",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,temperature_ecology,storage_capacity_sediment; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-012",
+      "title": "Downstream effects of Glen Canyon Dam on the Colorado River in Grand Canyon: A review",
+      "url": "https://doi.org/10.1029/gm110p0001",
+      "official_owner": "Geophysical monograph",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,temperature_ecology,storage_capacity_sediment; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-013",
+      "title": "Elevation-area-capacity relationships of Lake Powell in 2018 and estimated loss of storage capacity since 1963",
+      "url": "https://pubs.usgs.gov/sir/2022/5017/sir20225017.pdf",
+      "official_owner": "Scientific investigations report",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=temperature_ecology,storage_capacity_sediment; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-014",
+      "title": "Surprise and Opportunity for Learning in Grand Canyon: the Glen Canyon Dam Adaptive Management Program",
+      "url": "https://doi.org/10.5751/es-07621-200322",
+      "official_owner": "Ecology and Society",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,temperature_ecology,adaptive_management; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-015",
+      "title": "Effects of three high-flow experiments on the Colorado River ecosystem downstream from Glen Canyon Dam, Arizona",
+      "url": "https://doi.org/10.3133/cir1366",
+      "official_owner": "U.S. Geological Survey circular/U.S. Geological Survey Circular",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,temperature_ecology,adaptive_management; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-016",
+      "title": "A simplified water temperature model for the Colorado River below Glen Canyon Dam",
+      "url": "https://doi.org/10.1002/rra.1179",
+      "official_owner": "River Research and Applications",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,data_models_forecasts,temperature_ecology,adaptive_management; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-017",
+      "title": "A MANAGED FLOOD ON THE COLORADO RIVER: BACKGROUND, OBJECTIVES, DESIGN, AND IMPLEMENTATION",
+      "url": "https://doi.org/10.1890/1051-0761(2001)011[0635:amfotc]2.0.co;2",
+      "official_owner": "Ecological Applications",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,real_time_emergency,temperature_ecology,adaptive_management; importance_hint=supporting; landing_page_candidate"
+    },
+    {
+      "source_id": "RES-018",
+      "title": "Multi-decadal sandbar response to flow management downstream from a large dam—The Glen Canyon Dam on the Colorado River in Marble and Grand Canyons, Arizona",
+      "url": "https://pubs.usgs.gov/pp/1873/pp1873.pdf",
+      "official_owner": "USGS professional paper",
+      "document_type": "research_paper",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,hydropower,storage_capacity_sediment; importance_hint=core; open_access_candidate"
+    },
+    {
+      "source_id": "RES-019",
+      "title": "Historical physical and chemical data for water in Lake Powell and from Glen Canyon Dam releases, Utah-Arizona, 1964–2013",
+      "url": "https://pubs.usgs.gov/ds/471/pdf/ds471.pdf",
+      "official_owner": "Data series",
+      "document_type": "research_paper",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,data_models_forecasts,hydropower,storage_capacity_sediment; importance_hint=core; open_access_candidate"
+    },
+    {
+      "source_id": "RES-020",
+      "title": "Modeling Dissolved Oxygen in Lake Powell using CE-QUAL-W2",
+      "url": "https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=1848&context=etd",
+      "official_owner": "ScholarsArchive  (Brigham Young University)",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,data_models_forecasts; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-021",
+      "title": "Disentangling climate and policy uncertainties for the Colorado River post-2026 operations",
+      "url": "https://www.nature.com/articles/s41467-025-63635-4.pdf",
+      "official_owner": "Nature Communications",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,governance_policy,uncertainty_scenarios; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-022",
+      "title": "Stochastic Decadal Projections of Colorado River Streamflow and Reservoir Pool Elevations Conditioned on Temperature Projections",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2021WR030936",
+      "official_owner": "Water Resources Research",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,temperature_ecology; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-023",
+      "title": "Colorado River Basin Study: Report to the Western Water Policy Review Advisory Commission",
+      "url": "https://digitalrepository.unm.edu/law_service_westernwater_rbs/1",
+      "official_owner": "UNM’s Digital Repository (University of New Mexico)",
+      "document_type": "research_paper",
+      "source_tier": "B",
+      "source_importance": "supporting",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,governance_policy; importance_hint=supporting; open_access_candidate"
+    },
+    {
+      "source_id": "RES-024",
+      "title": "Decision analysis to support development of the Glen Canyon Dam long-term experimental and management plan",
+      "url": "https://pubs.usgs.gov/sir/2015/5176/sir20155176.pdf",
+      "official_owner": "Scientific investigations report",
+      "document_type": "research_paper",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "matches reservoir/system terms; families=infrastructure_constraints,adaptive_management; importance_hint=core; open_access_candidate"
+    },
+    {
+      "source_id": "RES-025",
+      "title": "Financial Analysis of Experimental Releases Conducted at Glen Canyon Dam during Water Year 2017",
+      "url": "https://www.osti.gov/servlets/purl/1526629",
+      "official_owner": "",
+      "document_type": "research_paper",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,adaptive_management; importance_hint=core; open_access_candidate"
+    },
+    {
+      "source_id": "RES-026",
+      "title": "Ex post power economic analysis of record of decision operational restrictions at Glen Canyon Dam.",
+      "url": "https://www.osti.gov/biblio/975483",
+      "official_owner": "",
+      "document_type": "research_paper",
+      "source_tier": "A",
+      "source_importance": "core",
+      "selection_reason": "matches reservoir/system terms; families=operation_rules,infrastructure_constraints,hydropower,governance_policy; importance_hint=core; open_access_candidate"
+    }
+  ]
+}

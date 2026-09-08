@@ -1,35 +1,13 @@
-# Human Review Samples
+# Human Review Templates
 
-Run ID:
-Reservoir:
-Reviewer:
-Date:
+Use the stage-specific, fillable workpaper in `templates/human_review/`:
 
-## Source Screening Sample
+- `01_source_acquisition.template.json`
+- `02_evidence_extraction.template.json`
+- `03_knowledge_consolidation.template.json`
+- `04_synthesis.template.json`
+- `05_indexing.template.json`
+- `06_report_generation.template.json`
 
-| Source ID | Decision Reviewed | Tier Reviewed | Issue Found | Human Judgment | Action |
-|---|---|---|---|---|---|
-
-## KU Extraction Sample
-
-| KU ID | Source ID | Issue Found | Faithful? | Traceable? | Category Correct? | Action |
-|---|---|---|---|---|---|---|
-
-## Synthesis Sample
-
-| Synthesis ID | Cited KUs | Issue Found | Source-Checked? | Faithful? | Action |
-|---|---|---|---|---|---|
-
-## Report Claim Sample
-
-| Claim ID | Report Section | Evidence Link | Faithful? | Traceable? | Action |
-|---|---|---|---|---|---|
-
-## Failure Modes
-
-- 
-
-## Approved Revisions
-
-- 
-
+Copy the matching template to `<numbered_stage>/human_review.json`, then prefill
+it with actual review units and Codex decisions before a person reviews it.

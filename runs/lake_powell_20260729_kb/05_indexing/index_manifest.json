@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-07-31T19:36:27.868798+00:00",
+  "encoding_model": "structured_text_only",
+  "record_count": 538,
+  "record_type_counts": {
+    "evidence_unit": 442,
+    "knowledge_card": 81,
+    "synthesis_card": 15
+  },
+  "records_path": "runs\\lake_powell_20260729_kb\\05_indexing\\encoded_knowledge_records.jsonl",
+  "encoding_status": "index_ready_text_records"
+}

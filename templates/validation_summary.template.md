@@ -2,45 +2,24 @@
 
 Run ID:
 Reservoir:
-Case Role: development_refinement / transfer_validation
+Workflow version:
 Date:
 
-## Stage-Level Metrics
+## Five-indicator stage summary
 
-| Stage | Sample Size | Metric | Value | Notes |
-|---|---:|---|---:|---|
-| Source acquisition |  | Candidate inclusion F2 |  |  |
-| Source acquisition |  | Source tier accuracy |  |  |
-| KU extraction |  | KU extraction F2 |  |  |
-| KU extraction |  | Engineering-dimension accuracy |  |  |
-| KU extraction |  | Traceability rate |  |  |
-| KU extraction |  | Faithfulness rate |  |  |
-| Synthesis |  | Synthesis quality score |  |  |
-| Synthesis |  | Traceability rate |  |  |
-| Synthesis |  | Faithfulness rate |  |  |
-| Retrieval/indexing |  | Retrieval F2 |  |  |
-| Report generation |  | Claim traceability rate |  |  |
-| Report generation |  | Claim faithfulness rate |  |  |
+| Stage | Automated: schema conformance | Automated: traceability / acquisition success | Human review criterion 1 | Human review criterion 2 | Human review criterion 3 | Notes and follow-up |
+|---|---|---|---|---|---|---|
+| Source acquisition |  | Acquisition success | Recall | Precision | Source adequacy |  |
+| Evidence extraction |  | Traceability integrity | Faithfulness | Relevance | Value |  |
+| Knowledge consolidation |  | Traceability integrity | Faithfulness | Consolidation appropriateness | Value |  |
+| Synthesis |  | Traceability integrity | Faithfulness | Reasoning soundness | Value |  |
+| Indexing / retrieval evaluation |  | Traceability integrity | Recall | Precision | Source adequacy |  |
+| Report generation |  | Traceability integrity | Faithfulness | Readability | Value |  |
 
-## Main Failure Modes
+Automated validation uses `pass`, `warning`, or `fail`. Human review records its sample or benchmark separately; use `not_reviewed` when it was not required for this run.
 
-- 
-
-## Workflow Revisions Proposed
-
-- 
-
-## Workflow Revisions Approved
-
-- 
-
-## Rerun Decision
+## Rerun decision
 
 - affected-stage rerun:
 - full workflow rerun:
 - no rerun:
-
-## Transfer Validation Notes
-
-- 
-

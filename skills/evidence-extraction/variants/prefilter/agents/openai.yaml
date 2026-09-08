@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reservoir EU Extraction: Prefilter"
+  short_description: "Extract EUs after broad Python candidate prefiltering."
+  default_prompt: "Use deterministic Python prefiltering to collect broad reservoir-operation candidate passages, then have Codex convert those passages into source-grounded operational EUs and validate the JSONL output."

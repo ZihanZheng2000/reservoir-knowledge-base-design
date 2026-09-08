@@ -1,0 +1,58 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "reservoir_id": "144",
+  "reservoir_id_system": "Bureau of Reclamation reservoir identifier",
+  "reservoir_name": "Lake Powell",
+  "basin_or_system": "",
+  "run_date": "2026-07-29",
+  "workflow_version": "v0.2",
+  "case_role": "comprehensive_knowledge_base_case_study",
+  "skills": {
+    "source_acquisition": "source-acquisition",
+    "evidence_extraction": "evidence-extraction",
+    "knowledge_consolidation": "knowledge-consolidation",
+    "synthesis": "synthesis",
+    "indexing": "indexing",
+    "report_generation": "report-generation"
+  },
+  "inputs": {
+    "source_scope": "Comprehensive Lake Powell / Glen Canyon Dam operational knowledge base: governing operating plans and Records of Decision, near-term and long-term operations, drought response and contingency agreements, EIS and technical appendices, infrastructure and hydropower constraints, storage/sedimentation, hydrology and CRSS modeling, and directly operational environmental requirements. Real deep source discovery targeting broad, well-justified coverage (50-60+ sources) across official USBR/EIS/technical-appendix documents and relevant peer-reviewed/technical research.",
+    "seed_sources": [],
+    "search_queries": []
+  },
+  "outputs": {
+    "source_manifest": "01_source_acquisition/source_manifest.json",
+    "candidate_inventory": "01_source_acquisition/sources/candidate_inventory.jsonl",
+    "source_inventory": "01_source_acquisition/sources/source_inventory.jsonl",
+    "evidence_units": "02_evidence_extraction/evidence_units.jsonl",
+    "knowledge_cards": "03_knowledge_consolidation/knowledge_cards.jsonl",
+    "synthesis_cards": "04_synthesis/synthesis_cards.jsonl",
+    "encoded_knowledge_records": "05_indexing/encoded_knowledge_records.jsonl",
+    "validation_summary": "validation/run_validation_summary.json",
+    "report": "06_report_generation/lake_powell_case_study_report.md",
+    "claim_evidence_map": "06_report_generation/claim_evidence_map.jsonl"
+  },
+  "stage_counts": {
+    "selected_sources": 66,
+    "candidate_sources": 201,
+    "evidence_units": 442,
+    "knowledge_cards": 81,
+    "synthesis_cards": 15,
+    "encoded_knowledge_records": 538,
+    "report_claims": 30
+  },
+  "stage_statuses": {
+    "source_acquisition": "completed_with_warnings",
+    "evidence_extraction": "completed_with_warnings",
+    "knowledge_consolidation": "completed",
+    "synthesis": "completed",
+    "indexing": "completed",
+    "report_generation": "completed",
+    "run_contract_validation": "pass"
+  },
+  "human_review": {
+    "required_for_this_run": false,
+    "stage_review_filename": "human_review.json"
+  },
+  "notes": "Created by run-orchestration bootstrap. Stages 1-3 (source acquisition, evidence extraction, knowledge consolidation) were completed in an earlier session. This session completed Stage 4 (synthesis: 15 Synthesis Cards spanning all six primary patterns, each traced to specific EU/KC IDs and, for 7 cards, verified against rereads of the original source text), Stage 5 (indexing: 538 encoded knowledge records plus an 8-question manual retrieval benchmark run through the deterministic lexical baseline), and Stage 6 (report generation: a 10-section case-study report plus a 30-row claim-evidence map), then ran cross-stage validation and the run-contract check to a clean pass (0 errors). One pre-existing manifest inconsistency in 02_evidence_extraction/stage_manifest.json (a reproducible, already-cleaned-up intermediate listed as a required input) was corrected to required=false during this session's run-contract check; all other Stage 1-3 artifacts were left untouched."
+}

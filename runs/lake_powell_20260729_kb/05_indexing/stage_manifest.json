@@ -1,0 +1,78 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "stage": "indexing",
+  "workflow_version": "v0.2",
+  "status": "completed",
+  "inputs": [
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Knowledge Cards (canonical)",
+      "path": "03_knowledge_consolidation/knowledge_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/knowledge_card.schema.json",
+      "record_count": 81,
+      "required": true
+    },
+    {
+      "name": "Synthesis Cards (canonical)",
+      "path": "04_synthesis/synthesis_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/synthesis_card.schema.json",
+      "record_count": 15,
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Encoded knowledge records",
+      "path": "05_indexing/encoded_knowledge_records.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/index_record.schema.json",
+      "record_count": 538,
+      "required": true
+    },
+    {
+      "name": "Index manifest",
+      "path": "05_indexing/index_manifest.json",
+      "format": "json",
+      "schema": "schemas/index_manifest.schema.json",
+      "record_count": null,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "05_indexing/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "05_indexing/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": []
+  },
+  "warnings": [
+    "Index records were built as deterministic structured-text encodings only (encoding_model=structured_text_only); no embedding or search backend was configured for this run, so encoded_knowledge_records.jsonl is the delivered index-ready text corpus rather than a live search index.",
+    "8 simple, single-fact benchmark questions were manually defined from validated Knowledge Cards and Evidence Units (not invented by script) and run through validation/scripts/run_lexical_retrieval_benchmark.py, a deterministic lexical token-overlap baseline, to exercise the index; this is a baseline retrieval check, not an evaluation of any production embedding/search backend.",
+    "source_adequacy_score is left null for all 8 benchmark rows because human review is not requested for this run; recall/precision are computed at the run level from the gold and returned record IDs in validation/run_validation_summary.json."
+  ],
+  "unresolved_issues": [],
+  "downstream_readiness": "ready"
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": "2.0",
+  "run_id": "lake_powell_20260729_kb",
+  "generated_at": "2026-08-03T18:46:48.590441+00:00",
+  "overall_status": "warning",
+  "stages": {
+    "source_acquisition": {
+      "status": "warning",
+      "artifact": "01_source_acquisition/automated_validation.json",
+      "human_review": {
+        "status": "not_requested",
+        "artifact": "01_source_acquisition/human_review.json",
+        "metrics": {}
+      },
+      "error_count": 0,
+      "warning_count": 43,
+      "automated_validation": {
+        "schema_conformance": {
+          "name": "schema_conformance",
+          "status": "pass",
+          "issue_count": 0
+        },
+        "traceability_or_acquisition": {
+          "name": "acquisition_success",
+          "status": "warning",
+          "issue_count": 42
+        }
+      }
+    },
+    "evidence_extraction": {
+      "status": "warning",
+      "artifact": "02_evidence_extraction/automated_validation.json",
+      "human_review": {
+        "status": "not_requested",
+        "artifact": "02_evidence_extraction/human_review.json",
+        "metrics": {}
+      },
+      "error_count": 0,
+      "warning_count": 1,
+      "automated_validation": {
+        "schema_conformance": {
+          "name": "schema_conformance",
+          "status": "pass",
+          "issue_count": 0
+        },
+        "traceability_or_acquisition": {
+          "name": "traceability_integrity",
+          "status": "pass",
+          "issue_count": 0
+        }
+      }
+    },
+    "knowledge_consolidation": {
+      "status": "pass",
+      "artifact": "03_knowledge_consolidation/automated_validation.json",
+      "human_review": {
+        "status": "not_requested",
+        "artifact": "03_knowledge_consolidation/human_review.json",
+        "metrics": {}
+      },
+      "error_count": 0,
+      "warning_count": 0,
+      "automated_validation": {
+        "schema_conformance": {
+          "name": "schema_conformance",
+          "status": "pass",
+          "issue_count": 0
+        },
+        "traceability_or_acquisition": {
+          "name": "traceability_integrity",
+          "status": "pass",
+          "issue_count": 0
+        }
+      }
+    },
+    "synthesis": {
+      "status": "pass",
+      "artifact": "04_synthesis/automated_validation.json",
+      "human_review": {
+        "status": "not_requested",
+        "artifact": "04_synthesis/human_review.json",
+        "metrics": {}
+      },
+      "error_count": 0,
+      "warning_count": 0,
+      "automated_validation": {
+        "schema_conformance": {
+          "name": "schema_conformance",
+          "status": "pass",
+          "issue_count": 0
+        },
+        "traceability_or_acquisition": {
+          "name": "traceability_integrity",
+          "status": "pass",
+          "issue_count": 0
+        }
+      }
+    },
+    "indexing": {
+      "status": "pass",
+      "artifact": "05_indexing/automated_validation.json",
+      "human_review": {
+        "status": "not_requested",
+        "artifact": "05_indexing/human_review.json",
+        "metrics": {
+          "recall": {
+            "reviewed_count": 8,
+            "mean_ratio": 0.6666666666666666
+          },
+          "precision": {
+            "reviewed_count": 8,
+            "mean_ratio": 0.15000000000000002
+          }
+        }
+      },
+      "error_count": 0,
+      "warning_count": 0,
+      "automated_validation": {
+        "schema_conformance": {
+          "name": "schema_conformance",
+          "status": "pass",
+          "issue_count": 0
+        },
+        "traceability_or_acquisition": {
+          "name": "traceability_integrity",
+          "status": "pass",
+          "issue_count": 0
+        }
+      }
+    },
+    "report_generation": {
+      "status": "pass",
+      "artifact": "06_report_generation/automated_validation.json",
+      "human_review": {
+        "status": "not_requested",
+        "artifact": "06_report_generation/human_review.json",
+        "metrics": {}
+      },
+      "error_count": 0,
+      "warning_count": 0,
+      "automated_validation": {
+        "schema_conformance": {
+          "name": "schema_conformance",
+          "status": "pass",
+          "issue_count": 0
+        },
+        "traceability_or_acquisition": {
+          "name": "traceability_integrity",
+          "status": "pass",
+          "issue_count": 0
+        }
+      }
+    }
+  },
+  "totals": {
+    "stages_passed": 4,
+    "stages_with_warnings": 2,
+    "stages_failed": 0,
+    "stages_not_run": 0,
+    "errors": 0,
+    "warnings": 44
+  }
+}

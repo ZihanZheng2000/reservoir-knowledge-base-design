@@ -1,0 +1,74 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "stage": "evidence_extraction",
+  "workflow_version": "v0.2",
+  "status": "completed_with_warnings",
+  "inputs": [
+    {
+      "name": "EU-ready source inventory",
+      "path": "02_evidence_extraction/source_inventory_eu_ready.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/source_inventory.schema.json",
+      "record_count": 50,
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Evidence Units reading view",
+      "path": "02_evidence_extraction/evidence_units.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Source navigation",
+      "path": "02_evidence_extraction/source_navigation.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 50,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "02_evidence_extraction/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "02_evidence_extraction/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": [
+      "02_evidence_extraction/source_inventory_eu_ready.jsonl"
+    ]
+  },
+  "warnings": [
+    "The EU-ready source inventory input (source_inventory_eu_ready.jsonl) was a reproducible, derived filter of the canonical sources/source_inventory.jsonl (rows with eu_readiness=ready) and was removed as an execution intermediate at stage finalization per docs/run-artifact-contract.md; this input entry is marked required=false (not required to persist on disk) so the run-contract check does not misread a correctly cleaned-up intermediate as a missing required artifact. It was regenerable from source_inventory.jsonl at any time.",
+    "Extraction was distributed across 14 parallel extraction passes (9 dedicated to the largest single documents, 5 covering batches of smaller/medium sources) to cover all 50 EU-ready sources within this session; all fragment outputs were structurally validated (required fields, allowed engineering_dimension/confidence enums, evidence_quote<=320 chars, no disallowed fields, source_id resolves to an EU-ready source) before being merged into the canonical evidence_units.jsonl. Two evidence_quote values were found 1-4 characters over the 320-char schema limit during pre-merge validation and were trimmed to genuine, shorter verbatim substrings of the same source passage before merging (OFF-003 EU-21, OFF-010 EU-01).",
+    "3 of the 50 EU-ready sources yielded zero Evidence Units after review: OFF-033 and OFF-034 (Federal Register notices whose preserved text is a very short access page with no substantive rule text beyond the notice header) and RES-023 (a repository landing page for the Colorado River Basin Study with no report body text available). This is a legitimate content-quality outcome, not an extraction gap; these sources remain in source_inventory_eu_ready.jsonl for traceability with no corresponding EUs.",
+    "For 9 very large documents (250K-2M extracted characters: OFF-007, OFF-005, OFF-003, OFF-010, RES-018, OFF-011, OFF-006, RES-024, OFF-012), extraction used structured sampling (introduction/summary plus spaced windows through the remainder) rather than exhaustive character-by-character reading; this is representative, not exhaustive, coverage of those mega-documents and is noted in the affected EUs' notes fields where applicable.",
+    "Coverage is uneven by design: official operating plans, RODs, and technical/model documentation (priority sources per the extraction protocol) received denser extraction (10-22 EUs) than short agency webpages or news items (1-5 EUs)."
+  ],
+  "unresolved_issues": [],
+  "downstream_readiness": "ready"
+}

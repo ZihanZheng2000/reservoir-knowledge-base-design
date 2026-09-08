@@ -1,0 +1,20 @@
+{
+  "study_id": "ku-method-comparison-YYYYMMDD-v1",
+  "protocol_version": "1.0",
+  "workflow_version": "",
+  "development_run_id": "",
+  "sampling_seed": 20260711,
+  "packet_ids": [],
+  "methods": [
+    {"blind_label": "M1", "method": "python_baseline", "implementation_version": ""},
+    {"blind_label": "M2", "method": "codex_main_agent_skill", "implementation_version": ""},
+    {"blind_label": "M3", "method": "codex_subagent", "implementation_version": ""}
+  ],
+  "reviewer_ids": [],
+  "reviewers_blinded": true,
+  "primary_outcomes": ["faithfulness", "operational_relevance"],
+  "secondary_outcomes": ["machine_pass_rate", "coverage_f2", "unsupported_claim_rate", "duplicate_rate", "invalid_dimension_rate", "runtime_seconds", "token_cost", "main_agent_context_exposure", "human_correction_minutes"],
+  "status": "planned",
+  "notes": ""
+}
+

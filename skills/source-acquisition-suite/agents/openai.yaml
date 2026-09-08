@@ -1,3 +1,0 @@
-display_name: "Reservoir Source Suite"
-short_description: "Discover, screen, preserve, and parse sources."
-default_prompt: "Use this suite to discover reservoir evidence sources, screen candidates into tiers, preserve raw/text files, run structured parsing, and validate source inventories."

@@ -1,0 +1,27 @@
+{
+  "run_id": "reservoir_slug_YYYYMMDD",
+  "stage": "source_acquisition",
+  "workflow_version": "v0.1",
+  "status": "completed",
+  "inputs": [],
+  "outputs": [
+    {
+      "name": "source manifest",
+      "path": "01_source_acquisition/source_manifest.json",
+      "format": "json",
+      "schema": "schemas/source_manifest.schema.json",
+      "record_count": 1,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {"name": "schema_conformance", "status": "pass", "issue_count": 0},
+    "traceability_or_acquisition": {"name": "acquisition_success", "status": "pass", "issue_count": 0},
+    "artifact_path": "01_source_acquisition/automated_validation.json"
+  },
+  "human_review": {"status": "not_requested", "artifact_path": "01_source_acquisition/human_review.json"},
+  "cleanup": {"status": "not_run", "removed_paths": []},
+  "warnings": [],
+  "unresolved_issues": [],
+  "downstream_readiness": "ready"
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Reservoir Knowledge-Base Indexing"
+  short_description: "Encode EU, KC, and Synthesis Card records for indexing."
+  default_prompt: >-
+    Encode validated Evidence Units, Knowledge Cards, and Synthesis Cards into
+    index-ready records. Preserve stable IDs, record types, source locators,
+    EU/KC evidence chains, confidence, and evidence depth. Do not retrieve,
+    answer questions, create benchmark questions, or introduce new claims.

@@ -1,0 +1,23 @@
+{
+  "benchmark_id": "lake-powell-ku-method-comparison-v1",
+  "source_run_id": "lake_powell_20260701",
+  "selection_status": "frozen_for_pilot",
+  "selection_rule": "Purposive six-document pilot spanning authoritative rules, current operating projections, drought response, infrastructure/hydropower, storage capacity, and decision modeling; all records are core, usable, and KU-ready.",
+  "sampling_note": "This is a coverage-oriented pilot set, not a probability sample of the full corpus. Freeze page/section packets and content hashes before method execution.",
+  "source_ids": [
+    "LP-20260701-A-022",
+    "LP-20260701-A-016",
+    "LP-20260701-A-012",
+    "LP-20260701-A-010",
+    "LP-20260701-B-021",
+    "LP-20260701-B-006"
+  ],
+  "coverage": {
+    "source_tiers": ["TR-A", "TR-B"],
+    "document_types": ["legal_policy_document", "operating_plan", "technical_memo", "research_paper"],
+    "evidence_roles": ["formal_rule", "drought_response", "forecast_and_current_operations", "infrastructure_and_hydropower", "storage_capacity", "decision_modeling"]
+  },
+  "exclusions": "Tier C and failed/needs-recovery records are excluded from the first method pilot; test them later as a robustness stratum.",
+  "next_artifact": "Create immutable section-aware extraction packets for only these source IDs, then copy method_comparison_manifest.template.json into a dated study folder."
+}
+

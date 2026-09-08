@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source_inventory.schema.json",
+  "title": "Reservoir Source Inventory Record",
+  "type": "object",
+  "required": ["source_id", "reservoir_id", "reservoir_name", "title", "url", "document_type", "selection_reason", "status", "raw_file_saved", "raw_file_path", "extracted_text_saved", "extracted_text_path", "extracted_text_length"],
+  "properties": {
+    "source_id": {"type": "string", "minLength": 1},
+    "reservoir_id": {"type": "string", "minLength": 1},
+    "reservoir_name": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "minLength": 1},
+    "document_type": {"enum": ["engineering_manual", "operating_plan", "technical_memo", "environmental_report", "data_system_documentation", "legal_policy_document", "event_case_report", "research_paper", "agency_webpage", "other"]},
+    "selection_reason": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "raw_file_saved": {"type": "boolean"},
+    "raw_file_path": {"type": "string"},
+    "extracted_text_saved": {"type": "boolean"},
+    "extracted_text_path": {"type": "string"},
+    "extracted_text_length": {"type": "integer", "minimum": 0},
+    "source_importance": {"enum": ["core", "supporting", "background", "low_value"]},
+    "content_quality": {"enum": ["usable", "short_review", "metadata_only", "paywall_or_redirect", "parser_issue", "failed"]},
+    "content_quality_flag": {"type": "string"},
+    "eu_readiness": {"enum": ["ready", "needs_recovery", "background_only", "not_ready"]},
+    "source_tier": {"type": "string"},
+    "access_date": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,16 +1,12 @@
 [
   {
     "source_id": "RES-T1-001",
-    "tier": "TR-A",
     "title": "",
     "url": "",
-    "document_type": "",
-    "expected_evidence_families": [],
-    "relevance_score": null,
-    "relevance_decision": "include | maybe | exclude | manual_review",
-    "relevance_reason": "",
-    "priority": "high | medium | low",
-    "notes": ""
+    "official_owner": "",
+    "document_type": "engineering_manual | operating_plan | technical_memo | environmental_report | data_system_documentation | legal_policy_document | event_case_report | research_paper | agency_webpage | other",
+    "source_tier": "A | B | C",
+    "source_importance": "core | supporting | background | low_value",
+    "selection_reason": ""
   }
 ]
-

@@ -1,0 +1,28 @@
+{
+  "evidence_unit_records": 442,
+  "knowledge_card_records": 81,
+  "consolidation_type_counts": {
+    "repeated_fact": 23,
+    "complementary_facts": 54,
+    "contested_or_unresolved": 4
+  },
+  "error_count": 0,
+  "errors": [],
+  "warning_count": 0,
+  "warnings": [],
+  "stage": "knowledge_consolidation",
+  "status": "pass",
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    }
+  },
+  "stage_delivery_checked": true
+}

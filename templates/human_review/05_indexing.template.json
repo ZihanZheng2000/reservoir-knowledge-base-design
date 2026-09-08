@@ -1,0 +1,10 @@
+{
+  "review_status": "not_requested",
+  "stage": "indexing",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "items": [
+    {"row_type": "review_item", "query_id": "<query_id>", "query_intent": "Retrieve one directly documented operational fact; do not require cross-record reasoning.", "benchmark_question": "<plain-language question>", "gold_index_record_ids": ["<required index record id>"], "acceptable_supporting_index_record_ids": ["<optional contextual record id>"], "expected_answer_points": ["<required answer point>"], "retrieval_depth": 3, "codex_retrieval_status": "not_run", "codex_returned_index_record_ids": [], "codex_returned_answer": null, "source_adequacy_score": null, "notes": null, "required_action": null}
+  ]
+}

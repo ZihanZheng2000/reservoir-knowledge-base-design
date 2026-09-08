@@ -1,0 +1,12 @@
+{
+  "review_status": "not_requested",
+  "stage": "source_acquisition",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "candidate_inventory_scope": "Describe the complete reviewed candidate source inventory. Precision and recall are calculated within this inventory as ratios from 0 to 1.",
+  "items": [
+    {"row_type": "source_decision", "source_id": "<source_id>", "source_title": "<title>", "source_url": "<url>", "codex_use": "Y", "codex_tier": "A", "human_use": null, "human_tier": null, "notes": null, "required_action": null}
+  ],
+  "run_level_metrics": {"source_adequacy_score": null, "notes": null, "required_action": null}
+}

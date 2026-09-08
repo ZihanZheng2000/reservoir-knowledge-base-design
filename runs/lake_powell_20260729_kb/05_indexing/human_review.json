@@ -1,0 +1,258 @@
+{
+  "review_status": "not_requested",
+  "stage": "indexing",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "items": [
+    {
+      "query_id": "IDX-QR-LP-001",
+      "benchmark_question": "What is Glen Canyon Dam's minimum power pool elevation?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-STG-01",
+        "IDX-EU-LP-OFF-025-03"
+      ],
+      "expected_answer_points": [
+        "Elevation 3,490 feet",
+        "20 feet above the penstock intake centerline (elevation 3,470 ft)"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-EU-LP-CRS-002-02",
+        "IDX-EU-LP-CRS-002-04",
+        "IDX-EU-LP-MED-002-01",
+        "IDX-EU-LP-OFF-002-06",
+        "IDX-EU-LP-OFF-002-08",
+        "IDX-EU-LP-OFF-007-03",
+        "IDX-EU-LP-OFF-019-05",
+        "IDX-EU-LP-OFF-025-07",
+        "IDX-EU-LP-OFF-027-03",
+        "IDX-EU-LP-OFF-032-01"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-002",
+      "benchmark_question": "What is Lake Powell's current total storage capacity per the 2018 USGS resurvey?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-STG-04",
+        "IDX-EU-LP-RES-013-01"
+      ],
+      "expected_answer_points": [
+        "25,160,000 acre-feet total capacity",
+        "6.79 percent decrease from the 1963 pre-impoundment estimate"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-KC-LP-STG-04",
+        "IDX-KC-LP-STG-03",
+        "IDX-KC-LP-STG-05",
+        "IDX-EU-LP-OFF-030-01",
+        "IDX-KC-LP-STG-07",
+        "IDX-EU-LP-OFF-004-10",
+        "IDX-EU-LP-OFF-007-06",
+        "IDX-EU-LP-OFF-007-13",
+        "IDX-EU-LP-OFF-017-01",
+        "IDX-EU-LP-OFF-021-05"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-003",
+      "benchmark_question": "What is the minimum objective annual release volume from Lake Powell under the Long-Range Operating Criteria?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-OPR-08",
+        "IDX-EU-LP-OFF-015-01"
+      ],
+      "expected_answer_points": [
+        "8.23 million acre-feet minimum annual release"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-KC-LP-OPR-08",
+        "IDX-KC-LP-REG-06",
+        "IDX-EU-LP-OFF-004-08",
+        "IDX-EU-LP-OFF-010-04",
+        "IDX-KC-LP-REG-05",
+        "IDX-EU-LP-OFF-005-14",
+        "IDX-EU-LP-OFF-008-07",
+        "IDX-EU-LP-OFF-015-01",
+        "IDX-EU-LP-OFF-009-06",
+        "IDX-EU-LP-OFF-009-11"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-004",
+      "benchmark_question": "What are the minimum and maximum release limits under Modified Low Fluctuating Flow at Glen Canyon Dam?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-OPR-01",
+        "IDX-EU-LP-OFF-008-04"
+      ],
+      "expected_answer_points": [
+        "8,000 cfs minimum daytime release / 5,000 cfs at night",
+        "25,000 cfs maximum release"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-EU-LP-RES-018-03",
+        "IDX-KC-LP-OPR-01",
+        "IDX-EU-LP-OFF-004-04",
+        "IDX-EU-LP-OFF-009-05",
+        "IDX-EU-LP-OFF-005-03",
+        "IDX-EU-LP-OFF-010-02",
+        "IDX-KC-LP-OPR-07",
+        "IDX-KC-LP-REG-14",
+        "IDX-SC-LP-008",
+        "IDX-EU-LP-OFF-007-22"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-005",
+      "benchmark_question": "What situations allow Glen Canyon Dam to deviate from normal operations under the Emergency Exception Criteria?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-EMR-03",
+        "IDX-EU-LP-OFF-008-06"
+      ],
+      "expected_answer_points": [
+        "Section 3 of the 1997 Operating Criteria (62 FR 9448)",
+        "WAPA NERC reliability obligations",
+        "search-and-rescue, maintenance, and spinning-reserve exceptions"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-KC-LP-EMR-03",
+        "IDX-EU-LP-OFF-008-06",
+        "IDX-EU-LP-OFF-007-20",
+        "IDX-EU-LP-OFF-003-09",
+        "IDX-EU-LP-OFF-010-05",
+        "IDX-EU-LP-OFF-009-08",
+        "IDX-KC-LP-EMR-02",
+        "IDX-EU-LP-OFF-005-11",
+        "IDX-EU-LP-OFF-030-02",
+        "IDX-EU-LP-CRS-002-01"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-006",
+      "benchmark_question": "How much was the Lake Powell annual release reduced under Section 6.E for water year 2026?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-OPR-13",
+        "IDX-EU-LP-OFF-023-02",
+        "IDX-SC-LP-001"
+      ],
+      "expected_answer_points": [
+        "Reduced from 7.48 maf to 6.00 maf",
+        "triggered by a projected elevation below 3,500 feet"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-KC-LP-EMR-06",
+        "IDX-KC-LP-OPR-09",
+        "IDX-EU-LP-OFF-022-01",
+        "IDX-EU-LP-OFF-023-02",
+        "IDX-EU-LP-OFF-002-04",
+        "IDX-KC-LP-EMR-04",
+        "IDX-KC-LP-OPR-08",
+        "IDX-KC-LP-OPR-14",
+        "IDX-SC-LP-001",
+        "IDX-EU-LP-MED-001-03"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-007",
+      "benchmark_question": "What caused the September 2005 dissolved oxygen violation at Glen Canyon Dam?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-UNC-10",
+        "IDX-EU-LP-RES-020-07",
+        "IDX-SC-LP-011"
+      ],
+      "expected_answer_points": [
+        "Historically low reservoir elevation",
+        "metalimnetic oxygen-minimum layer at the penstock elevation",
+        "tailwater DO fell below 4.0 mg/L"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-EU-LP-RES-020-02",
+        "IDX-KC-LP-UNC-10",
+        "IDX-EU-LP-RES-020-03",
+        "IDX-SC-LP-011",
+        "IDX-EU-LP-OFF-005-08",
+        "IDX-EU-LP-OFF-009-03",
+        "IDX-EU-LP-OFF-011-01",
+        "IDX-EU-LP-OFF-011-14",
+        "IDX-EU-LP-OFF-025-06",
+        "IDX-EU-LP-RES-018-05"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    },
+    {
+      "query_id": "IDX-QR-LP-008",
+      "benchmark_question": "What is the combined discharge capacity of Glen Canyon Dam's river outlet works?",
+      "gold_index_record_ids": [
+        "IDX-KC-LP-EMR-13",
+        "IDX-EU-LP-MED-002-02"
+      ],
+      "expected_answer_points": [
+        "15,000 cubic feet per second combined capacity",
+        "four 96-inch-diameter steel pipes through two intakes"
+      ],
+      "retrieval_depth": 10,
+      "codex_retrieval_status": "completed",
+      "codex_returned_index_record_ids": [
+        "IDX-EU-LP-OFF-030-02",
+        "IDX-KC-LP-EMR-13",
+        "IDX-EU-LP-MED-002-02",
+        "IDX-KC-LP-UNC-01",
+        "IDX-EU-LP-OFF-004-03",
+        "IDX-EU-LP-OFF-007-06",
+        "IDX-EU-LP-OFF-022-10",
+        "IDX-KC-LP-OPR-07",
+        "IDX-KC-LP-STG-07",
+        "IDX-SC-LP-003"
+      ],
+      "source_adequacy_score": null,
+      "notes": null,
+      "required_action": null,
+      "codex_retrieval_method": "deterministic_lexical_token_overlap_baseline"
+    }
+  ],
+  "run_level_metrics": {
+    "benchmark_note": "8 simple, single-fact benchmark questions defined manually from validated Knowledge Cards and Evidence Units before retrieval was run, per the indexing skill's instruction not to invent a benchmark by script. codex_retrieval_status/codex_returned_index_record_ids are filled by validation/scripts/run_lexical_retrieval_benchmark.py, a deterministic lexical top-k baseline; source_adequacy_score is left null because human review is not requested for this run.",
+    "source_adequacy_score": null,
+    "notes": null,
+    "required_action": null
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "stage": "synthesis",
+  "workflow_version": "v0.2",
+  "status": "completed",
+  "inputs": [
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Knowledge Cards (canonical)",
+      "path": "03_knowledge_consolidation/knowledge_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/knowledge_card.schema.json",
+      "record_count": 81,
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Synthesis Cards (canonical)",
+      "path": "04_synthesis/synthesis_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/synthesis_card.schema.json",
+      "record_count": 15,
+      "required": true
+    },
+    {
+      "name": "Synthesis Cards reading view",
+      "path": "04_synthesis/synthesis_cards.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 15,
+      "required": true
+    },
+    {
+      "name": "Source navigation",
+      "path": "04_synthesis/source_navigation.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 50,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "04_synthesis/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "04_synthesis/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": []
+  },
+  "warnings": [
+    "15 Synthesis Cards were drafted covering all six primary patterns (decision_process 2, constraint_structure 2, operational_tradeoff 3, operating_regime_change 3, historical_operation_failure 3, operational_consequence 2), drawing on 81 validated Knowledge Cards and their supporting Evidence Units rather than re-reading all 442 EUs directly for every candidate relationship.",
+    "7 of 15 cards were marked evidence_depth=source_checked_with_direct_quote after rereading the underlying source text for their most quantitative, causal, or historical claims (SC-LP-001, 003, 005, 009, 011, 012, 014); the remaining 8 cards are marked eu_only and rely on the already source-grounded Evidence Unit quotes and locators recorded during Evidence extraction rather than an independent full-document reread.",
+    "Several cards reuse EU/KC pairs already linked in one Knowledge Card (e.g., the 2026 drought-response EUs appear in both SC-LP-001 and SC-LP-009) because the same evidence supports more than one operational relationship (a decision-process view and a regime-change view); this is intentional cross-referencing, not duplication of a single claim."
+  ],
+  "unresolved_issues": [
+    "SC-LP-006 (extended-duration HFE volume-protection override) and SC-LP-010 (post-2026 Basic Coordination Alternative continuity) document policy-level or inferred relationships that this EU/KC set does not confirm with a specific observed real-world instance; both are flagged with confidence=medium and an explicit next_step to find corroborating instance-level evidence.",
+    "SC-LP-014 (projected 2026-2027 elevation recovery) is a forward-looking projected_consequence card; it should be revisited once a post-April-2026 24-Month Study is available to confirm whether the projected 54-foot elevation rise was realized."
+  ],
+  "downstream_readiness": "ready"
+}

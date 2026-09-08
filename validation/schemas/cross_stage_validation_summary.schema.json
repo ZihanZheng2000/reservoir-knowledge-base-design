@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cross_stage_validation_summary.schema.json",
+  "title": "Reservoir KB Cross-Stage Validation Summary",
+  "type": "object",
+  "required": ["schema_version", "run_id", "generated_at", "overall_status", "stages", "totals"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "overall_status": {"enum": ["pass", "warning", "fail", "incomplete"]},
+    "stages": {
+      "type": "object",
+      "required": ["source_acquisition", "evidence_extraction", "knowledge_consolidation", "synthesis", "indexing", "report_generation"],
+      "additionalProperties": {"$ref": "#/$defs/stage"}
+    },
+    "totals": {"type": "object"}
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "required": ["status", "artifact", "error_count", "warning_count", "automated_validation"],
+      "properties": {
+        "status": {"enum": ["pass", "warning", "fail", "not_run"]},
+        "artifact": {"type": ["string", "null"]},
+        "error_count": {"type": "integer", "minimum": 0},
+        "warning_count": {"type": "integer", "minimum": 0},
+        "automated_validation": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

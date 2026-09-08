@@ -1,0 +1,1 @@
+run_id,method_label,method_type,goal_objective,goal_status,started_at,ended_at,elapsed_seconds,source_count,ku_count,candidate_passage_count,prompt_tokens,completion_tokens,total_tokens,goal_reported_tokens,token_source,notes

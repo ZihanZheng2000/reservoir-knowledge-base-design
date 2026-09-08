@@ -1,0 +1,22 @@
+{
+  "stage": "indexing",
+  "index_record_count": 538,
+  "error_count": 0,
+  "warning_count": 0,
+  "errors": [],
+  "warnings": [],
+  "status": "pass",
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    }
+  },
+  "stage_delivery_checked": true
+}

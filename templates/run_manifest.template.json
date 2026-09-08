@@ -1,16 +1,18 @@
 {
   "run_id": "reservoir_slug_YYYYMMDD",
   "reservoir_id": "",
+  "reservoir_id_system": "authoritative_system | project_assigned",
   "reservoir_name": "",
   "basin_or_system": "",
   "run_date": "YYYY-MM-DD",
   "workflow_version": "v0.1",
   "case_role": "development_refinement | transfer_validation",
   "skills": {
-    "source_acquisition": "source-acquisition-suite",
-    "ku_extraction": "ku-extraction",
-    "synthesis": "synthesis-analysis",
-    "retrieval_indexing": "retrieval-indexing",
+    "source_acquisition": "source-acquisition",
+    "evidence_extraction": "evidence-extraction",
+    "knowledge_consolidation": "knowledge-consolidation",
+    "synthesis": "synthesis",
+    "indexing": "indexing",
     "report_generation": "report-generation"
   },
   "inputs": {
@@ -19,15 +21,20 @@
     "search_queries": []
   },
   "outputs": {
-    "source_inventory": "",
-    "operational_kus": "",
-    "synthesis_records": "",
-    "retrieval_records": "",
-    "benchmark_questions": "",
-    "validation_summary": "",
-    "report": ""
+    "source_manifest": "01_source_acquisition/source_manifest.json",
+    "candidate_inventory": "01_source_acquisition/sources/candidate_inventory.jsonl",
+    "source_inventory": "01_source_acquisition/sources/source_inventory.jsonl",
+    "evidence_units": "02_evidence_extraction/evidence_units.jsonl",
+    "knowledge_cards": "03_knowledge_consolidation/knowledge_cards.jsonl",
+    "synthesis_cards": "04_synthesis/synthesis_cards.jsonl",
+    "encoded_knowledge_records": "05_indexing/encoded_knowledge_records.jsonl",
+    "validation_summary": "validation/run_validation_summary.json",
+    "report": "06_report_generation/"
   },
-  "human_gates": [],
+  "human_review": {
+    "required_for_this_run": false,
+    "stage_review_filename": "human_review.json"
+  },
   "notes": ""
 }
 

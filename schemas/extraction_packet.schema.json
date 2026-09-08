@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "extraction_packet.schema.json",
+  "title": "Reservoir Evidence Extraction Packet",
+  "type": "object",
+  "required": ["source_id", "reservoir_id", "reservoir_name", "title", "url", "document_type", "text_path", "text_basis", "chunk_id", "chunk_index", "chunk_count", "char_start", "char_end", "chunk_text", "packet_text", "packet_truncated", "chunking_method", "chunking_note"],
+  "properties": {
+    "source_id": {"type": "string", "minLength": 1},
+    "reservoir_id": {"type": "string"},
+    "reservoir_name": {"type": "string"},
+    "title": {"type": "string"},
+    "url": {"type": "string"},
+    "document_type": {"type": "string"},
+    "text_path": {"type": "string", "minLength": 1},
+    "text_basis": {"type": "string", "minLength": 1},
+    "chunk_id": {"type": "string", "minLength": 1},
+    "chunk_index": {"type": "integer", "minimum": 1},
+    "chunk_count": {"type": "integer", "minimum": 1},
+    "char_start": {"type": "integer", "minimum": 0},
+    "char_end": {"type": "integer", "minimum": 0},
+    "chunk_text": {"type": "string", "minLength": 1},
+    "packet_text": {"type": "string", "minLength": 1},
+    "packet_truncated": {"type": "boolean"},
+    "chunking_method": {"type": "string", "minLength": 1},
+    "chunking_note": {"type": "string"}
+  },
+  "additionalProperties": true
+}

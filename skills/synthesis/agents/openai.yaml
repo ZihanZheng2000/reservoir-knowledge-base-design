@@ -1,0 +1,15 @@
+interface:
+  display_name: "Reservoir Synthesis"
+  short_description: "Build deep, source-grounded reservoir Synthesis Cards."
+  default_prompt: >-
+    Build Synthesis Cards from validated Evidence Units and Knowledge Cards.
+    Select one primary pattern: decision_process, constraint_structure,
+    operational_tradeoff, operating_regime_change,
+    historical_operation_failure, or operational_consequence. Write an
+    operational question, a supported synthesis claim, conditions and scope,
+    an explicit analysis chain, EU/KC evidence links, uncertainty or
+    exceptions, and operational implications. Use EU and KC locators to reread
+    original source passages whenever the claim depends on thresholds, dates,
+    rule versions, authority, implementation status, causal language,
+    historical events, consequences, or material context. Do not produce
+    source-discrepancy, evidence-gap, or generic evidence-relationship cards.

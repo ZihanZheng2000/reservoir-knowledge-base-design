@@ -1,0 +1,10 @@
+interface:
+  display_name: "Reservoir Knowledge Consolidation"
+  short_description: "Organize Evidence Units into traceable Knowledge Cards."
+  default_prompt: >-
+    Consolidate validated reservoir Evidence Units into Knowledge Cards. Group
+    only EUs that answer the same operational question, preserve dates,
+    scenarios, thresholds, rules, statuses, and decision contexts, and cite
+    every supporting EU ID. Do not create cross-document analytical claims;
+    recurring findings, tradeoffs, source discrepancies, evidence gaps, and
+    unresolved operational issues belong to the later Synthesis stage.

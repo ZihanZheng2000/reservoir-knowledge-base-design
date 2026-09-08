@@ -6,5 +6,8 @@ Thumbs.db
 runs/*/sources/raw/*
 runs/*/sources/text/*
 runs/*/sources/parsed_docling/*
+**/sources/raw/*
+**/sources/text/*
+**/sources/parsed_docling/*
 *.tmp
 *.log

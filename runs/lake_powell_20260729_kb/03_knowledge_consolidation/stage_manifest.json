@@ -1,0 +1,72 @@
+{
+  "run_id": "lake_powell_20260729_kb",
+  "stage": "knowledge_consolidation",
+  "workflow_version": "v0.2",
+  "status": "completed",
+  "inputs": [
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Knowledge Cards (canonical)",
+      "path": "03_knowledge_consolidation/knowledge_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/knowledge_card.schema.json",
+      "record_count": 81,
+      "required": true
+    },
+    {
+      "name": "Knowledge Cards reading view",
+      "path": "03_knowledge_consolidation/knowledge_cards.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 81,
+      "required": true
+    },
+    {
+      "name": "Source navigation",
+      "path": "03_knowledge_consolidation/source_navigation.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 50,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "03_knowledge_consolidation/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "03_knowledge_consolidation/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": []
+  },
+  "warnings": [
+    "Consolidation was distributed across 6 parallel passes grouped by engineering dimension (Operation Rules; Regulation/Governance+Operation Purposes; Emergency/Real-Time/Stakeholders; Storage/Inflow Forecast/Multiple Objectives; Modeling/Observation and Data; Uncertainty/Operation Failure) to review all 442 EUs within one session. Each pass only clustered EUs answering the same narrow operational question within its assigned dimension group; cross-dimension consolidation was not attempted (an EU whose closest match is in another dimension group remains unclustered rather than being force-merged).",
+    "213 of 442 EUs (48%) are cited by at least one Knowledge Card; the remaining 229 EUs are single, non-duplicated findings with no repeat/complement identified in this pass and are not represented in any KC -- this is expected under the protocol's conservative grouping rule, not a coverage gap.",
+    "All 6 fragment outputs were structurally validated (required fields, allowed consolidation_type/confidence enums, based_on_eu_ids resolving to real, EU-ready evidence_units.jsonl records, minItems 2) before merging; 0 duplicate knowledge_card_id values were found across the 6 fragments."
+  ],
+  "unresolved_issues": [
+    "4 Knowledge Cards are marked consolidation_type=contested_or_unresolved (apparent numeric or status inconsistencies across sources that could not be resolved from the EU evidence alone); these are preserved as-is per protocol for Synthesis-stage or human review, not silently resolved."
+  ],
+  "downstream_readiness": "ready"
+}

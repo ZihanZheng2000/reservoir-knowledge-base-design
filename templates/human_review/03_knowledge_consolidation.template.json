@@ -1,0 +1,10 @@
+{
+  "review_status": "not_requested",
+  "stage": "knowledge_consolidation",
+  "reviewer": null,
+  "review_date": null,
+  "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
+  "items": [
+    {"row_type": "review_item", "knowledge_card_id": "<kc_id>", "engineering_dimension": "<one approved topic value>", "title": "<KC title>", "operational_question": "<question>", "consolidated_finding": "<full KC finding to assess for faithfulness>", "consolidation_type": "<repeated_fact | complementary_facts | contested_or_unresolved>", "source_coverage_note": "<scope and limitation>", "supporting_evidence": [{"eu_id": "<eu_id>", "source_id": "<source_id>", "engineering_dimension": "<EU topic>", "finding": "<EU finding>", "source_location": "<EU locator>", "source_pdf_link": "../01_source_acquisition/sources/raw/<file>.pdf", "source_text_link": "../01_source_acquisition/sources/text/<file>.txt"}], "knowledge_card_reading_view_link": "knowledge_cards.md", "evidence_unit_reading_view_link": "../02_evidence_extraction/evidence_units.md", "codex_decision": "retain as KC", "human_disposition": null, "faithfulness_score": null, "consolidation_appropriateness_score": null, "value_score": null, "notes": null, "required_action": null}
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Orchestration"
+  short_description: "Start and validate a six-stage reservoir knowledge-base run."
+  default_prompt: "Use $run-orchestration to start a compliant six-stage reservoir knowledge-base run."

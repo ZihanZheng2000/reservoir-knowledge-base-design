@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic construction of an evidence-traceable reservoir operation knowledge base</title>
+  <desc id="desc">Three panels show fragmented sources, a six-stage construction workflow, and traceable knowledge products.</desc>
+  <style>
+    .panel { fill:#ffffff; stroke:#cbd5e1; stroke-width:2; }
+    .heading { font:700 26px Arial, sans-serif; fill:#0f172a; }
+    .label { font:700 22px Arial, sans-serif; fill:#0f172a; }
+    .body { font:18px Arial, sans-serif; fill:#1e293b; }
+    .small { font:16px Arial, sans-serif; fill:#334155; }
+    .tiny { font:14px Arial, sans-serif; fill:#475569; }
+    .source { fill:#e8f1fb; stroke:#4376a8; stroke-width:2; }
+    .stage { fill:#edf7f7; stroke:#248f8f; stroke-width:2; }
+    .record { fill:#e7f4f3; stroke:#1d8a83; stroke-width:2; }
+    .output { fill:#f3f7fb; stroke:#64748b; stroke-width:2; }
+    .validate { fill:#fff1dc; stroke:#c57520; stroke-width:2; }
+    .arrow { stroke:#334155; stroke-width:2.5; fill:none; marker-end:url(#arrowhead); }
+    .dash { stroke:#c57520; stroke-width:2.5; stroke-dasharray:8 6; fill:none; marker-end:url(#orangeArrow); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#334155"/></marker>
+    <marker id="orangeArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#c57520"/></marker>
+  </defs>
+  <rect width="1800" height="980" fill="#ffffff"/>
+  <text x="900" y="48" text-anchor="middle" class="heading">Agentic construction of an evidence-traceable reservoir operation knowledge base</text>
+
+  <!-- Panel A -->
+  <rect x="45" y="90" width="470" height="790" rx="20" class="panel"/>
+  <text x="78" y="135" class="label">(a) Fragmented operational evidence</text>
+  <text x="78" y="165" class="small">Different source roles, formats, and decision contexts</text>
+  <rect x="90" y="210" width="170" height="120" rx="14" class="source"/>
+  <text x="175" y="252" text-anchor="middle" class="body">Official operating</text><text x="175" y="278" text-anchor="middle" class="body">materials</text>
+  <text x="175" y="306" text-anchor="middle" class="tiny">rules • plans • agencies</text>
+  <rect x="300" y="210" width="170" height="120" rx="14" class="source"/>
+  <text x="385" y="252" text-anchor="middle" class="body">Technical</text><text x="385" y="278" text-anchor="middle" class="body">research</text>
+  <text x="385" y="306" text-anchor="middle" class="tiny">models • scenarios • impacts</text>
+  <rect x="90" y="370" width="170" height="120" rx="14" class="source"/>
+  <text x="175" y="412" text-anchor="middle" class="body">Data</text><text x="175" y="438" text-anchor="middle" class="body">documentation</text>
+  <text x="175" y="466" text-anchor="middle" class="tiny">forecasts • portals • records</text>
+  <rect x="300" y="370" width="170" height="120" rx="14" class="source"/>
+  <text x="385" y="412" text-anchor="middle" class="body">Public</text><text x="385" y="438" text-anchor="middle" class="body">context</text>
+  <text x="385" y="466" text-anchor="middle" class="tiny">events • concerns • narratives</text>
+  <path d="M175 330 L240 550" class="arrow"/><path d="M385 330 L260 550" class="arrow"/>
+  <path d="M175 490 L240 550" class="arrow"/><path d="M385 490 L260 550" class="arrow"/>
+  <rect x="100" y="560" width="360" height="165" rx="16" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="280" y="610" text-anchor="middle" class="body">Operational question</text>
+  <text x="280" y="645" text-anchor="middle" class="small">What rule, condition, or tradeoff</text>
+  <text x="280" y="670" text-anchor="middle" class="small">is supported by the evidence?</text>
+  <text x="280" y="775" text-anchor="middle" class="tiny">Challenge: preserve evidence before interpretation</text>
+
+  <!-- Panel B -->
+  <rect x="555" y="90" width="690" height="790" rx="20" class="panel"/>
+  <text x="590" y="135" class="label">(b) Agentic six-stage construction</text>
+  <text x="590" y="165" class="small">Agent coordinates semantic work; deterministic tools preserve and validate artifacts</text>
+  <rect x="610" y="215" width="250" height="86" rx="14" class="stage"/>
+  <text x="735" y="249" text-anchor="middle" class="body">1  Source acquisition</text><text x="735" y="274" text-anchor="middle" class="tiny">preserve • parse • inventory</text>
+  <rect x="940" y="215" width="250" height="86" rx="14" class="stage"/>
+  <text x="1065" y="249" text-anchor="middle" class="body">2  Evidence extraction</text><text x="1065" y="274" text-anchor="middle" class="tiny">document → EU</text>
+  <path d="M860 258 L938 258" class="arrow"/>
+  <rect x="610" y="360" width="250" height="86" rx="14" class="stage"/>
+  <text x="735" y="394" text-anchor="middle" class="body">3  Knowledge consolidation</text><text x="735" y="419" text-anchor="middle" class="tiny">related EUs → KC</text>
+  <rect x="940" y="360" width="250" height="86" rx="14" class="stage"/>
+  <text x="1065" y="394" text-anchor="middle" class="body">4  Synthesis</text><text x="1065" y="419" text-anchor="middle" class="tiny">EU + KC → Synthesis Card</text>
+  <path d="M1065 302 L1065 335 L735 335 L735 358" class="arrow"/><path d="M860 403 L938 403" class="arrow"/>
+  <rect x="610" y="505" width="250" height="86" rx="14" class="stage"/>
+  <text x="735" y="539" text-anchor="middle" class="body">5  Indexing</text><text x="735" y="564" text-anchor="middle" class="tiny">encode validated records</text>
+  <rect x="940" y="505" width="250" height="86" rx="14" class="stage"/>
+  <text x="1065" y="539" text-anchor="middle" class="body">6  Report generation</text><text x="1065" y="564" text-anchor="middle" class="tiny">claim–evidence map</text>
+  <path d="M1065 447 L1065 478 L735 478 L735 503" class="arrow"/><path d="M860 548 L938 548" class="arrow"/>
+  <rect x="650" y="660" width="500" height="105" rx="16" class="validate"/>
+  <text x="900" y="704" text-anchor="middle" class="body">Validation is distributed across every stage</text>
+  <text x="900" y="733" text-anchor="middle" class="small">schema + evidence-chain checks • sampled human review • versioned reruns</text>
+  <path d="M900 765 L900 815" class="dash"/>
+  <text x="900" y="845" text-anchor="middle" class="tiny">Warnings and unresolved issues remain visible downstream</text>
+
+  <!-- Panel C -->
+  <rect x="1285" y="90" width="470" height="790" rx="20" class="panel"/>
+  <text x="1320" y="135" class="label">(c) Traceable knowledge products</text>
+  <text x="1320" y="165" class="small">Distinct layers, one evidence chain</text>
+  <rect x="1380" y="205" width="280" height="72" rx="14" class="source"/>
+  <text x="1520" y="248" text-anchor="middle" class="body">Preserved source evidence</text>
+  <rect x="1380" y="325" width="280" height="72" rx="14" class="record"/>
+  <text x="1520" y="368" text-anchor="middle" class="body">Evidence Units (EU)</text>
+  <rect x="1380" y="445" width="280" height="72" rx="14" class="record"/>
+  <text x="1520" y="488" text-anchor="middle" class="body">Knowledge Cards (KC)</text>
+  <rect x="1380" y="565" width="280" height="72" rx="14" class="record"/>
+  <text x="1520" y="608" text-anchor="middle" class="body">Synthesis Cards</text>
+  <path d="M1520 278 L1520 323" class="arrow"/><path d="M1520 398 L1520 443" class="arrow"/><path d="M1520 518 L1520 563" class="arrow"/>
+  <path d="M1370 600 C1308 590 1308 258 1370 245" class="dash"/>
+  <text x="1298" y="420" text-anchor="middle" class="tiny" transform="rotate(-90 1298 420)">reread source context</text>
+  <rect x="1315" y="705" width="180" height="75" rx="14" class="output"/>
+  <text x="1405" y="738" text-anchor="middle" class="body">Index records</text><text x="1405" y="762" text-anchor="middle" class="tiny">construction output</text>
+  <rect x="1545" y="705" width="180" height="75" rx="14" class="output"/>
+  <text x="1635" y="738" text-anchor="middle" class="body">Report</text><text x="1635" y="762" text-anchor="middle" class="tiny">controlled output</text>
+  <path d="M1475 638 L1405 703" class="arrow"/><path d="M1565 638 L1635 703" class="arrow"/>
+  <rect x="1360" y="815" width="320" height="45" rx="12" fill="#ffffff" stroke="#c57520" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="1520" y="844" text-anchor="middle" class="small">Optional downstream retrieval evaluation</text>
+</svg>

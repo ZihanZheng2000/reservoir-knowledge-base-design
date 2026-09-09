@@ -13,6 +13,12 @@ Per-run outputs are split by purpose:
 This directory contains reusable tooling and optional research-study assets. It
 does not redefine the routine six-stage workflow.
 
+[`nsf_demo_benchmark.md`](nsf_demo_benchmark.md) summarizes the 8-question
+retrieval benchmark from the featured Lake Powell demo run (see the main
+[README](../README.md#preliminary-retrieval-benchmark-8-questions)); it is a
+readable summary of `runs/lake_powell_20260729_kb/05_indexing/human_review.json`,
+not a new validation instrument.
+
 ## Routine tooling
 
 - `scripts/build_cross_stage_summary.py`: combines six stage validation outputs.

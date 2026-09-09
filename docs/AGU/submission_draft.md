@@ -1,0 +1,17 @@
+# AGU26 Submission Draft — IN002 - Accelerating Scientific Discovery in Earth System Science with Agentic AI
+
+## Proposed title
+
+**Agentic AI for Evidence-Traceable Scientific Scientific Reasoning and Knowledge Construction in Reservoir Operation**
+
+## Abstract
+
+Scientific knowledge in Earth system science is increasingly distributed across heterogeneous sources, including operating manuals, agency records, technical documentation, observational datasets, research publications, and public-context documents. Recent advances in agentic AI have substantially improved information processing by automating document retrieval, information extraction, and knowledge organization. However, accelerating scientific discovery requires more than processing individual documents. It requires evidence-constrained reasoning that integrates heterogeneous evidence into trustworthy scientific knowledge while preserving traceability, provenance, and explicit evidential support.
+
+Existing AI systems primarily operate at the level of information processing, retrieving or summarizing individual documents. We argue that the next stage of AI-assisted science is scientific knowledge construction, in which evidence from multiple sources is organized into traceable scientific syntheses that support human scientific reasoning. These syntheses are not scientific discoveries themselves; rather, they provide inspectable and evidence-backed knowledge from which researchers can formulate hypotheses, identify knowledge gaps, and develop new scientific questions. We therefore position evidence-traceable scientific knowledge construction as a critical intermediate layer between document understanding and AI-assisted scientific discovery.
+
+We present an agentic framework for evidence-traceable scientific reasoning and knowledge construction in reservoir operation. Rather than directly generating scientific conclusions, the framework explicitly separates three levels of representation. Evidence Units preserve validated findings extracted from individual documents. Knowledge Cards organize related evidence across multiple sources without introducing new interpretations. Synthesis Cards capture evidence-bounded scientific insights through conservative cross-document reasoning while maintaining explicit links to every supporting evidence unit and original source. The agent coordinates source acquisition, semantic evidence extraction, knowledge consolidation, scientific synthesis, structured indexing, and report generation, while deterministic tools preserve provenance, validate intermediate artifacts, and maintain reproducible evidence chains.
+
+We demonstrate the framework through an end-to-end Lake Powell case study integrating heterogeneous operational and scientific documents into an evidence-traceable scientific knowledge base. Validation is incorporated throughout the workflow through evidence verification, synthesis traceability, schema validation, and human review to ensure that scientific interpretations remain constrained by available evidence rather than model-generated speculation. We envision evidence-traceable scientific knowledge construction as a practical foundation for trustworthy human–AI collaboration, enabling researchers to inspect, validate, refine, and build upon AI-constructed scientific knowledge while accelerating scientific discovery across Earth system science.
+
+

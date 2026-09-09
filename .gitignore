@@ -11,3 +11,23 @@ runs/*/sources/parsed_docling/*
 **/sources/parsed_docling/*
 *.tmp
 *.log
+
+# Kept locally as development history / working notes, but excluded from the
+# public GitHub demo so the repo only shows the featured, validated run
+# (runs/lake_powell_20260729_kb) and its packaged dataset. See
+# datasets/lake_powell_demo/ for the clean, demo-facing outputs.
+runs/lake_powell_20260625/
+runs/lake_powell_20260626/
+runs/lake_powell_20260701/
+runs/lake_powell_20260711/
+runs/lake_powell_20260728/
+runs/lake_powell_20260729/
+runs/lake_powell_smoke_20260728/
+runs/lake_powell_smoke2_20260728/
+notes/
+
+# Unpacked PowerPoint build intermediate (thousands of generated XML parts),
+# not the source asset itself. Keep AGU.pptx / the editable pptx / the SVG
+# figure; exclude their unpacked build output.
+docs/AGU/editable_ppt_build/
+docs/AGU/*.pptx.inspect.ndjson

@@ -31,3 +31,5 @@ notes/
 # figure; exclude their unpacked build output.
 docs/AGU/editable_ppt_build/
 docs/AGU/*.pptx.inspect.ndjson
+~$*.pptx
+~$*.docx

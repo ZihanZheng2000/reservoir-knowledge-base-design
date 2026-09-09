@@ -44,7 +44,7 @@ retrieval, synthesis, and reasoning by AI
 traceable evidence and uncertainty in the final answer
 ```
 
-![Agentic construction of an evidence-traceable reservoir-operation knowledge base: fragmented sources on the left, the six-stage construction workflow in the center, and traceable Evidence Unit / Knowledge Card / Synthesis Card products on the right, branching into an index and an evidence-grounded report.](docs/AGU/figure_1_agentic_reservoir_kb.svg)
+![Agentic construction of an evidence-traceable reservoir-operation knowledge base: fragmented sources on the left, the six-stage construction workflow in the center, and traceable Evidence Unit / Knowledge Card / Synthesis Card products on the right, branching into an index and an evidence-grounded report.](docs/figures/figure_1_agentic_reservoir_kb.svg)
 
 **Figure 1. Agentic construction of an evidence-traceable reservoir-operation
 knowledge base.** *(a)* Reservoir-operation evidence is distributed across
@@ -79,27 +79,32 @@ validated outputs are also packaged for direct use in
 
 ```mermaid
 flowchart LR
-    A["201 candidate sources<br/>(fragmented, heterogeneous)"] -->|screen & preserve| B["66 selected sources"]
+    A["201 candidate sources (fragmented, heterogeneous)"] -->|screen and preserve| B["66 selected sources"]
     B -->|evidence extraction| C["442 Evidence Units"]
     C -->|consolidation| D["81 Knowledge Cards"]
     D -->|cross-source synthesis| E["15 Synthesis Cards"]
-    C --> F["538 AI-ready<br/>knowledge records"]
+    C --> F["538 AI-ready knowledge records"]
     D --> F
     E --> F
-    F -->|report generation| G["Evidence-grounded report<br/>& downstream AI use"]
+    F -->|report generation| G["Evidence-grounded report and downstream AI use"]
 ```
 
-This run is validated (schema conformance and traceability integrity pass
-for every stage; see
-[`runs/lake_powell_20260729_kb/validation/`](runs/lake_powell_20260729_kb/validation/))
-and is the run this README's numbers, examples, and dataset package are drawn
-from. Several earlier Lake Powell runs also exist in
-[`runs/`](runs/) (`lake_powell_20260625`, `lake_powell_20260626`,
+Every stage of this run completed schema conformance validation (0 issues);
+traceability integrity also passed for stages 2 through 6 (evidence
+extraction through report generation). Source acquisition's corresponding
+check, acquisition success, completed with 42 documented, non-blocking
+issues (mostly sources recovered only via web archive or with reduced text
+quality) rather than a clean pass — see
+[`runs/lake_powell_20260729_kb/validation/run_validation_summary.json`](runs/lake_powell_20260729_kb/validation/run_validation_summary.json)
+for the full per-stage breakdown. This is the run this README's numbers,
+examples, and dataset package are drawn from. Several earlier, pre-`_kb`
+Lake Powell development runs (`lake_powell_20260625`, `lake_powell_20260626`,
 `lake_powell_20260701`, `lake_powell_20260711`, `lake_powell_20260728`,
-`lake_powell_20260729`, and two `_smoke_` test runs). Those are kept for
-development history and are **not** the featured demo; they used earlier,
-now-superseded conventions and should not be read as equivalent, current
-results.
+`lake_powell_20260729`, and two `_smoke_` test runs) were used to build up
+this workflow and are kept locally for development history, but are excluded
+from this public repository so it stays focused on the one validated,
+current demo; they used earlier, now-superseded conventions and are not
+equivalent to `lake_powell_20260729_kb`.
 
 ## Evidence Unit, Knowledge Card, Synthesis Card
 
@@ -148,7 +153,7 @@ question `IDX-QR-LP-004`; see [`validation/nsf_demo_benchmark.md`](validation/ns
 
 | Step | Record(s) | Content |
 |---|---|---|
-| 1. Source documents | `OFF-008` — *Record of Decision: Operation of Glen Canyon Dam* (1996, usbr.gov); `OFF-005` — *Glen Canyon Dam LTEMP Final EIS, Vol. 1, Ch. 3* (2016) | Preserved PDFs + extracted text under `01_source_acquisition/sources/` |
+| 1. Source documents | `OFF-008` — *Record of Decision: Operation of Glen Canyon Dam* (1996, usbr.gov); `OFF-005` — *Glen Canyon Dam LTEMP Final EIS, Vol. 1, Ch. 3* (2016) | Each source's `source_url` in `source_inventory.jsonl` links to the original document; the preserved PDFs and extracted text are kept under `01_source_acquisition/sources/raw|text/` on disk but are gitignored (excluded from this public repo for size) |
 | 2. Evidence Units | `EU-LP-OFF-008-04` | *"Daily fluctuation limit of 5,000 cfs for monthly release volumes less than 600,000 acre-feet; 6,000 cfs for 600,000-800,000 acre-feet; and 8,000 cfs for monthly volumes over 800,000 acre-feet."* (Table 1 footnote 6) |
 | | `EU-LP-OFF-005-03` | *"...release rates ... 8,000 cfs or greater between the hours of 7 a.m. and 7 p.m., and at least 5,000 cfs at night... maximum hourly increase ... 4,000 cfs/hr, and ... maximum hourly decrease ... 1,500 cfs/hr."* (Section 3.13.1.3) |
 | 3. Knowledge Card | `KC-LP-OPR-01` — *"MLFF Baseline Operating Limits"* | Consolidates 11 EUs across 8 independent sources (the 1996 ROD, a 2002 report to Congress, a 1997 GAO review, a 2007 biological assessment, a 2008 biological opinion, LTEMP EIS Chapters 1 and 3, and a USGS research paper) into one confirmed statement: minimum release 8,000 cfs (day) / 5,000 cfs (night), maximum 25,000 cfs, up-ramp ≤ 4,000 cfs/hr, down-ramp ≤ 1,500 cfs/hr, and a 3-tier daily-fluctuation cap. |
@@ -170,7 +175,9 @@ questions:
 
 - **A. LLM only** — no retrieval, model answers from parametric knowledge.
 - **B. Raw-document RAG** — retrieval over chunked raw source text (the
-  preserved PDFs/text in `01_source_acquisition/`).
+  preserved PDFs/text under each run's `01_source_acquisition/sources/`,
+  kept locally and gitignored from this public repo for size; not shipped
+  in this repository today).
 - **C. Structured knowledge-base retrieval/reasoning** — retrieval and
   reasoning over the Evidence Unit / Knowledge Card / Synthesis Card records
   in `datasets/lake_powell_demo/`.
@@ -250,7 +257,7 @@ The rest of this README covers how the workflow is built and run.
 
 | Folder | Purpose |
 |---|---|
-| `docs/` | Framework paper/proposal and design notes, including the Figure 1 source assets under `docs/AGU/` |
+| `docs/` | Framework paper/proposal and design notes; `docs/figures/` holds the Figure 1 source SVG and caption, `docs/AGU/` holds a separate AGU conference-abstract submission draft |
 | `skills/` | Agent-usable protocols for the six workflow stages |
 | `schemas/` | Machine-readable schemas and controlled vocabularies |
 | `templates/` | Reusable templates for runs, manifests, human review, and validation |

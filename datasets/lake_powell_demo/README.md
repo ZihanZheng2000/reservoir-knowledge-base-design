@@ -38,10 +38,14 @@ Every record in every file traces back to a specific source document:
   source IDs behind it.
 
 The underlying source inventory (66 selected sources, screened from 201
-candidates), raw preserved documents, and extracted text are kept in
-[`runs/lake_powell_20260729_kb/01_source_acquisition/`](../../runs/lake_powell_20260729_kb/01_source_acquisition/)
-rather than duplicated here, to avoid shipping large binary files in two
-places. Automated validation results (schema conformance and traceability
+candidates) is in
+[`runs/lake_powell_20260729_kb/01_source_acquisition/sources/source_inventory.jsonl`](../../runs/lake_powell_20260729_kb/01_source_acquisition/sources/source_inventory.jsonl),
+with each source's original URL. The raw preserved PDFs and extracted text
+that inventory points to are kept locally on disk under that same
+`01_source_acquisition/sources/raw|text/` but are excluded from this public
+repository (`.gitignore`) for size — they are not shipped here or in the run
+directory on GitHub; each Evidence Unit's `source_url` and `evidence_quote`
+are the citable substitute. Automated validation results (schema conformance and traceability
 integrity, both passing for all five files above) are in
 [`runs/lake_powell_20260729_kb/validation/`](../../runs/lake_powell_20260729_kb/validation/).
 

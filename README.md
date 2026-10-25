@@ -63,9 +63,9 @@ this repository.
 The primary, featured demo is one complete run of the workflow against Lake
 Powell / Glen Canyon Dam (Bureau of Reclamation reservoir ID 144), run date
 2026-07-29:
-[`runs/lake_powell_20260729_kb/`](runs/lake_powell_20260729_kb/). The
-validated outputs are also packaged for direct use in
-[`datasets/lake_powell_demo/`](datasets/lake_powell_demo/).
+[`runs/lake_powell_20260729_kb/`](runs/lake_powell_20260729_kb/). Its
+[README](runs/lake_powell_20260729_kb/README.md) lists where each record type
+lives.
 
 | Quantity | Count |
 |---|---:|
@@ -161,7 +161,7 @@ question `IDX-QR-LP-004`; see [`validation/nsf_demo_benchmark.md`](validation/ns
 | 5. Report claim / answer | `CLM-007` (report §3, `06_report_generation/lake_powell_case_study_report.md`) | *"MLFF set a minimum release of 8,000 cfs (day) / 5,000 cfs (night), a maximum of 25,000 cfs, and ramp-rate and tiered daily-fluctuation limits topping out at 8,000 cfs/day."* — cited to `KC-LP-OPR-01` and `SC-LP-004`, listed with `support_level: synthesis_card_support` in `claim_evidence_map.jsonl`. |
 
 Every arrow in that chain is a real, resolvable ID in
-[`datasets/lake_powell_demo/`](datasets/lake_powell_demo/) — nothing in this
+[`runs/lake_powell_20260729_kb/`](runs/lake_powell_20260729_kb/) — nothing in this
 example is invented for illustration.
 
 ## AI use and evaluation
@@ -180,7 +180,7 @@ questions:
   in this repository today).
 - **C. Structured knowledge-base retrieval/reasoning** — retrieval and
   reasoning over the Evidence Unit / Knowledge Card / Synthesis Card records
-  in `datasets/lake_powell_demo/`.
+  in `runs/lake_powell_20260729_kb/`.
 
 Candidate evaluation dimensions: answer correctness, evidence recall,
 citation accuracy, rate of unsupported claims/hallucination, quality of
@@ -257,12 +257,11 @@ The rest of this README covers how the workflow is built and run.
 
 | Folder | Purpose |
 |---|---|
-| `docs/` | Framework paper and design notes; `docs/figures/` holds the Figure 1 source SVG and caption |
+| `docs/` | Workflow specification: `validation-framework.md` and `run-artifact-contract.md`; `docs/figures/` holds Figure 1 |
 | `skills/` | Agent-usable protocols for the six workflow stages |
 | `schemas/` | Machine-readable schemas and controlled vocabularies |
 | `templates/` | Reusable templates for runs, manifests, human review, and validation |
 | `runs/` | Per-reservoir workflow runs; generated outputs should go here |
-| `datasets/` | Curated dataset releases assembled from validated runs (see `datasets/lake_powell_demo/` for the featured demo dataset) |
 | `validation/` | Reusable validation tooling and optional method/transfer-study assets |
 
 The canonical routine validation design is documented in
@@ -328,6 +327,6 @@ The goal is not a one-off prompt result. The goal is a repeatable, inspectable, 
 ## License
 
 Code, schemas, templates, and workflow documentation are released under the
-[MIT License](LICENSE). The knowledge-base data in `datasets/` and `runs/` is
-released under [CC BY 4.0](datasets/lake_powell_demo/LICENSE.md); short quoted
+[MIT License](LICENSE). The knowledge-base data in `runs/` is released under
+[CC BY 4.0](LICENSE-DATA.md); short quoted
 source excerpts remain with their original rights holders.

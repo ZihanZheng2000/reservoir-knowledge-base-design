@@ -14,8 +14,7 @@ runs/*/sources/parsed_docling/*
 
 # Kept locally as development history / working notes, but excluded from the
 # public GitHub demo so the repo only shows the featured, validated run
-# (runs/lake_powell_20260729_kb) and its packaged dataset. See
-# datasets/lake_powell_demo/ for the clean, demo-facing outputs.
+# (runs/lake_powell_20260729_kb).
 runs/lake_powell_20260625/
 runs/lake_powell_20260626/
 runs/lake_powell_20260701/
@@ -30,7 +29,9 @@ notes/
 # slides, proposal drafts, and the legacy KU method-comparison pilot set
 # (which points at an excluded development run).
 docs/AGU/
-runs/*/NSF Proposal/
+**/NSF Proposal/
+docs/ai-native-framework-for-reservoir-operation-kb.*
+/scripts/
 validation/benchmark-source-set-lake-powell-v1.json
 
 ~$*.pptx

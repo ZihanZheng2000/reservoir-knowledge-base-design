@@ -140,8 +140,8 @@ records.
 
 ## Legacy Materials
 
-- Do not use files labelled `legacy`, historical KU/F2 workflows, or optional
-  method-comparison assets as routine instructions. The routine contract is
+- Do not use historical KU/F2 workflows or method-comparison material as
+  routine instructions. The routine contract is
   this file, `docs/run-artifact-contract.md`, and
   `docs/validation-framework.md`.
 

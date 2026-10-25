@@ -23,6 +23,5 @@ SOFTWARE.
 ---
 
 This MIT License covers the code, schemas, templates, and workflow
-documentation in this repository. The knowledge-base data in `datasets/` and
-`runs/` is licensed separately under CC BY 4.0; see
-`datasets/lake_powell_demo/LICENSE.md`.
+documentation in this repository. The knowledge-base data in `runs/` is
+licensed separately under CC BY 4.0; see `LICENSE-DATA.md`.

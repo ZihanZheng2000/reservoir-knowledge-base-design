@@ -1,8 +1,8 @@
 # Run `lake_powell_20260729_kb`
 
 Complete six-stage run for Lake Powell / Glen Canyon Dam (run date
-2026-07-29). This is the run behind the repository README and the packaged
-dataset in [`datasets/lake_powell_demo/`](../../datasets/lake_powell_demo/).
+2026-07-29). This is the run behind the repository README; its records are
+released under CC BY 4.0 (see [`LICENSE-DATA.md`](../../LICENSE-DATA.md)).
 
 | Folder | Main output | Records |
 |---|---|---:|

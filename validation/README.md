@@ -30,17 +30,13 @@ not a new validation instrument.
   source-navigation files from stage records.
 - `scripts/validate_run_contract.py`: final acceptance check for all six stage
   deliverables.
+- `scripts/render_validation_report.py` and
+  `scripts/render_validation_score_figure.py`: human-readable run report and
+  score figure.
+- `scripts/run_lexical_retrieval_benchmark.py`: deterministic lexical baseline
+  for the indexing-stage retrieval benchmark.
 - `schemas/`: contracts for standardized stage and cross-stage summaries.
-- `templates/`: optional reviewer and benchmark instruments.
 - `tests/`: deterministic tests for the summary builder.
-
-## Optional studies
-
-Method comparisons, detailed scoring instruments, runtime/token logging, and
-transfer validation are optional research-design activities. Use dated,
-immutable folders under `validation/studies/` when conducting one. These
-assets must not change the routine automated indicators or the three human
-review criteria defined for each stage in the canonical framework.
 
 ## Quick start
 

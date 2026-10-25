@@ -1,7 +1,7 @@
 # Data License
 
-The Lake Powell knowledge-base records in this folder, and the corresponding
-run outputs under `runs/lake_powell_20260729_kb/`, are licensed under the
+The Lake Powell knowledge-base records under `runs/lake_powell_20260729_kb/`
+are licensed under the
 [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 Copyright (c) 2026 Zihan Zheng.

@@ -35,27 +35,20 @@ EUs are not intended to replace the source document. They are a structured index
 ## Workflow
 
 1. Confirm the source inventory and extracted text files exist.
-2. When running a method comparison, create one Codex Goal for this direct
-   method before reading source text. Record the Goal objective and start time.
-3. Create `02_evidence_extraction/source_inventory_eu_ready.jsonl` with `scripts/prepare_ku_ready_inventory.py`.
-4. Generate full-coverage extraction packets at `02_evidence_extraction/extraction_packets.jsonl` with `scripts/make_extraction_packet.py`.
-5. Read `references/extraction-protocol.md`.
-6. Split long documents into page/section-aware chunks before extraction. Do not rely on first-N-character truncation.
-7. Use LLM reasoning to draft candidate EUs from each section or chunk.
-8. Remove exact or semantic duplicates that state the same operational fact.
+2. Create `02_evidence_extraction/source_inventory_eu_ready.jsonl` with `scripts/prepare_ku_ready_inventory.py`.
+3. Generate full-coverage extraction packets at `02_evidence_extraction/extraction_packets.jsonl` with `scripts/make_extraction_packet.py`.
+4. Read `references/extraction-protocol.md`.
+5. Split long documents into page/section-aware chunks before extraction. Do not rely on first-N-character truncation.
+6. Use LLM reasoning to draft candidate EUs from each section or chunk.
+7. Remove exact or semantic duplicates that state the same operational fact.
    Keep different operational facts as separate EUs even when they share the
    same engineering dimension or broader topic.
-9. Write one JSON object per validated EU to `evidence_units.jsonl`.
-10. Validate with `scripts/validate_operational_kus.py`.
-11. If validation fails, repair the EU file; do not loosen the schema to pass.
-12. Render `evidence_units.md` with `scripts/render_ku_preview.py` as the
+8. Write one JSON object per validated EU to `evidence_units.jsonl`.
+9. Validate with `scripts/validate_operational_kus.py`.
+10. If validation fails, repair the EU file; do not loosen the schema to pass.
+11. Render `evidence_units.md` with `scripts/render_ku_preview.py` as the
     required reading view of the validated JSONL.
-13. Mark the method Goal complete and record reported token usage when available.
-14. Record method runtime/token metrics in
-    `validation/evidence_method_runtime_metrics.csv` when this extraction is part of
-    a method comparison.
-15. Record major step timing in `validation/evidence_method_step_metrics.csv`.
-16. Record whether the EU set has only automated validation or has also received human/domain research validation.
+12. Record whether the EU set has only automated validation or has also received human/domain research validation.
 
 ## Validation
 

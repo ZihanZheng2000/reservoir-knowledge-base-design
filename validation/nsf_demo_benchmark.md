@@ -1,17 +1,17 @@
 # NSF Demo Benchmark: Lake Powell Retrieval Questions
 
 Source of truth:
-[`runs/lake_powell_20260729_kb/05_indexing/human_review.json`](../runs/lake_powell_20260729_kb/05_indexing/human_review.json).
+[`runs/lake_powell_20261025_kb/05_indexing/human_review.json`](../runs/lake_powell_20261025_kb/05_indexing/human_review.json).
 This file summarizes that record for readers who do not want to open the raw
 JSON. If the two ever disagree, the run's `human_review.json` is authoritative.
 
 ## What this is
 
-During the July 29, 2026 Lake Powell run, the indexing stage defined **8
-manually written, single-fact retrieval questions** against the validated
-knowledge base (442 Evidence Units, 81 Knowledge Cards, 15 Synthesis Cards;
-538 encoded index records). Each question was written *before* retrieval was
-run, together with:
+The Lake Powell indexing stage uses **8 manually written, single-fact
+retrieval questions**, first defined in run `lake_powell_20260729_kb` and
+reused unchanged in the current run against its knowledge base (442 Evidence
+Units, 81 Knowledge Cards, 19 Synthesis Cards; 542 encoded index records).
+Each question was written *before* retrieval was run, together with:
 
 - **gold index-record IDs** — the specific EU/KC/SC index records that
   contain the answer;
@@ -44,15 +44,19 @@ real retriever.
 | IDX-QR-LP-004 | What are the minimum and maximum release limits under Modified Low Fluctuating Flow at Glen Canyon Dam? | `IDX-KC-LP-OPR-01`, `IDX-EU-LP-OFF-008-04` |
 | IDX-QR-LP-005 | What situations allow Glen Canyon Dam to deviate from normal operations under the Emergency Exception Criteria? | `IDX-KC-LP-EMR-03`, `IDX-EU-LP-OFF-008-06` |
 | IDX-QR-LP-006 | How much was the Lake Powell annual release reduced under Section 6.E for water year 2026? | `IDX-KC-LP-OPR-13`, `IDX-EU-LP-OFF-023-02`, `IDX-SC-LP-001` |
-| IDX-QR-LP-007 | What caused the September 2005 dissolved oxygen violation at Glen Canyon Dam? | `IDX-KC-LP-UNC-10`, `IDX-EU-LP-RES-020-07`, `IDX-SC-LP-011` |
+| IDX-QR-LP-007 | What caused the September 2005 dissolved oxygen violation at Glen Canyon Dam? | `IDX-KC-LP-UNC-10`, `IDX-EU-LP-RES-020-07`, `IDX-SC-LP-014` |
 | IDX-QR-LP-008 | What is the combined discharge capacity of Glen Canyon Dam's river outlet works? | `IDX-KC-LP-EMR-13`, `IDX-EU-LP-MED-002-02` |
 
 (Question IDX-QR-LP-004 is traced end-to-end as the worked example in the
-main [README](../README.md#example-from-source-document-to-ai-usable-knowledge).)
+main [README](../README.md#example-from-source-document-to-ai-usable-knowledge).
+For IDX-QR-LP-007 the gold Synthesis Card ID was remapped from `IDX-SC-LP-011`
+to `IDX-SC-LP-014`, the card on the same 2005 episode after the Synthesis
+Cards were rebuilt and renumbered; the mapping is recorded in the item's
+`notes`.)
 
 ## Current lexical-baseline result
 
-From [`runs/lake_powell_20260729_kb/validation/run_validation_summary.json`](../runs/lake_powell_20260729_kb/validation/run_validation_summary.json),
+From [`runs/lake_powell_20261025_kb/validation/run_validation_summary.json`](../runs/lake_powell_20261025_kb/validation/run_validation_summary.json),
 computed at top-10 depth over all 8 questions:
 
 | Metric | Value |
@@ -68,12 +72,6 @@ because human review was not requested for this routine run.
 
 ## Status and next steps
 
-- `status: draft_needs_domain_adjudication` equivalents from earlier drafts of
-  this benchmark have been superseded by this manually curated 8-question set
-  with fixed gold IDs; treat this file, not
-  [`retrieval-benchmark-lake-powell-draft-v1.jsonl`](retrieval-benchmark-lake-powell-draft-v1.jsonl)
-  (an earlier, larger draft built against a prior, now-superseded run), as the
-  current NSF-demo benchmark asset.
 - This benchmark is a **preliminary evaluation asset**, sized for a demo, not
   a statistically powered evaluation. Scaling it up, adding held-out
   multi-hop and synthesis-level questions, and running it against an actual

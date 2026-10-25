@@ -61,11 +61,11 @@ this repository.
 ## What this demo shows: the Lake Powell case
 
 The primary, featured demo is one complete run of the workflow against Lake
-Powell / Glen Canyon Dam (Bureau of Reclamation reservoir ID 144), run date
-2026-07-29:
-[`runs/lake_powell_20260729_kb/`](runs/lake_powell_20260729_kb/). Its
-[README](runs/lake_powell_20260729_kb/README.md) lists where each record type
-lives.
+Powell / Glen Canyon Dam (Bureau of Reclamation reservoir ID 144):
+[`runs/lake_powell_20261025_kb/`](runs/lake_powell_20261025_kb/). Its
+[README](runs/lake_powell_20261025_kb/README.md) lists where each record type
+lives. Sources, Evidence Units, and Knowledge Cards were built on 2026-07-29;
+synthesis, indexing, and the report were redone on 2026-10-25.
 
 | Quantity | Count |
 |---|---:|
@@ -73,17 +73,18 @@ lives.
 | Sources selected and preserved | 66 |
 | Evidence Units (EUs) | 442 |
 | Knowledge Cards (KCs) | 81 |
-| Synthesis Cards (SCs) | 15 |
-| Encoded / AI-ready knowledge records | 538 |
-| Report claims (all cited to evidence) | 30 |
+| Synthesis Cards (SCs) | 19 |
+| Encoded / AI-ready knowledge records | 542 |
+| Report claims (all cited to evidence) | 32 |
 
 ```mermaid
 flowchart LR
     A["201 candidate sources (fragmented, heterogeneous)"] -->|screen and preserve| B["66 selected sources"]
     B -->|evidence extraction| C["442 Evidence Units"]
     C -->|consolidation| D["81 Knowledge Cards"]
-    D -->|cross-source synthesis| E["15 Synthesis Cards"]
-    C --> F["538 AI-ready knowledge records"]
+    C -->|cross-source synthesis| E["19 Synthesis Cards"]
+    D --> E
+    C --> F["542 AI-ready knowledge records"]
     D --> F
     E --> F
     F -->|report generation| G["Evidence-grounded report and downstream AI use"]
@@ -95,16 +96,23 @@ extraction through report generation). Source acquisition's corresponding
 check, acquisition success, completed with 42 documented, non-blocking
 issues (mostly sources recovered only via web archive or with reduced text
 quality) rather than a clean pass — see
-[`runs/lake_powell_20260729_kb/validation/run_validation_summary.json`](runs/lake_powell_20260729_kb/validation/run_validation_summary.json)
-for the full per-stage breakdown. This is the run this README's numbers,
-examples, and dataset package are drawn from. Several earlier, pre-`_kb`
-Lake Powell development runs (`lake_powell_20260625`, `lake_powell_20260626`,
-`lake_powell_20260701`, `lake_powell_20260711`, `lake_powell_20260728`,
-`lake_powell_20260729`, and two `_smoke_` test runs) were used to build up
-this workflow and are kept locally for development history, but are excluded
-from this public repository so it stays focused on the one validated,
-current demo; they used earlier, now-superseded conventions and are not
-equivalent to `lake_powell_20260729_kb`.
+[`runs/lake_powell_20261025_kb/validation/run_validation_summary.json`](runs/lake_powell_20261025_kb/validation/run_validation_summary.json)
+for the full per-stage breakdown. Human review has not been performed for
+any stage.
+
+In this run every Synthesis Card was written after rereading the cited
+passages in the preserved source text, and candidate relationships were
+screened across all 442 Evidence Units; the 30 candidates and the reason
+each was kept or rejected are in
+[`04_synthesis/candidate_screening.jsonl`](runs/lake_powell_20261025_kb/04_synthesis/candidate_screening.jsonl).
+Known limitations carried over from the source and extraction stages are
+listed in the [run README](runs/lake_powell_20261025_kb/README.md#known-limitations-not-addressed-in-this-run).
+
+This is the run this README's numbers and examples are drawn from. Earlier
+Lake Powell runs, including `lake_powell_20260729_kb` (whose synthesis,
+index, and report this run replaces) and several development and smoke-test
+runs, are kept locally for development history but excluded from this public
+repository.
 
 ## Evidence Unit, Knowledge Card, Synthesis Card
 
@@ -144,8 +152,8 @@ where did it come from."
 
 ## Example: From Source Document to AI-Usable Knowledge
 
-This traces one real chain from the July 29 Lake Powell run, start to finish,
-using actual record IDs.
+This traces one real chain from the Lake Powell run, start to finish, using
+actual record IDs.
 
 **Question:** What are the minimum and maximum release limits under Modified
 Low Fluctuating Flow (MLFF) at Glen Canyon Dam? *(This is retrieval-benchmark
@@ -157,11 +165,11 @@ question `IDX-QR-LP-004`; see [`validation/nsf_demo_benchmark.md`](validation/ns
 | 2. Evidence Units | `EU-LP-OFF-008-04` | *"Daily fluctuation limit of 5,000 cfs for monthly release volumes less than 600,000 acre-feet; 6,000 cfs for 600,000-800,000 acre-feet; and 8,000 cfs for monthly volumes over 800,000 acre-feet."* (Table 1 footnote 6) |
 | | `EU-LP-OFF-005-03` | *"...release rates ... 8,000 cfs or greater between the hours of 7 a.m. and 7 p.m., and at least 5,000 cfs at night... maximum hourly increase ... 4,000 cfs/hr, and ... maximum hourly decrease ... 1,500 cfs/hr."* (Section 3.13.1.3) |
 | 3. Knowledge Card | `KC-LP-OPR-01` — *"MLFF Baseline Operating Limits"* | Consolidates 11 EUs across 8 independent sources (the 1996 ROD, a 2002 report to Congress, a 1997 GAO review, a 2007 biological assessment, a 2008 biological opinion, LTEMP EIS Chapters 1 and 3, and a USGS research paper) into one confirmed statement: minimum release 8,000 cfs (day) / 5,000 cfs (night), maximum 25,000 cfs, up-ramp ≤ 4,000 cfs/hr, down-ramp ≤ 1,500 cfs/hr, and a 3-tier daily-fluctuation cap. |
-| 4. Synthesis Card | `SC-LP-004` — *"Safety, sediment, and power-flexibility constraints jointly define the MLFF/LTEMP hourly-release envelope"* | Cross-source analysis showing how this 1996 baseline was later revised by the 2016 LTEMP ROD specifically to reduce sandbar erosion, while WAPA's discretionary hourly dispatch operates inside these limits without requiring a new ROD/EIS. |
-| 5. Report claim / answer | `CLM-007` (report §3, `06_report_generation/lake_powell_case_study_report.md`) | *"MLFF set a minimum release of 8,000 cfs (day) / 5,000 cfs (night), a maximum of 25,000 cfs, and ramp-rate and tiered daily-fluctuation limits topping out at 8,000 cfs/day."* — cited to `KC-LP-OPR-01` and `SC-LP-004`, listed with `support_level: synthesis_card_support` in `claim_evidence_map.jsonl`. |
+| 4. Synthesis Card | `SC-LP-007` — *"The hourly and daily release envelope at Glen Canyon Dam: fixed limits, volume-dependent fluctuation, and defined exceptions"* | Cross-source analysis, checked against the source text, of how the 2016 LTEMP ROD changed this baseline: the three-step fluctuation table became 9 or 10 times the monthly volume in kaf, still capped at 8,000 cfs in any month, and the down-ramp limit was raised from 1,500 to 2,500 cfs/hr. It also lists when the 25,000 cfs maximum may be exceeded and notes that WAPA's dispatch practices operate inside these limits without being ROD requirements. |
+| 5. Report claim / answer | `CLM-005` (report §3, `06_report_generation/lake_powell_case_study_report.md`) | *"Hourly and daily releases are bounded by minimum flows of 8,000 cfs by day and 5,000 cfs at night, a 25,000 cfs maximum for power generation, and a daily fluctuation range that LTEMP sets at 9 or 10 times the monthly volume in kaf but never above 8,000 cfs."* — cited to `SC-LP-007`, `KC-LP-OPR-01`, and `KC-LP-OPR-03`, and tagged `[CLM-005]` in the report text and in `claim_evidence_map.jsonl`. |
 
 Every arrow in that chain is a real, resolvable ID in
-[`runs/lake_powell_20260729_kb/`](runs/lake_powell_20260729_kb/) — nothing in this
+[`runs/lake_powell_20261025_kb/`](runs/lake_powell_20261025_kb/) — nothing in this
 example is invented for illustration.
 
 ## AI use and evaluation
@@ -180,7 +188,7 @@ questions:
   in this repository today).
 - **C. Structured knowledge-base retrieval/reasoning** — retrieval and
   reasoning over the Evidence Unit / Knowledge Card / Synthesis Card records
-  in `runs/lake_powell_20260729_kb/`.
+  in `runs/lake_powell_20261025_kb/`.
 
 Candidate evaluation dimensions: answer correctness, evidence recall,
 citation accuracy, rate of unsupported claims/hallucination, quality of
@@ -194,7 +202,7 @@ representation already outperforms raw-document RAG or an LLM alone.
 ### Preliminary retrieval benchmark (8 questions)
 
 The one piece of this evaluation that does exist is a small, hand-curated
-retrieval benchmark from the July 29 indexing stage: **8 manually defined,
+retrieval benchmark from the indexing stage: **8 manually defined,
 single-fact retrieval questions**, each with gold record IDs and expected
 answer points fixed *before* retrieval was run. The retrieval method
 exercised against them so far is a **deterministic lexical token-overlap
@@ -212,7 +220,7 @@ evidence alongside confirmed facts, which matters for trustworthy AI and
 scientific use — a system trained or evaluated only on confident, resolved
 claims will not know how to represent or communicate genuine uncertainty.
 
-Concretely, in the July 29 Lake Powell run:
+Concretely, in the Lake Powell run:
 
 - 4 of the 81 Knowledge Cards are explicitly typed `contested_or_unresolved`.
   For example, `KC-LP-EMR-05` preserves two different official sources'
@@ -220,10 +228,18 @@ Concretely, in the July 29 Lake Powell run:
   AF vs. 161,000 AF for 2021; a 0.50 maf transfer vs. a 350,000 AF release
   readjustment for 2022) side by side, without picking a winner, because
   neither source alone resolves the discrepancy.
-- Synthesis Cards carry an explicit `uncertainty_or_exception` field;
-  `SC-LP-004` (the worked example above) documents that it could not verify
-  from the available evidence whether the LTEMP fluctuation formula can
-  exceed the legacy 8,000 cfs/day cap in very high-release months.
+- Synthesis Cards carry an explicit `uncertainty_or_exception` field and a
+  `source_verification_note` recording what rereading the source changed.
+  For example, `SC-LP-013` records that the Drought Response Operations
+  Agreement says its operations end with the 2007 Interim Guidelines term
+  (December 31, 2025), while a 2026 drought-response plan is in use, and
+  leaves that conflict open; `SC-LP-010` keeps the claim that the 2026
+  release cut will cause a Compact shortfall as an attributed media
+  statement, because no ten-year Lee Ferry totals are in the evidence set.
+- Projections are kept separate from observations: `SC-LP-018` reports that
+  the July 2026 most-probable 24-Month Study, which already includes the 2026
+  release reduction, still projects Lake Powell at 3,491.75 ft in April 2027,
+  1.75 ft above minimum power pool, and labels it a single-run projection.
 - Source acquisition itself preserves 42 documented, non-blocking
   acquisition issues (e.g., a source recovered only via web archive, or with
   degraded text quality) rather than silently dropping affected sources.

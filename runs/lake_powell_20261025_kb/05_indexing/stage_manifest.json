@@ -1,0 +1,78 @@
+{
+  "run_id": "lake_powell_20261025_kb",
+  "stage": "indexing",
+  "workflow_version": "v0.2",
+  "status": "completed",
+  "inputs": [
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Knowledge Cards (canonical)",
+      "path": "03_knowledge_consolidation/knowledge_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/knowledge_card.schema.json",
+      "record_count": 81,
+      "required": true
+    },
+    {
+      "name": "Synthesis Cards (canonical)",
+      "path": "04_synthesis/synthesis_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/synthesis_card.schema.json",
+      "record_count": 19,
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Encoded knowledge records",
+      "path": "05_indexing/encoded_knowledge_records.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/index_record.schema.json",
+      "record_count": 542,
+      "required": true
+    },
+    {
+      "name": "Index manifest",
+      "path": "05_indexing/index_manifest.json",
+      "format": "json",
+      "schema": "schemas/index_manifest.schema.json",
+      "record_count": null,
+      "required": true
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "05_indexing/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "05_indexing/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": []
+  },
+  "warnings": [
+    "Index records are deterministic structured-text encodings (encoding_model structured_text_only); no embedding or search backend was configured.",
+    "The 8 benchmark questions, gold IDs, expected answer points, and depth were defined before retrieval in run lake_powell_20260729_kb and reused unchanged, except that one gold Synthesis Card ID for IDX-QR-LP-007 was remapped from SC-LP-011 to SC-LP-014 because the cards were renumbered; the remapping is recorded in that item's notes.",
+    "The lexical token-overlap baseline characterizes this baseline only; it is not an evaluation of a production retrieval system."
+  ],
+  "unresolved_issues": [],
+  "downstream_readiness": "ready"
+}

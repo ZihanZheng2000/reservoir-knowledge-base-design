@@ -11,7 +11,7 @@ Suggested name:
 Examples:
 
 ```text
-lake_powell_20260729_kb
+lake_powell_20261025_kb
 shasta_lake_20260702
 ```
 

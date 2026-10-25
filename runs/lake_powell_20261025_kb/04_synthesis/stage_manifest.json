@@ -1,0 +1,91 @@
+{
+  "run_id": "lake_powell_20261025_kb",
+  "stage": "synthesis",
+  "workflow_version": "v0.2",
+  "status": "completed",
+  "inputs": [
+    {
+      "name": "Evidence Units (canonical)",
+      "path": "02_evidence_extraction/evidence_units.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/evidence_unit.schema.json",
+      "record_count": 442,
+      "required": true
+    },
+    {
+      "name": "Knowledge Cards (canonical)",
+      "path": "03_knowledge_consolidation/knowledge_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/knowledge_card.schema.json",
+      "record_count": 81,
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Synthesis Cards (canonical)",
+      "path": "04_synthesis/synthesis_cards.jsonl",
+      "format": "jsonl",
+      "schema": "schemas/synthesis_card.schema.json",
+      "record_count": 19,
+      "required": true
+    },
+    {
+      "name": "Synthesis Cards reading view",
+      "path": "04_synthesis/synthesis_cards.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 19,
+      "required": true
+    },
+    {
+      "name": "Source navigation",
+      "path": "04_synthesis/source_navigation.md",
+      "format": "markdown",
+      "schema": null,
+      "record_count": 53,
+      "required": true
+    },
+    {
+      "name": "Candidate screening record",
+      "path": "04_synthesis/candidate_screening.jsonl",
+      "format": "jsonl",
+      "schema": null,
+      "record_count": 30,
+      "required": false
+    }
+  ],
+  "automated_validation": {
+    "schema_conformance": {
+      "name": "schema_conformance",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "traceability_or_acquisition": {
+      "name": "traceability_integrity",
+      "status": "pass",
+      "issue_count": 0
+    },
+    "artifact_path": "04_synthesis/automated_validation.json"
+  },
+  "human_review": {
+    "status": "not_requested",
+    "artifact_path": "04_synthesis/human_review.json"
+  },
+  "cleanup": {
+    "status": "completed",
+    "removed_paths": [
+      "04_synthesis/work"
+    ]
+  },
+  "warnings": [
+    "Candidate relationships were screened across all 442 Evidence Units, not only the 213 grouped into Knowledge Cards; 59 of the 145 EUs cited by the cards are not in any Knowledge Card.",
+    "All 19 cards reread the cited source passages and are marked evidence_depth=source_checked_with_direct_quote; each source_verification_note records what the reread confirmed, narrowed, or rejected.",
+    "Two Stage 2 evidence quotes do not match their sources verbatim: EU-LP-OFF-006-12 (source says 'sediment or hydrology triggers') and EU-LP-OFF-023-06 (quote is a table title, values verified in the table). Cards rely on the source wording; the EUs were left unchanged because Stage 2 is carried over from lake_powell_20260729_kb."
+  ],
+  "unresolved_issues": [
+    "SC-LP-013 records an unresolved conflict between the DROA term clause (operations not beyond December 31, 2025) and the 2026 drought-response actions described in OFF-023 and OFF-036.",
+    "SC-LP-010 (Compact delivery link) and SC-LP-018 (single 24-Month Study projection) carry confidence=medium; their next_step fields name the evidence needed."
+  ],
+  "downstream_readiness": "ready"
+}

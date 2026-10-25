@@ -34,7 +34,7 @@
 ## 5. Human review
 
 - Status: not_requested
-- Review artifact: `human_review.json` (8 single-fact benchmark questions with gold index-record IDs, expected answer points, and retrieval depth fixed before retrieval; returned IDs filled by `validation/scripts/run_lexical_retrieval_benchmark.py`; `source_adequacy_score` left null)
+- Review artifact: `human_review.json` (8 single-fact benchmark questions with gold index-record IDs, expected answer points, and retrieval depth fixed before retrieval; returned IDs filled by `skills/run-orchestration/scripts/run_lexical_retrieval_benchmark.py`; `source_adequacy_score` left null)
 - Applicable criteria: recall, precision (computed from gold vs. returned IDs), source adequacy (not requested)
 
 ## 6. Cleanup

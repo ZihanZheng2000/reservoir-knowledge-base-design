@@ -48,7 +48,7 @@ Follow `docs/validation-framework.md`. Before Synthesis, write
 When human review is requested, use faithfulness, consolidation
 appropriateness, and value on a documented KC sample. Write the review in
 `03_knowledge_consolidation/human_review.json`.
-Run `validation/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage knowledge_consolidation`.
+Run `skills/run-orchestration/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage knowledge_consolidation`.
 It prefills every sampled KC row with its approved engineering-dimension topic,
 title, full consolidated finding, consolidation type, coverage limitation, and
 a compact supporting-EU table containing each EU finding, locator, and

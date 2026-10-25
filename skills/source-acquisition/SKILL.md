@@ -74,7 +74,7 @@ automated result to `01_source_acquisition/automated_validation.json` and assess
 
 When human review is requested, use recall, precision, and source adequacy and
 write the documented review in `01_source_acquisition/human_review.json`.
-Generate the workpaper with `validation/scripts/prepare_human_review.py`.
+Generate the workpaper with `skills/run-orchestration/scripts/prepare_human_review.py`.
 Its source rows must come from `sources/candidate_inventory.jsonl`, not only
 the downloaded sources, so recall and precision use the documented candidate
 universe.
@@ -164,6 +164,6 @@ A completed Layer 1 run should contain, per `docs/run-artifact-contract.md`:
 `01_source_acquisition/deep_discovery/` (including
 `text_informed_expansion_leads.jsonl`), `sources/parsed_docling/`,
 `sources/docling_parse_manifest.jsonl`, and `sources/source_inventory.csv`
-are working artifacts used during the stage; `validation/scripts/
+are working artifacts used during the stage; `skills/run-orchestration/scripts/
 finalize_stage_artifacts.py` removes them after successful validation and
 they are not part of the retained deliverable set.

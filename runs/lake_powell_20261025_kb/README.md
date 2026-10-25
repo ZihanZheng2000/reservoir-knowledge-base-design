@@ -3,7 +3,7 @@
 Lake Powell / Glen Canyon Dam knowledge base. Stages 1-3 are carried over
 unchanged from run `lake_powell_20260729_kb` (work performed 2026-07-29);
 Stages 4-6 (synthesis, indexing, report) were redone on 2026-10-25. Records
-are released under CC BY 4.0 (see [`LICENSE-DATA.md`](../../LICENSE-DATA.md)).
+are released under CC BY 4.0 (see [`LICENSE-DATA.md`](../LICENSE-DATA.md)).
 
 | Folder | Main output | Records |
 |---|---|---:|

@@ -45,8 +45,8 @@ When every required decision and score in a populated workpaper is filled, the
 validation summary treats it as completed. Changing `review_status` to
 `completed` is welcome but is not an additional review task.
 
-Use the matching file in `templates/human_review/` to create the workpaper.
-Before handoff, prefill its item-level table from the actual stage artifacts
+Generate the workpaper with
+`skills/run-orchestration/scripts/prepare_human_review.py`. Before handoff, prefill its item-level table from the actual stage artifacts
 and retain Codex's decision in a separate column from the human decision. For
 Stage 1, this is the source-selection decision; for Stages 2–4 it is the
 record disposition; for Stage 5 it is the returned-record/answer decision;
@@ -215,9 +215,9 @@ not remain in the knowledge layer.
 
 Do not report a single run-level score without preserving the underlying sampled item or query decisions. Use the metric-specific rubric above and support borderline judgments with short notes.
 
-## Relationship to skills, templates, and run artifacts
+## Relationship to skills and run artifacts
 
 - `AGENTS.md` carries the project-level requirement to validate every stage and points to this framework.
 - Each stage skill should link to this document, state the exact validator command, and place `automated_validation.json` and `human_review.json` in its own stage folder.
-- `templates/` contains short conversation prompts, not the review rubric.
+- Run-level validation scripts live in `skills/run-orchestration/scripts/`.
 - `runs/<run_id>/validation/` contains only the JSON and Markdown run-level summaries; individual validation records stay with their stage artifacts.

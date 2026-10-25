@@ -26,7 +26,7 @@ they are supposed to, not to demonstrate a finished retrieval system.
 ## What this is not
 
 The retrieval run against these 8 questions used
-[`validation/scripts/run_lexical_retrieval_benchmark.py`](scripts/run_lexical_retrieval_benchmark.py),
+[`skills/run-orchestration/scripts/run_lexical_retrieval_benchmark.py`](../skills/run-orchestration/scripts/run_lexical_retrieval_benchmark.py),
 a **deterministic lexical token-overlap baseline** (no embeddings, no
 learned ranking, no LLM). It is a mechanical sanity check on the index
 records, not a production RAG or embedding-based retrieval system, and its

@@ -30,6 +30,7 @@ notes/
 # slides, proposal drafts, and the legacy KU method-comparison pilot set
 # (which points at an excluded development run).
 docs/AGU/
+docs/figures/
 **/NSF Proposal/
 docs/ai-native-framework-for-reservoir-operation-kb.*
 /scripts/

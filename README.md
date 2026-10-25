@@ -44,20 +44,6 @@ retrieval, synthesis, and reasoning by AI
 traceable evidence and uncertainty in the final answer
 ```
 
-![Agentic construction of an evidence-traceable reservoir-operation knowledge base: fragmented sources on the left, the six-stage construction workflow in the center, and traceable Evidence Unit / Knowledge Card / Synthesis Card products on the right, branching into an index and an evidence-grounded report.](docs/figures/figure_1_agentic_reservoir_kb.svg)
-
-**Figure 1. Agentic construction of an evidence-traceable reservoir-operation
-knowledge base.** *(a)* Reservoir-operation evidence is distributed across
-official operating materials, technical research, data documentation, and
-public-context sources. *(b)* An agent coordinates six construction stages
-while deterministic tools preserve source files, parse text, validate
-records, and maintain stage artifacts. *(c)* The resulting Evidence Units
-(EUs), Knowledge Cards (KCs), and Synthesis Cards remain distinct and retain
-paths back to the preserved source evidence; indexing prepares validated
-records for downstream AI retrieval and reasoning, shown here as the
-NSF-scale target use case rather than a capability already benchmarked in
-this repository.
-
 ## What this demo shows: the Lake Powell case
 
 The primary, featured demo is one complete run of the workflow against Lake
@@ -157,7 +143,7 @@ actual record IDs.
 
 **Question:** What are the minimum and maximum release limits under Modified
 Low Fluctuating Flow (MLFF) at Glen Canyon Dam? *(This is retrieval-benchmark
-question `IDX-QR-LP-004`; see [`validation/nsf_demo_benchmark.md`](validation/nsf_demo_benchmark.md).)*
+question `IDX-QR-LP-004`; see [`docs/retrieval-benchmark.md`](docs/retrieval-benchmark.md).)*
 
 | Step | Record(s) | Content |
 |---|---|---|
@@ -208,7 +194,7 @@ answer points fixed *before* retrieval was run. The retrieval method
 exercised against them so far is a **deterministic lexical token-overlap
 baseline** — not an embedding model, not a production RAG system. At top-10
 depth it achieves 66.7% mean recall and 15.0% mean precision on this
-8-question set. See [`validation/nsf_demo_benchmark.md`](validation/nsf_demo_benchmark.md)
+8-question set. See [`docs/retrieval-benchmark.md`](docs/retrieval-benchmark.md)
 for the full question list and an explicit statement of what this baseline
 does and does not show.
 
@@ -273,17 +259,15 @@ The rest of this README covers how the workflow is built and run.
 
 | Folder | Purpose |
 |---|---|
-| `docs/` | Workflow specification: `validation-framework.md` and `run-artifact-contract.md`; `docs/figures/` holds Figure 1 |
-| `skills/` | Agent-usable protocols for the six workflow stages |
+| `docs/` | Validation framework, run artifact contract, and retrieval benchmark |
+| `skills/` | Agent-usable protocols and scripts for the six workflow stages, plus `run-orchestration/` with run-level validation tooling |
 | `schemas/` | Machine-readable schemas and controlled vocabularies |
-| `templates/` | Reusable templates for runs, manifests, human review, and validation |
-| `runs/` | Per-reservoir workflow runs; generated outputs should go here |
-| `validation/` | Reusable validation tooling and optional method/transfer-study assets |
+| `runs/` | Per-reservoir workflow runs and the data license |
 
-The canonical routine validation design is documented in
-[`docs/validation-framework.md`](docs/validation-framework.md). Reusable
-cross-run tooling and optional study assets are described in
-[`validation/README.md`](validation/README.md).
+The validation design is documented in
+[`docs/validation-framework.md`](docs/validation-framework.md); the run-level
+validation scripts are listed in
+[`skills/run-orchestration/SKILL.md`](skills/run-orchestration/SKILL.md).
 
 ## Setup
 
@@ -344,5 +328,5 @@ The goal is not a one-off prompt result. The goal is a repeatable, inspectable, 
 
 Code, schemas, templates, and workflow documentation are released under the
 [MIT License](LICENSE). The knowledge-base data in `runs/` is released under
-[CC BY 4.0](LICENSE-DATA.md); short quoted
+[CC BY 4.0](runs/LICENSE-DATA.md); short quoted
 source excerpts remain with their original rights holders.

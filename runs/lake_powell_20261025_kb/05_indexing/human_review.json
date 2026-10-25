@@ -5,7 +5,7 @@
   "review_date": null,
   "metric_rubric_reference": "docs/validation-framework.md#human-review-by-layer-focus-and-rubric",
   "run_level_metrics": {
-    "benchmark_note": "The same 8 single-fact benchmark questions, gold index-record IDs, expected answer points, and retrieval depth defined before retrieval in run lake_powell_20260729_kb, reused unchanged because their gold records are Evidence Units and Knowledge Cards carried over into this run. codex_retrieval_status/codex_returned_index_record_ids are filled by validation/scripts/run_lexical_retrieval_benchmark.py against this run's 542 index records; source_adequacy_score is left null because human review is not requested.",
+    "benchmark_note": "The same 8 single-fact benchmark questions, gold index-record IDs, expected answer points, and retrieval depth defined before retrieval in run lake_powell_20260729_kb, reused unchanged because their gold records are Evidence Units and Knowledge Cards carried over into this run. codex_retrieval_status/codex_returned_index_record_ids are filled by skills/run-orchestration/scripts/run_lexical_retrieval_benchmark.py against this run's 542 index records; source_adequacy_score is left null because human review is not requested.",
     "source_adequacy_score": null,
     "notes": null,
     "required_action": null

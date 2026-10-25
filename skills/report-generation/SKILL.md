@@ -38,7 +38,7 @@ through validated records to source evidence.
 When human review is requested, use faithfulness, readability, and value for
 the report as a whole. Record one report-level review in
 `06_report_generation/human_review.json`.
-Run `validation/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage report_generation`
+Run `skills/run-orchestration/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage report_generation`
 to prefill the report and claim-evidence-map links. The claim-evidence map remains
 the automated traceability artifact; do not require per-claim human scoring.
 

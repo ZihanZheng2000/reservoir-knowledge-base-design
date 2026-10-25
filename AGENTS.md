@@ -86,7 +86,7 @@ it must not be an empty placeholder.
 For stages 2--4, `human_review.json` must include resolvable relative links to
 the relevant preserved PDF/text files and each stage must contain
 `source_navigation.md`. Do not hand-write a review workpaper when
-`validation/scripts/prepare_human_review.py` can generate it from the canonical
+`skills/run-orchestration/scripts/prepare_human_review.py` can generate it from the canonical
 records.
 
 ## Run Rules
@@ -103,7 +103,7 @@ records.
 - Validate EUs before consolidation; validate KCs before synthesis; validate Synthesis Cards before indexing or report generation.
 - Record warnings, failed acquisitions, parser fallbacks, validation errors, and unresolved issues in the run summary.
 - If a stage is rerun, keep the previous output or write the rerun to a clearly named new folder or versioned file.
-- Before a run is handed off, execute `validation/scripts/validate_run_contract.py`
+- Before a run is handed off, execute `skills/run-orchestration/scripts/validate_run_contract.py`
   and save `validation/run_contract_validation.json`.
 
 ## Validation And Human Review

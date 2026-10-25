@@ -56,8 +56,8 @@ claims, or prose findings inside the manifest.
 
 ### `stage_summary.md`
 
-This is the fixed, human-readable handoff. It must use the project template
-and contain these sections in this order:
+This is the fixed, human-readable handoff. It must contain these sections in
+this order:
 
 1. Stage status;
 2. inputs used;
@@ -86,8 +86,8 @@ then records the required three review criteria, item-level judgments, and
 follow-up. Keep this file even when review has not been requested so the
 review location is always obvious.
 
-Start from the matching JSON template in `templates/human_review/`, then prefill
-the rows with the stage's actual source, EU, KC, Synthesis Card, query, or
+Generate it with `skills/run-orchestration/scripts/prepare_human_review.py`,
+which prefills the rows with the stage's actual source, EU, KC, Synthesis Card, query, or
 report-claim records. Preserve Codex's recommendation and provide a separate
 column for the human disposition. Use 0/1/2 for human-scored criteria. A
 status-only placeholder is not a valid review workpaper.
@@ -96,7 +96,7 @@ Validate the stage manifest after the stage-specific automated validator has
 written its output:
 
 ```powershell
-python validation/scripts/validate_stage_manifest.py `
+python skills/run-orchestration/scripts/validate_stage_manifest.py `
   --manifest runs/<run_id>/<stage_folder>/stage_manifest.json `
   --run-dir runs/<run_id> `
   --automated-result runs/<run_id>/<stage_folder>/automated_validation.json `
@@ -109,7 +109,7 @@ third automated indicator.
 After validation, clean only the approved intermediate paths:
 
 ```powershell
-python validation/scripts/finalize_stage_artifacts.py `
+python skills/run-orchestration/scripts/finalize_stage_artifacts.py `
   --run-dir runs/<run_id> `
   --stage <stage_id> `
   --apply

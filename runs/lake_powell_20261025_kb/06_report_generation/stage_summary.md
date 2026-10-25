@@ -35,7 +35,7 @@ The report has 10 sections. Sections 3-8 contain 32 numbered claims; each claim 
 ## 5. Human review
 
 - Status: not_requested
-- Review artifact: `human_review.json` (prefilled by `validation/scripts/prepare_human_review.py`; scores left blank)
+- Review artifact: `human_review.json` (prefilled by `skills/run-orchestration/scripts/prepare_human_review.py`; scores left blank)
 - Applicable criteria: faithfulness, readability, value
 
 ## 6. Cleanup

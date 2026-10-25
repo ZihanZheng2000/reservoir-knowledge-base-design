@@ -61,7 +61,7 @@ Follow `docs/validation-framework.md`. Before Knowledge consolidation, write
 
 When human review is requested, use faithfulness, relevance, and value on a
 documented EU sample. Write the review in `02_evidence_extraction/human_review.json`.
-Run `validation/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage evidence_extraction`
+Run `skills/run-orchestration/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage evidence_extraction`
 to prefill every sampled EU row with its Codex retain decision, approved
 `engineering_dimension` topic, source locator, and relative links to the
 preserved PDF and extracted text. Create `source_navigation.md` beside the

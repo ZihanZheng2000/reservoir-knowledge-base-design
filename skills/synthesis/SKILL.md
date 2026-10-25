@@ -79,7 +79,7 @@ write `04_synthesis/automated_validation.json` and assess:
 When human review is requested, use faithfulness, reasoning soundness, and
 value on a documented Synthesis Card sample. Write the review in
 `04_synthesis/human_review.json`.
-Run `validation/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage synthesis`. It prefills every
+Run `skills/run-orchestration/scripts/prepare_human_review.py --run-dir runs/<run_id> --stage synthesis`. It prefills every
 sampled card row with its primary pattern, full claim, scope and conditions,
 analysis chain, uncertainty or exception, operational implication, and compact
 EU/KC evidence summaries with locators and relative PDF/text links. Create

@@ -40,7 +40,7 @@ Method: all 442 EUs were screened by engineering dimension, including the 229 EU
 ## 5. Human review
 
 - Status: not_requested
-- Review artifact: `human_review.json` (prefilled by `validation/scripts/prepare_human_review.py` with all 19 cards; human disposition and scores left blank)
+- Review artifact: `human_review.json` (prefilled by `skills/run-orchestration/scripts/prepare_human_review.py` with all 19 cards; human disposition and scores left blank)
 - Applicable criteria: faithfulness, reasoning soundness, value
 
 ## 6. Cleanup

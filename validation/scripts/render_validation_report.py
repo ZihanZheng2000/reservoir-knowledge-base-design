@@ -121,8 +121,11 @@ def _human_summary(stage: str, review: dict[str, Any], metrics: dict[str, Any]) 
         recall = metrics.get("recall", {}).get("ratio")
         adequacy = review.get("run_level_metrics", {}).get("source_adequacy_score")
         scope = f"{len(reviewed)}/{len(source_items)} candidates reviewed; {len(selected)} selected"
-        metric_text = f"precision {_fmt_ratio(precision)}; recall {_fmt_ratio(recall)}; source adequacy {adequacy}/2"
-        finding = f"Selected corpus is adequate; {len(missed)} unselected candidates were flagged for future consideration."
+        metric_text = f"precision {_fmt_ratio(precision)}; recall {_fmt_ratio(recall)}; source adequacy {_fmt_score(adequacy)}"
+        if not reviewed:
+            finding = "Not reviewed."
+        else:
+            finding = f"{len(missed)} unselected candidate{'s' if len(missed) != 1 else ''} marked for inclusion by the reviewer."
         return scope, metric_text, finding
     if stage == "indexing":
         recall = metrics.get("recall", {}).get("mean_ratio")
@@ -132,7 +135,10 @@ def _human_summary(stage: str, review: dict[str, Any], metrics: dict[str, Any]) 
         low = sum(score == 0 for score in adequacy)
         scope = f"{len(completed)}/{len(items)} benchmark queries completed"
         metric_text = f"recall@k {_fmt_ratio(recall)}; precision@k {_fmt_ratio(precision)}; source adequacy {_fmt_score(_mean(adequacy))}"
-        finding = f"Retrieval smoke test is usable but weak; {low} query had inadequate returned evidence."
+        if not adequacy:
+            finding = "Automated benchmark only; source adequacy not human-scored."
+        else:
+            finding = f"{low}/{len(adequacy)} scored queries had inadequate returned evidence."
         return scope, metric_text, finding
     sampled = [
         item for item in items
@@ -144,14 +150,9 @@ def _human_summary(stage: str, review: dict[str, Any], metrics: dict[str, Any]) 
         ratings = _scores(review, field)
         label = field.removesuffix("_score").replace("_", " ")
         metric_parts.append(f"{label} {_fmt_score(_mean(ratings))}")
-    finding_by_stage = {
-        "evidence_extraction": "Mixed sample: revise/reject actions mainly target locators, attribution, front matter, and off-scope EUs.",
-        "knowledge_consolidation": "Mostly faithful KCs; several cards need boundary, attribution, or source-quality cleanup.",
-        "synthesis": "All synthesis cards need revision because they remain EU-only and require source verification before final use.",
-        "report_generation": "Readable and useful report, but faithfulness needs one claim-evidence repair.",
-    }
     scope = f"{len(sampled)}/{len(items)} items scored"
-    return scope, "; ".join(metric_parts), f"{_disposition_counts(sampled)}; {finding_by_stage.get(stage, '')}"
+    finding = f"Dispositions: {_disposition_counts(sampled)}." if sampled else "Not reviewed."
+    return scope, "; ".join(metric_parts), finding
 
 
 def _record_count(run_dir: Path, artifact: str | None, stage: str) -> int | None:
@@ -204,7 +205,7 @@ def render(run_dir: Path) -> str:
         "# Validation Report",
         "",
         f"- Run ID: `{summary['run_id']}`",
-        f"- Automated validation: **{automated_pass}/6 stages correct**",
+        f"- Automated validation: **{automated_pass}/6 stages passed without warnings**",
         f"- Human review completed: **{completed_reviews}/6** stages",
         "",
         "![Validation score overview](validation_score_overview.png)",

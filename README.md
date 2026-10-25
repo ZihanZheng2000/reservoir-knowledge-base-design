@@ -257,7 +257,7 @@ The rest of this README covers how the workflow is built and run.
 
 | Folder | Purpose |
 |---|---|
-| `docs/` | Framework paper/proposal and design notes; `docs/figures/` holds the Figure 1 source SVG and caption, `docs/AGU/` holds a separate AGU conference-abstract submission draft |
+| `docs/` | Framework paper and design notes; `docs/figures/` holds the Figure 1 source SVG and caption |
 | `skills/` | Agent-usable protocols for the six workflow stages |
 | `schemas/` | Machine-readable schemas and controlled vocabularies |
 | `templates/` | Reusable templates for runs, manifests, human review, and validation |
@@ -324,3 +324,10 @@ This project uses a hybrid implementation:
 - The agent organizes the overall research process, applies skill protocols, runs automated validation, prepares optional human review, manages iteration, and preserves artifact links.
 
 The goal is not a one-off prompt result. The goal is a repeatable, inspectable, human-reviewable workflow for building reservoir operation knowledge-base datasets.
+
+## License
+
+Code, schemas, templates, and workflow documentation are released under the
+[MIT License](LICENSE). The knowledge-base data in `datasets/` and `runs/` is
+released under [CC BY 4.0](datasets/lake_powell_demo/LICENSE.md); short quoted
+source excerpts remain with their original rights holders.

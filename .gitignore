@@ -26,10 +26,12 @@ runs/lake_powell_smoke_20260728/
 runs/lake_powell_smoke2_20260728/
 notes/
 
-# Unpacked PowerPoint build intermediate (thousands of generated XML parts),
-# not the source asset itself. Keep AGU.pptx / the editable pptx / the SVG
-# figure; exclude their unpacked build output.
-docs/AGU/editable_ppt_build/
-docs/AGU/*.pptx.inspect.ndjson
+# Private working material kept locally only: conference-abstract drafts and
+# slides, proposal drafts, and the legacy KU method-comparison pilot set
+# (which points at an excluded development run).
+docs/AGU/
+runs/*/NSF Proposal/
+validation/benchmark-source-set-lake-powell-v1.json
+
 ~$*.pptx
 ~$*.docx

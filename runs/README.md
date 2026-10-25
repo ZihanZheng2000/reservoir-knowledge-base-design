@@ -11,11 +11,12 @@ Suggested name:
 Examples:
 
 ```text
-lake_powell_20260625
+lake_powell_20260729_kb
 shasta_lake_20260702
 ```
 
-Do not overwrite prior runs. If a workflow version changes, create a new run folder or add a clear version suffix.
+An optional suffix (for example `_kb`) may distinguish runs of the same
+reservoir on the same date. Do not overwrite prior runs. If a workflow version changes, create a new run folder or add a clear version suffix.
 
 Each run uses numbered stage folders in workflow order:
 

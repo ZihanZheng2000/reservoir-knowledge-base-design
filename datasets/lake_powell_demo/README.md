@@ -63,3 +63,8 @@ dataset.
 
 No benchmark results comparing these conditions exist yet; this dataset is
 being released ahead of that evaluation.
+
+## License
+
+CC BY 4.0; quoted source excerpts remain with their original rights holders.
+See [`LICENSE.md`](LICENSE.md).
